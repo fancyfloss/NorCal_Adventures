@@ -64,6 +64,12 @@
     animation: wave 12s linear infinite;
   }
 
+  .hero-waves svg:nth-child(2) {
+    animation-delay: -4s;
+    opacity: 0.5;
+    animation-duration: 16s;
+  }
+
   @keyframes wave {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
@@ -83,6 +89,8 @@
     color: var(--sun);
     text-transform: uppercase;
     margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
   }
 
   .hero-title {
@@ -92,6 +100,8 @@
     color: var(--fog);
     line-height: 0.95;
     margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
   }
 
   .hero-title em {
@@ -101,13 +111,17 @@
   }
 
   .hero-sub {
+    font-family: 'DM Sans', sans-serif;
     font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-weight: 300;
     color: rgba(242,239,233,0.75);
     margin-top: 28px;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
     line-height: 1.6;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
   }
 
   .hero-tags {
@@ -116,6 +130,8 @@
     gap: 10px;
     justify-content: center;
     margin-top: 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
   }
 
   .hero-tag {
@@ -127,6 +143,11 @@
     border: 1px solid rgba(247,183,49,0.4);
     color: var(--sun);
     border-radius: 2px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   /* NAVIGATION */
@@ -141,8 +162,11 @@
     border-bottom: 2px solid var(--sun);
   }
 
+  .nav::-webkit-scrollbar { display: none; }
+
   .nav-inner {
     display: flex;
+    gap: 0;
     padding: 0 24px;
     white-space: nowrap;
     min-width: max-content;
@@ -157,6 +181,7 @@
     text-decoration: none;
     padding: 8px 16px;
     transition: color 0.2s;
+    cursor: pointer;
   }
 
   .nav-item:hover { color: var(--sun); }
@@ -182,6 +207,7 @@
     font-size: 0.7rem;
     color: var(--coral);
     letter-spacing: 0.2em;
+    margin-bottom: 4px;
   }
 
   .section-title {
@@ -189,11 +215,19 @@
     font-size: clamp(1.8rem, 4vw, 3rem);
     font-weight: 700;
     color: var(--ocean);
+    line-height: 1.1;
   }
 
-  .section-title em { font-style: italic; color: var(--coral); }
+  .section-title em {
+    font-style: italic;
+    color: var(--coral);
+  }
 
-  .section-emoji { font-size: 2.5rem; margin-left: auto; }
+  .section-emoji {
+    font-size: 2.5rem;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
 
   /* CARDS */
   .card-grid {
@@ -208,6 +242,18 @@
     padding: 24px;
     border-left: 4px solid var(--sun);
     transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, rgba(247,183,49,0.08) 0%, transparent 70%);
   }
 
   .card:hover {
@@ -218,10 +264,12 @@
   .card.accent-coral { border-left-color: var(--coral); }
   .card.accent-mint { border-left-color: var(--mint); }
   .card.accent-earth { border-left-color: var(--earth); }
+  .card.accent-ocean { border-left-color: var(--ocean); }
 
   .card-category {
     font-family: 'Space Mono', monospace;
     font-size: 0.6rem;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--coral);
     margin-bottom: 8px;
@@ -230,8 +278,10 @@
   .card-name {
     font-family: 'Playfair Display', serif;
     font-size: 1.2rem;
+    font-weight: 700;
     color: var(--ocean);
     margin-bottom: 4px;
+    line-height: 1.2;
   }
 
   .card-location {
@@ -241,9 +291,18 @@
     margin-bottom: 12px;
   }
 
-  .card-desc { font-size: 0.88rem; line-height: 1.65; color: rgba(26,18,8,0.75); }
+  .card-desc {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: rgba(26,18,8,0.75);
+  }
 
-  .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 14px;
+  }
 
   .tag {
     font-size: 0.65rem;
@@ -252,185 +311,1242 @@
     background: var(--fog);
     color: var(--ocean);
     border-radius: 2px;
+    letter-spacing: 0.05em;
   }
 
-  /* BANDS */
-  .band { background: var(--ocean); color: var(--fog); padding: 80px 24px; }
-  .pilipino-band { background: linear-gradient(135deg, #0038A8 0%, #CE1126 50%, #FCD116 100%); padding: 80px 24px; }
-  .nature-band { background: linear-gradient(135deg, #0F4C3A 0%, #1A3D5C 100%); padding: 80px 24px; }
+  .tag.hot { background: rgba(255,94,87,0.12); color: var(--coral); }
+  .tag.local { background: rgba(46,196,182,0.12); color: var(--mint); }
+  .tag.budget { background: rgba(201,112,58,0.12); color: var(--earth); }
 
+  /* WIDE CARD */
+  .card-wide {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  @media (max-width: 600px) {
+    .card-wide { grid-template-columns: 1fr; }
+  }
+
+  /* HIGHLIGHT BAND */
+  .band {
+    background: var(--ocean);
+    color: var(--fog);
+    padding: 60px 24px;
+    margin: 0;
+  }
+
+  .band-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .band .section-title {
+    color: var(--fog);
+  }
+
+  .band .card {
+    background: rgba(255,255,255,0.07);
+    border-left-color: var(--sun);
+  }
+
+  .band .card-name { color: var(--fog); }
+  .band .card-desc { color: rgba(242,239,233,0.75); }
+  .band .card-location { color: rgba(242,239,233,0.45); }
+  .band .tag { background: rgba(255,255,255,0.1); color: var(--sun); }
+
+  /* FILIPINO SPECIAL */
+  .pilipino-band {
+    background: linear-gradient(135deg, #0038A8 0%, #CE1126 50%, #FCD116 100%);
+    padding: 60px 24px;
+  }
+
+  .pilipino-band .section-title { color: white; }
+  .pilipino-band .section-number { color: rgba(255,255,255,0.7); }
+  .pilipino-band .card { background: rgba(255,255,255,0.95); }
+
+  /* TWO COL */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  @media (max-width: 700px) {
+    .two-col { grid-template-columns: 1fr; }
+  }
+
+  /* NATURE SECTION */
+  .nature-band {
+    background: linear-gradient(135deg, #0F4C3A 0%, #1A3D5C 100%);
+    padding: 60px 24px;
+  }
+
+  .nature-band .section-title { color: var(--fog); }
+  .nature-band .section-number { color: var(--mint); }
+  .nature-band .card {
+    background: rgba(255,255,255,0.08);
+    border-left-color: var(--mint);
+  }
+  .nature-band .card-name { color: var(--fog); }
+  .nature-band .card-desc { color: rgba(242,239,233,0.75); }
+  .nature-band .card-location { color: rgba(242,239,233,0.4); }
+  .nature-band .tag { background: rgba(46,196,182,0.2); color: var(--mint); }
+  .nature-band .section-title em { color: var(--mint); }
+
+  /* ROAD TRIP SECTION */
+  .road-band {
+    background: var(--earth);
+    padding: 60px 24px;
+  }
+
+  .road-band .section-title { color: white; }
+  .road-band .section-number { color: rgba(255,255,255,0.6); }
+  .road-band .card { background: rgba(255,255,255,0.95); }
+  .road-band .section-title em { color: var(--sun); }
+
+  /* DIVIDER */
+  .divider {
+    text-align: center;
+    padding: 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: rgba(26,61,92,0.3);
+    letter-spacing: 0.3em;
+  }
+
+  /* LOCAL EVENTS */
+  .events-band {
+    background: var(--sun);
+    padding: 60px 24px;
+  }
+
+  .events-band .section-title { color: var(--ocean); }
+  .events-band .section-number { color: rgba(26,61,92,0.6); }
+  .events-band .card { 
+    background: white;
+    border-left-color: var(--coral);
+  }
+  .events-band .section-title em { color: var(--coral); }
+
+  /* FOOTER */
   footer {
     background: var(--dark);
     color: rgba(242,239,233,0.6);
     text-align: center;
-    padding: 60px 24px;
+    padding: 40px 24px;
     font-family: 'Space Mono', monospace;
     font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    line-height: 2;
   }
 
   footer strong {
     color: var(--sun);
     display: block;
     font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    margin-bottom: 10px;
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+
+  /* INTRO BLURB */
+  .intro-blurb {
+    max-width: 760px;
+    margin: 0 auto 56px;
+    text-align: center;
+    padding: 0 16px;
+  }
+
+  .intro-blurb p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(26,18,8,0.7);
+  }
+
+  .intro-blurb p + p { margin-top: 16px; }
+
+  /* ANCHOR BADGE */
+  .anchor {
+    display: inline-block;
+    background: var(--coral);
+    color: white;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .anchor.green { background: var(--mint); }
+  .anchor.gold { background: var(--golden); }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-left: 4px solid var(--sun);
+    padding: 16px 24px;
+    margin: 32px 0;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--ocean);
+    background: rgba(247,183,49,0.06);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 500px) {
+    .section { padding: 56px 16px; }
+    .card-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <p class="hero-eyebrow">🌉 April 2026 Edition</p>
+    <p class="hero-eyebrow">🌉 The Bay — By Those Who Live Here</p>
     <h1 class="hero-title">
       A Local's Guide
       <em>San Francisco & Beyond</em>
     </h1>
-    <p class="hero-sub">Ditch the tourist traps. From the freshest fish off the boat to the secret counters of Chinatown — this is the real Bay.</p>
+    <p class="hero-sub">Food. Nature. Community. Flavor. From the fog-drenched streets of the city to the Pacific's edge — this is the Bay for those who actually know it.</p>
     <div class="hero-tags">
-      <span class="hero-tag">🍜 The Diaspora</span>
-      <span class="hero-tag">🌊 Hook Fish Vibe</span>
-      <span class="hero-tag">🇵🇭 Pinoy Pride</span>
-      <span class="hero-tag">🥾 Coastal Trails</span>
+      <span class="hero-tag">🍜 Asian Diaspora</span>
+      <span class="hero-tag">🇵🇭 Filipino Flavors</span>
+      <span class="hero-tag">🌊 Coastal Drives</span>
+      <span class="hero-tag">🥾 Marin Trails</span>
+      <span class="hero-tag">🎪 Local Events</span>
+      <span class="hero-tag">🏄 Hole-in-the-Wall</span>
     </div>
   </div>
   <div class="hero-waves">
     <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M0 40 Q360 80 720 40 Q1080 0 1440 40 L1440 80 L0 80 Z" fill="#FDF8F0" opacity="0.15"/>
     </svg>
+    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 50 Q360 10 720 50 Q1080 90 1440 50 L1440 80 L0 80 Z" fill="#FDF8F0" opacity="0.1"/>
+    </svg>
   </div>
 </section>
 
+<!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    <a class="nav-item" href="#new-guard">New Guard</a>
-    <a class="nav-item" href="#filipino">Filipino Heart</a>
-    <a class="nav-item" href="#bourdain">The Bourdain Trail</a>
-    <a class="nav-item" href="#nature">Nature & Hikes</a>
-    <a class="nav-item" href="#events">April Events</a>
+    <a class="nav-item" href="#food-sf">SF Food Scene</a>
+    <a class="nav-item" href="#asian-diaspora">Asian Diaspora</a>
+    <a class="nav-item" href="#filipino">Filipino Flavors</a>
+    <a class="nav-item" href="#latin">Latin Scene</a>
+    <a class="nav-item" href="#bakeries">Bakeries & Dim Sum</a>
+    <a class="nav-item" href="#waterfront">By the Water</a>
+    <a class="nav-item" href="#neighborhoods">Neighborhoods</a>
+    <a class="nav-item" href="#nature">Nature & Hiking</a>
+    <a class="nav-item" href="#coastal">Coastal Drive</a>
+    <a class="nav-item" href="#south-bay">South Bay</a>
+    <a class="nav-item" href="#events">Local Events</a>
+    <a class="nav-item" href="#road-trip">Road Trip SLO</a>
   </div>
 </nav>
 
-<div id="new-guard" class="section">
+<!-- INTRO -->
+<div class="section" style="padding-bottom: 0;">
+  <div class="intro-blurb">
+    <p>This is not a bucket list. It's not TripAdvisor. It's the Bay Area the way locals move through it — unhurried, curious, perpetually hungry, and always looking for the next hidden corner. Pick what calls to you, skip what doesn't, and make it yours.</p>
+    <p>Mix and match. Linger. Drive with the windows down. Eat something you can't pronounce. That's the whole vibe.</p>
+  </div>
+</div>
+
+<!-- ===== SF FOOD: HOLE IN THE WALL + HIDDEN GEMS ===== -->
+<div id="food-sf" class="section">
   <div class="section-header">
     <div>
-      <p class="section-number">01 — The Modern Wave</p>
-      <h2 class="section-title">The <em>New Guard</em></h2>
+      <p class="section-number">01 — San Francisco</p>
+      <h2 class="section-title">Hidden Gems &<br><em>Hole-in-the-Wall</em></h2>
     </div>
-    <span class="section-emoji">🏄</span>
+    <span class="section-emoji">🥢</span>
   </div>
+
   <div class="card-grid">
-    <div class="card accent-mint">
-      <p class="card-category">Seafood · Outer Sunset</p>
-      <h3 class="card-name">Hook Fish Co.</h3>
-      <p class="card-location">4542 Irving St</p>
-      <p class="card-desc">The ultimate local ritual. Sustainable fish, grilled burritos, and poke. Grab it to-go and eat it on the sand at Ocean Beach as the sun dips.</p>
-      <div class="card-tags"><span class="tag">surf culture</span><span class="tag">sustainable</span></div>
+    <div class="card">
+      <p class="card-category">Seafood Counter · Nob Hill</p>
+      <h3 class="card-name">Swan Oyster Depot</h3>
+      <p class="card-location">1517 Polk St</p>
+      <p class="card-desc">A 19-stool counter, cash only, lines out the door by 9am. Order the crab back with sourdough and drown yourself in briny, cold perfection. This is the one. A SF institution since 1912.</p>
+      <div class="card-tags">
+        <span class="tag hot">iconic</span>
+        <span class="tag local">locals swear by it</span>
+        <span class="tag">arrive early</span>
+      </div>
     </div>
+
     <div class="card accent-coral">
-      <p class="card-category">Pizza · Tenderloin</p>
-      <h3 class="card-name">Outta Sight Pizza</h3>
-      <p class="card-location">422 Larkin St</p>
-      <p class="card-desc">High-fidelity thin crust with a skater heart. The 'Lush' slice is the best $5 investment in the city.</p>
-      <div class="card-tags"><span class="tag">skater vibe</span><span class="tag">best slice</span></div>
+      <p class="card-category">Old School Diner · North Beach</p>
+      <h3 class="card-name">Sam's Diner</h3>
+      <p class="card-location">North Beach</p>
+      <p class="card-desc">Open 'til 3am. A no-frills cheeseburger-and-beer situation. The kind of place you end up at after a long night and leave feeling like everything is going to be okay. Classic late-night SF.</p>
+      <div class="card-tags">
+        <span class="tag budget">affordable</span>
+        <span class="tag">late night</span>
+        <span class="tag local">old school</span>
+      </div>
     </div>
+
+    <div class="card accent-mint">
+      <p class="card-category">Sushi Counter · Hayes Valley</p>
+      <h3 class="card-name">Sebo</h3>
+      <p class="card-location">517 Hayes St</p>
+      <p class="card-desc">Serious, seasonal Japanese fish sourced with obsessive care. Counter seating, omakase vibes on a budget. One of those quiet places that chefs eat at on their days off.</p>
+      <div class="card-tags">
+        <span class="tag local">chef's pick</span>
+        <span class="tag hot">underrated gem</span>
+      </div>
+    </div>
+
     <div class="card accent-earth">
-      <p class="card-category">Deli · Outer Sunset</p>
-      <h3 class="card-name">Palm City Wines</h3>
-      <p class="card-location">4055 Irving St</p>
-      <p class="card-desc">Elite Italian hoagies and natural wine. This spot defines the modern vibe of the Sunset district.</p>
-      <div class="card-tags"><span class="tag">hoagies</span><span class="tag">natty wine</span></div>
+      <p class="card-category">Classic Diner · Embarcadero</p>
+      <h3 class="card-name">Red's Java House</h3>
+      <p class="card-location">Pier 30, The Embarcadero</p>
+      <p class="card-desc">Cheeseburger on sourdough. Bay views. Rickety stools. Cheap. This is what SF was before it got expensive. A beloved waterfront dive that's been here since the 1930s.</p>
+      <div class="card-tags">
+        <span class="tag budget">super affordable</span>
+        <span class="tag local">true locals spot</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="card-category">BBQ + Bar · Divisadero</p>
+      <h3 class="card-name">4505 Burgers & BBQ</h3>
+      <p class="card-location">705 Divisadero St</p>
+      <p class="card-desc">Brisket, jalapeño cheddar links, chicharrones, pozole — smoked low and slow. The Presidential Platter is a commitment. Come hungry, bring friends, wear stretchy pants.</p>
+      <div class="card-tags">
+        <span class="tag hot">BBQ shrine</span>
+        <span class="tag">group-friendly</span>
+      </div>
+    </div>
+
+    <div class="card accent-coral">
+      <p class="card-category">Waterfront Bar + Food · Embarcadero</p>
+      <h3 class="card-name">Pier 23 Cafe</h3>
+      <p class="card-location">Pier 23, Embarcadero</p>
+      <p class="card-desc">Cold drinks, bay views, live music on weekends. Not Fisherman's Wharf tourist chaos — actual neighborhood energy. Sunday brunch on the dock with a bloody mary is unmatched.</p>
+      <div class="card-tags">
+        <span class="tag local">local hangout</span>
+        <span class="tag">live music</span>
+      </div>
+    </div>
+
+    <div class="card accent-mint">
+      <p class="card-category">Prime Rib Temple · Van Ness</p>
+      <h3 class="card-name">House of Prime Rib</h3>
+      <p class="card-location">1906 Van Ness Ave</p>
+      <p class="card-desc">English-cut prime rib carved tableside from a silver cart. Jacket required (well, almost). One of the most gloriously anachronistic dining experiences in the city. The spinning salad bowl alone is worth it.</p>
+      <div class="card-tags">
+        <span class="tag hot">old SF glamour</span>
+        <span class="tag">dress up a little</span>
+      </div>
+    </div>
+
+    <div class="card accent-ocean">
+      <p class="card-category">Tiki Bar · Fairmont Hotel</p>
+      <h3 class="card-name">The Tonga Room</h3>
+      <p class="card-location">950 Mason St, Nob Hill</p>
+      <p class="card-desc">A full indoor lagoon, indoor thunderstorms every 30 minutes, mai tais the size of your head. One of the oldest tiki bars in America. Absolutely delirious. Perfect for a SF WTF moment.</p>
+      <div class="card-tags">
+        <span class="tag hot">SF classic</span>
+        <span class="tag">absolutely unhinged</span>
+        <span class="tag local">Bourdain-approved</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="card-category">Chinese-American Dive · Chinatown</p>
+      <h3 class="card-name">Li Po Lounge</h3>
+      <p class="card-location">916 Grant Ave, Chinatown</p>
+      <p class="card-desc">Dark, lantern-lit, booths of red vinyl, Chinese mai tais that'll put you sideways. Named after a Tang dynasty poet. One of the most atmospheric old-school bars in SF — feels like 1952.</p>
+      <div class="card-tags">
+        <span class="tag local">neighborhood character</span>
+        <span class="tag">dive bar royalty</span>
+      </div>
+    </div>
+
+    <div class="card accent-coral">
+      <p class="card-category">Ice Cream · Outer Sunset</p>
+      <h3 class="card-name">Polly Ann Ice Cream</h3>
+      <p class="card-location">3138 Noriega St</p>
+      <p class="card-desc">Taro, ube, durian, lychee, red bean — flavors that'll make you forget about vanilla forever. A SF Asian community institution. Spin the wheel of flavors. Take the risk.</p>
+      <div class="card-tags">
+        <span class="tag local">neighborhood legend</span>
+        <span class="tag budget">cheap eats</span>
+        <span class="tag">Asian flavors</span>
+      </div>
+    </div>
+
+    <div class="card accent-mint">
+      <p class="card-category">Farmers Market · Embarcadero</p>
+      <h3 class="card-name">Ferry Plaza Farmers Market</h3>
+      <p class="card-location">One Ferry Building, Tue/Thu/Sat</p>
+      <p class="card-desc">Biodynamic produce, fresh tamales, artisan cheese, Blue Bottle coffee, oyster bars. Tuesday mornings are the locals' secret — smaller crowd, just as good. Saturday is the full spectacle.</p>
+      <div class="card-tags">
+        <span class="tag">Sat + Tue + Thu</span>
+        <span class="tag local">local ritual</span>
+      </div>
+    </div>
+
+    <div class="card accent-earth">
+      <p class="card-category">Korean Home Cooking · Richmond</p>
+      <h3 class="card-name">To Hyang</h3>
+      <p class="card-location">Inner Richmond</p>
+      <p class="card-desc">A tiny, warm Korean spot that feels like eating at someone's grandmother's house. Incredible banchan, kimchi made on-site, fish head stew that requires zero Instagram documentation — just devotion.</p>
+      <div class="card-tags">
+        <span class="tag local">chef's secret</span>
+        <span class="tag hot">word of mouth</span>
+      </div>
     </div>
   </div>
 </div>
 
+<!-- ===== ASIAN DIASPORA ===== -->
+<div id="asian-diaspora" class="band">
+  <div class="band-inner">
+    <div class="section-header">
+      <div>
+        <p class="section-number" style="color:rgba(247,183,49,0.7);">02 — The Full Flavor</p>
+        <h2 class="section-title" style="color:var(--fog);">Asian <em style="color:var(--sun);">Diaspora</em></h2>
+      </div>
+      <span class="section-emoji">🍜</span>
+    </div>
+
+    <div class="pull-quote" style="border-color:var(--sun); background:rgba(255,255,255,0.05); color:var(--fog);">
+      The Bay Area has one of the most vibrant, layered Asian food cultures in America. Vietnamese, Chinese, Japanese, Korean, Filipino — often on the same block, often family-run, always real.
+    </div>
+
+    <div class="card-grid">
+
+      <div class="card accent-coral" style="background:rgba(255,255,255,0.08); border-left-color:var(--coral);">
+        <p class="card-category" style="color:var(--coral);">Vietnamese · Tenderloin / Richmond</p>
+        <h3 class="card-name" style="color:var(--fog);">Turtle Tower</h3>
+        <p class="card-location" style="color:rgba(242,239,233,0.4);">631 Larkin St & 6th Ave location</p>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">Northern-style pho. Crystal-clear broth, silky noodles, none of the hoisin-overload. This is pho without compromise. The Tenderloin location is the original; come early or wait.</p>
+        <div class="card-tags">
+          <span class="tag">pho purist</span>
+          <span class="tag local">Vietnamese community pick</span>
+        </div>
+      </div>
+
+      <div class="card" style="background:rgba(255,255,255,0.08);">
+        <p class="card-category" style="color:var(--sun);">Vietnamese · Mission</p>
+        <h3 class="card-name" style="color:var(--fog);">Thanh Long</h3>
+        <p class="card-location" style="color:rgba(242,239,233,0.4);">Outer Sunset</p>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">Famous for roasted Dungeness crab and garlic noodles — a SF Vietnamese signature. Been here since 1971. A family institution. The noodles alone are worth the drive to the Outer Sunset.</p>
+        <div class="card-tags">
+          <span class="tag local">SF legend</span>
+          <span class="tag hot">dungie + garlic noodles</span>
+        </div>
+      </div>
+
+      <div class="card accent-mint" style="background:rgba(255,255,255,0.08); border-left-color:var(--mint);">
+        <p class="card-category" style="color:var(--mint);">Vietnamese · Daly City</p>
+        <h3 class="card-name" style="color:var(--fog);">PPQ Dungeness Island</h3>
+        <p class="card-location" style="color:rgba(242,239,233,0.4);">Daly City</p>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">A Daly City Vietnamese institution. Roasted crab, fragrant lemongrass, cold beer. Come with a large group, order more food than you think you need, and be happy about it.</p>
+        <div class="card-tags">
+          <span class="tag local">Daly City pride</span>
+          <span class="tag">family-style</span>
+        </div>
+      </div>
+
+      <div class="card" style="background:rgba(255,255,255,0.08);">
+        <p class="card-category" style="color:var(--sun);">Chinese Seafood · Richmond</p>
+        <h3 class="card-name" style="color:var(--fog);">R&G Lounge</h3>
+        <p class="card-location" style="color:rgba(242,239,233,0.4);">Chinatown / Lower Nob Hill</p>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">Salt and pepper crab, hand-pulled noodles, sizzling platters. A Chinatown cornerstone with Cantonese cooking that feels like a proper family feast. Two floors of controlled delicious chaos.</p>
+        <div class="card-tags">
+          <span class="tag hot">salt & pepper crab</span>
+          <span class="tag local">community staple</span>
+        </div>
+      </div>
+
+      <div class="card accent-earth" style="background:rgba(255,255,255,0.08); border-left-color:var(--earth);">
+        <p class="card-category" style="color:var(--earth);">Ramen · Stanford / Palo Alto</p>
+        <h3 class="card-name" style="color:var(--fog);">Ramen Nagi</h3>
+        <p class="card-location" style="color:rgba(242,239,233,0.4);">Stanford Shopping Center, Palo Alto</p>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">The legendary Japanese ramen chain with a Bay Area outpost right at Stanford. Rich tonkotsu, customizable spice levels, and a line that tells you everything you need to know before you even taste it.</p>
+        <div class="card-tags">
+          <span class="tag hot">ramen pilgrimage</span>
+          <span class="tag">stanford area</span>
+        </div>
+      </div>
+
+      <div class="card" style="background:rgba(255,255,255,0.08);">
+        <p class="card-category" style="color:var(--sun);">Japanese · Japantown SF</p>
+        <h3 class="card-name" style="color:var(--fog);">Japantown SF</h3>
+        <p class="card-location" style="color:rgba(242,239,233,0.4);">Post St & Buchanan, Western Addition</p>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">The largest Japantown outside Japan. Wander the malls, find mochi donuts, miso ramen, sushi burritos, Japanese curry, and row upon row of snacks you'll regret not buying more of.</p>
+        <div class="card-tags">
+          <span class="tag local">neighborhood treasure</span>
+          <span class="tag">explore + eat</span>
+        </div>
+      </div>
+
+      <div class="card accent-coral" style="background:rgba(255,255,255,0.08); border-left-color:var(--coral);">
+        <p class="card-category" style="color:var(--coral);">Indian Fusion · Oakland</p>
+        <h3 class="card-name" style="color:var(--fog);">Juhu Beach Club Cookbook Legacy</h3>
+        <p class="card-location" style="color:rgba(242,239,233,0.4);">Oakland — closed but the spirit lives</p>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">Bourdain ate here on Parts Unknown. Manchurian cauliflower, bhelpuri in a mason jar, bold Indian street food with Bay Area seasonality. It's closed now, but it shaped Oakland's food scene forever.</p>
+        <div class="card-tags">
+          <span class="tag">historic</span>
+          <span class="tag local">Bourdain stop</span>
+        </div>
+      </div>
+
+      <div class="card" style="background:rgba(255,255,255,0.08);">
+        <p class="card-category" style="color:var(--sun);">Filipino-Japanese Fusion · Union Square</p>
+        <h3 class="card-name" style="color:var(--fog);">Ox + Tiger</h3>
+        <p class="card-location" style="color:rgba(242,239,233,0.4);">Union Square, SF</p>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">Tasting-menu magic where Japanese and Filipino flavors collide — in the best possible way. Inventive, seasonal, and deeply personal to its chefs. A splurge worth every bite.</p>
+        <div class="card-tags">
+          <span class="tag hot">boundary-pushing</span>
+          <span class="tag">tasting menu</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FILIPINO ===== -->
 <div id="filipino" class="pilipino-band">
   <div style="max-width:1100px; margin:0 auto;">
-    <div class="section-header" style="border-color:rgba(255,255,255,0.2);">
-      <h2 class="section-title" style="color:white;">Filipino <em>Heart</em></h2>
+    <div class="section-header" style="border-color:rgba(255,255,255,0.25);">
+      <div>
+        <p class="section-number">03 — Representing</p>
+        <h2 class="section-title">Filipino <em style="color:#FCD116;">Flavors</em></h2>
+      </div>
       <span class="section-emoji">🇵🇭</span>
     </div>
+
+    <div class="pull-quote" style="border-color:#FCD116; background:rgba(255,255,255,0.15); color:white; font-family:'DM Sans'; font-style:normal; font-size:1rem;">
+      From turo-turo counters in Daly City to elevated sisig in SoMa — Filipino food in the Bay is everywhere, layered, alive, and proud.
+    </div>
+
     <div class="card-grid">
       <div class="card">
-        <p class="card-category">Fine Dining · Wharf</p>
-        <h3 class="card-name">Abacá</h3>
-        <p class="card-desc">Contemporary Filipino-Californian. Sisig fried rice and ube cheesecake treated with world-class precision.</p>
+        <p class="card-category">Elevated Filipino · Fisherman's Wharf</p>
+        <h3 class="card-name">ABACÁ</h3>
+        <p class="card-location">Kimpton Alton Hotel, Fisherman's Wharf</p>
+        <p class="card-desc">The flagship for Filipino fine dining in SF. Elevated sisig, crispy chicken skin with spicy vinegar, ube colada, calamansi daiquiri. The menu refreshes constantly — every visit is different.</p>
+        <div class="card-tags">
+          <span class="tag hot">must-visit</span>
+          <span class="tag">upscale Filipino</span>
+        </div>
       </div>
-      <div class="card">
-        <p class="card-category">Fusion · Mission</p>
+
+      <div class="card accent-coral">
+        <p class="card-category">Filipino-Mexican Fusion · Mission</p>
         <h3 class="card-name">Señor Sisig</h3>
-        <p class="card-desc">The food truck that became an empire. Filipino-Mexican mashups that defined Bay Area street food.</p>
+        <p class="card-location">990 Valencia St + Ferry Building + Oakland</p>
+        <p class="card-desc">A Bay Area original — sisig burritos, sisig bowls, sisig tacos, sisig fries. Filipino-Mexican fusion that shouldn't work but absolutely does. Multiple locations. Affordable. Always fire.</p>
+        <div class="card-tags">
+          <span class="tag budget">affordable</span>
+          <span class="tag local">Bay Area born</span>
+          <span class="tag hot">iconic fusion</span>
+        </div>
       </div>
+
+      <div class="card accent-mint">
+        <p class="card-category">Filipino Brunch · Mission</p>
+        <h3 class="card-name">Alnico</h3>
+        <p class="card-location">1050 Valencia St, Mission</p>
+        <p class="card-desc">Filipino-American brunch with ube hotcakes, niloco mo ako plates, and sweet-savory everything. Photo-ready and soul-satisfying. Perfect for a lazy Sunday with too much coffee.</p>
+        <div class="card-tags">
+          <span class="tag">brunch goals</span>
+          <span class="tag hot">Filipino-American soul</span>
+        </div>
+      </div>
+
       <div class="card">
-        <p class="card-category">Hole-in-the-wall · Tenderloin</p>
+        <p class="card-category">Turo-Turo · Mission District</p>
+        <h3 class="card-name">Irma's Pampanga</h3>
+        <p class="card-location">Mission District, SF</p>
+        <p class="card-desc">Counter-service, point-and-eat Filipino comfort food. Chicken adobo that tastes like someone's tita made it. Affordable, generous portions, zero pretension. The definition of Pinoy hospitality.</p>
+        <div class="card-tags">
+          <span class="tag budget">super affordable</span>
+          <span class="tag local">no frills, all flavor</span>
+        </div>
+      </div>
+
+      <div class="card accent-earth">
+        <p class="card-category">Filipino Homestyle · Excelsior</p>
         <h3 class="card-name">Kusina Ni Tess</h3>
-        <p class="card-desc">No frills. Tapsilog, adobo, and sinigang just like nanay used to make. Authentic soul for under $15.</p>
+        <p class="card-location">Excelsior District, SF</p>
+        <p class="card-desc">Chicken arroz caldo, liempo, fresh lumpia, food-behind-the-glass ordering. Warm, counter-service Filipino cooking that feels exactly like home. Excelsior is SF's unsung Filipino food corridor.</p>
+        <div class="card-tags">
+          <span class="tag local">community loved</span>
+          <span class="tag budget">wallet-friendly</span>
+        </div>
+      </div>
+
+      <div class="card accent-coral">
+        <p class="card-category">Silog Specialist · Daly City</p>
+        <h3 class="card-name">Tselogs</h3>
+        <p class="card-location">Daly City</p>
+        <p class="card-desc">Tapsilog, spamsilog, lechon kare kare — and the full -silog lineup done right. Daly City is practically a Manila suburb and this spot embodies that completely. Garlic rice mandatory.</p>
+        <div class="card-tags">
+          <span class="tag local">Daly City gem</span>
+          <span class="tag hot">silog everything</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <p class="card-category">Filipino Bakery · Bay Area</p>
+        <h3 class="card-name">Red Ribbon + Goldilocks</h3>
+        <p class="card-location">Multiple Daly City / South Bay locations</p>
+        <p class="card-desc">Ube cake, ensaymada, bibingka, pan de sal — the bakery chains that Filipinos everywhere pine for when they're far from home. Pick up a whole cake and share it. No arguments about this.</p>
+        <div class="card-tags">
+          <span class="tag">Filipino bakery classics</span>
+          <span class="tag local">bakala to the core</span>
+        </div>
+      </div>
+
+      <div class="card accent-mint">
+        <p class="card-category">FOB Kitchen · Oakland / Temescal</p>
+        <h3 class="card-name">FOB Kitchen</h3>
+        <p class="card-location">Temescal, Oakland</p>
+        <p class="card-desc">Excellent Filipino brunch in Oakland's coolest neighborhood. Silog plates, crispy pork, shrimp chips. Temescal has great walkability — eat here, then explore the strip.</p>
+        <div class="card-tags">
+          <span class="tag hot">brunch game</span>
+          <span class="tag">Oakland Filipino pride</span>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<div id="bourdain" class="section">
+<!-- ===== LATIN SCENE ===== -->
+<div id="latin" class="section">
   <div class="section-header">
     <div>
-      <p class="section-number">02 — The Classics</p>
-      <h2 class="section-title">Counter <em>Institutions</em></h2>
+      <p class="section-number">04 — La Misión y Más</p>
+      <h2 class="section-title">Latin <em>Scene</em></h2>
     </div>
-    <span class="section-emoji">🥃</span>
+    <span class="section-emoji">🌮</span>
   </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <p class="card-category">Taquerias · Mission District</p>
+      <h3 class="card-name">La Taqueria</h3>
+      <p class="card-location">2889 Mission St</p>
+      <p class="card-desc">No rice in the burrito — that's the hill they die on, and it's the correct hill. Named America's best burrito by various publications. The carne asada is simple and devastating. Cash only, line always worth it.</p>
+      <div class="card-tags">
+        <span class="tag hot">burrito royalty</span>
+        <span class="tag budget">$10–15</span>
+        <span class="tag local">Mission classic</span>
+      </div>
+    </div>
+
+    <div class="card accent-coral">
+      <p class="card-category">Mission Taqueria</p>
+      <h3 class="card-name">El Farolito</h3>
+      <p class="card-location">2779 Mission St</p>
+      <p class="card-desc">The late-night warrior. Open until 2:30am. Burritos the size of a small child. Super burrito with al pastor — the calling card. This is the Mission at its most essential.</p>
+      <div class="card-tags">
+        <span class="tag">late night</span>
+        <span class="tag budget">cheap</span>
+        <span class="tag local">after-hours classic</span>
+      </div>
+    </div>
+
+    <div class="card accent-mint">
+      <p class="card-category">Mexican Street Tacos · Mission</p>
+      <h3 class="card-name">El Rancho Taqueria</h3>
+      <p class="card-location">Mission District</p>
+      <p class="card-desc">Chorizo, cabeza, chicharron tacos that feel like an Oakland taco truck stopped and decided to stay. Double corn tortilla, fresh salsa, wedge of lime. That's it. That's the whole thing.</p>
+      <div class="card-tags">
+        <span class="tag budget">$3-5 tacos</span>
+        <span class="tag local">street food energy</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="card-category">Colombian / Latin · Mission</p>
+      <h3 class="card-name">Limon Rotisserie</h3>
+      <p class="card-location">Mission District</p>
+      <p class="card-desc">Peruvian rotisserie chicken, ceviche, aji verde sauce that you'll want to put on everything. Casual, bright, and wildly affordable for how good it is. The Peruvian-American dream.</p>
+      <div class="card-tags">
+        <span class="tag hot">Peruvian-Californian</span>
+        <span class="tag budget">value pick</span>
+      </div>
+    </div>
+
+    <div class="card accent-earth">
+      <p class="card-category">Mexican Sit-Down · Noe Valley</p>
+      <h3 class="card-name">La Corneta Taqueria</h3>
+      <p class="card-location">Noe Valley / Glen Park</p>
+      <p class="card-desc">Fresh ingredients, a step above the average taqueria in presentation but not in pretension. Neighborhood gem that doesn't need a line to prove it's great. Family-friendly, filling, reliable.</p>
+      <div class="card-tags">
+        <span class="tag local">neighborhood pick</span>
+        <span class="tag budget">family-friendly</span>
+      </div>
+    </div>
+
+    <div class="card accent-ocean">
+      <p class="card-category">Oakland Oaxacan · Fruitvale</p>
+      <h3 class="card-name">Fruitvale Tacos + Street Food</h3>
+      <p class="card-location">International Blvd, Oakland</p>
+      <p class="card-desc">Oakland's Fruitvale is arguably the most authentic Latin food corridor in the whole Bay. Weekend birria, weekend carnitas, weekend everything. Walk the strip and eat everywhere that smells right.</p>
+      <div class="card-tags">
+        <span class="tag hot">Oakland street food</span>
+        <span class="tag local">Fruitvale corridor</span>
+        <span class="tag">weekend birria</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== BAKERIES + DIM SUM ===== -->
+<div id="bakeries" class="band">
+  <div class="band-inner">
+    <div class="section-header" style="border-color:rgba(255,255,255,0.2);">
+      <div>
+        <p class="section-number" style="color:rgba(247,183,49,0.7);">05 — Pastry & Pour</p>
+        <h2 class="section-title" style="color:var(--fog);">Bakeries & <em style="color:var(--sun);">Dim Sum</em></h2>
+      </div>
+      <span class="section-emoji">🥮</span>
+    </div>
+
+    <div class="card-grid">
+      <div class="card" style="background:rgba(255,255,255,0.08);">
+        <p class="card-category" style="color:var(--sun);">Chinese Bakery · Chinatown</p>
+        <h3 class="card-name" style="color:var(--fog);">Golden Gate Bakery</h3>
+        <p class="card-location" style="color:rgba(242,239,233,0.4);">1029 Grant Ave, Chinatown</p>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">The egg tart. The egg tart. THE EGG TART. People wait 45 minutes. People cry. Closes randomly whenever they run out. Worth every single second. This is a SF pilgrimage.</p>
+        <div class="card-tags">
+          <span class="tag local">legendary</span>
+          <span class="tag hot">egg tart shrine</span>
+          <span class="tag budget">$2 each</span>
+        </div>
+      </div>
+
+      <div class="card accent-coral" style="background:rgba(255,255,255,0.08); border-left-color:var(--coral);">
+        <p class="card-category" style="color:var(--coral);">Sourdough Bakery · Various</p>
+        <h3 class="card-name" style="color:var(--fog);">Tartine Bakery</h3>
+        <p class="card-location" style="color:rgba(242,239,233,0.4);">600 Guerrero St, Mission + Outer Sunset</p>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">Country sourdough that comes out at 5pm and sells out by 5:17pm. Croque monsieur at lunch. The morning bun with orange zest and cinnamon is a spiritual experience. Get there. Now.</p>
+        <div class="card-tags">
+          <span class="tag hot">SF bakery icon</span>
+          <span class="tag">arrive early</span>
+        </div>
+      </div>
+
+      <div class="card accent-mint" style="background:rgba(255,255,255,0.08); border-left-color:var(--mint);">
+        <p class="card-category" style="color:var(--mint);">Dim Sum · Richmond District</p>
+        <h3 class="card-name" style="color:var(--fog);">Yank Sing</h3>
+        <p class="card-location" style="color:rgba(242,239,233,0.4);">101 Spear St, Financial District</p>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">Premium dim sum, cart service, impeccably fresh. The Shanghai soup dumplings (xiao long bao) alone will make you reorganize your priorities. Saturday brunch is a full occasion — dress accordingly.</p>
+        <div class="card-tags">
+          <span class="tag hot">splurge-worthy</span>
+          <span class="tag">weekend brunch</span>
+        </div>
+      </div>
+
+      <div class="card" style="background:rgba(255,255,255,0.08);">
+        <p class="card-category" style="color:var(--sun);">Dim Sum · Millbrae / Richmond</p>
+        <h3 class="card-name" style="color:var(--fog);">Koi Palace</h3>
+        <p class="card-location" style="color:rgba(242,239,233,0.4);">Daly City / Millbrae</p>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">Upscale Chinese seafood and dim sum. The live tanks are a spectacle. Families arrive in force on weekends. Millbrae location has a massive dining room that somehow always has a wait.</p>
+        <div class="card-tags">
+          <span class="tag local">Chinese community go-to</span>
+          <span class="tag">big-group dim sum</span>
+        </div>
+      </div>
+
+      <div class="card accent-earth" style="background:rgba(255,255,255,0.08); border-left-color:var(--earth);">
+        <p class="card-category" style="color:var(--earth);">Pastry · Pacific Heights / Marina</p>
+        <h3 class="card-name" style="color:var(--fog);">b. Patisserie</h3>
+        <p class="card-location" style="color:rgba(242,239,233,0.4);">2821 California St, Pacific Heights</p>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">Kouign-amann, croissants that crackle, seasonal tarts. French technique, California ingredients, Pacific Heights address. Small counter, big reputation. A ritual stop before a Presidio walk.</p>
+        <div class="card-tags">
+          <span class="tag hot">best pastries in SF</span>
+          <span class="tag">Pacific Heights</span>
+        </div>
+      </div>
+
+      <div class="card" style="background:rgba(255,255,255,0.08);">
+        <p class="card-category" style="color:var(--sun);">Vietnamese Bakery · Various</p>
+        <h3 class="card-name" style="color:var(--fog);">Ba Le Bakery</h3>
+        <p class="card-location" style="color:rgba(242,239,233,0.4);">Tenderloin + Daly City</p>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">Bánh mì that costs $4 and tastes like a $20 sandwich. Crusty French rolls, fresh jalapeño and daikon, pâté or lemongrass chicken. A daily SF ritual for those in the know.</p>
+        <div class="card-tags">
+          <span class="tag budget">$4 banh mi</span>
+          <span class="tag local">daytime staple</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== BY THE WATER ===== -->
+<div id="waterfront" class="section">
+  <div class="section-header">
+    <div>
+      <p class="section-number">06 — The Bay & Beyond</p>
+      <h2 class="section-title">Restaurants <em>by the Water</em></h2>
+    </div>
+    <span class="section-emoji">⚓</span>
+  </div>
+
   <div class="card-grid">
     <div class="card accent-ocean">
-      <p class="card-category">Raw Bar · Nob Hill</p>
-      <h3 class="card-name">Swan Oyster Depot</h3>
-      <p class="card-desc">18 marble stools. Cash only. Since 1912. Order the crab back and a cold beer. Don't ask for a menu.</p>
+      <p class="card-category">Seafood · Tiburon, Marin</p>
+      <h3 class="card-name">Sam's Anchor Cafe <span class="anchor green">Ferry-accessible</span></h3>
+      <p class="card-location">27 Main St, Tiburon</p>
+      <p class="card-desc">A Marin Bay institution since 1920. Views of Angel Island, Alcatraz, and the SF skyline from an iconic waterfront deck. Take the ferry from SF — it's the move. Dog-friendly, live music on weekends, the full Bay experience.</p>
+      <div class="card-tags">
+        <span class="tag hot">best outdoor dining Marin</span>
+        <span class="tag local">Bay institution</span>
+        <span class="tag">take the ferry</span>
+      </div>
     </div>
-    <div class="card accent-earth">
-      <p class="card-category">Prime Rib · Van Ness</p>
-      <h3 class="card-name">House of Prime Rib</h3>
-      <p class="card-desc">Tableside silver carts and spinning salads. A time capsule of 1940s SF glamour. Book weeks ahead.</p>
-    </div>
+
     <div class="card accent-mint">
-      <p class="card-category">Waterfront · Pier 30</p>
-      <h3 class="card-name">Red's Java House</h3>
-      <p class="card-desc">Bourdain's favorite dive. Cheeseburger on sourdough right under the Bay Bridge. Real SF energy.</p>
+      <p class="card-category">Farm-to-Table · Tiburon, Marin</p>
+      <h3 class="card-name">Malibu Farm Tiburon <span class="anchor gold">New Location</span></h3>
+      <p class="card-location">9 Main St, Tiburon</p>
+      <p class="card-desc">Helene Henderson's farm-to-table California cooking with a stunning SF skyline backdrop. Vegetable-forward, locally sourced, the NorCal version of the famous Malibu Pier original. Dog-friendly patio. Weekend brunch is the move.</p>
+      <div class="card-tags">
+        <span class="tag hot">farm-to-table views</span>
+        <span class="tag">Tiburon waterfront</span>
+        <span class="tag">paired with Sam's</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="card-category">Legendary Seafood · Half Moon Bay</p>
+      <h3 class="card-name">Sam's Chowder House</h3>
+      <p class="card-location">4210 N Cabrillo Hwy, Half Moon Bay</p>
+      <p class="card-desc">Clam chowder bread bowls directly on the Pacific. Fire pits on the deck, lobster rolls, raw bar, crashing waves in the background. The Half Moon Bay version of a perfect coastal meal.</p>
+      <div class="card-tags">
+        <span class="tag hot">Half Moon Bay icon</span>
+        <span class="tag">chowder + ocean views</span>
+      </div>
+    </div>
+
+    <div class="card accent-coral">
+      <p class="card-category">Mediterranean Waterfront · Berkeley</p>
+      <h3 class="card-name">Skates on the Bay</h3>
+      <p class="card-location">100 Seawall Dr, Berkeley Marina</p>
+      <p class="card-desc">Right on the water with Golden Gate views. Dungeness crab, grilled seafood, and the kind of sunset that makes you forget everything you were stressed about. Berkeley's best kept waterfront secret.</p>
+      <div class="card-tags">
+        <span class="tag local">Berkeley gem</span>
+        <span class="tag">sunset dinner</span>
+      </div>
+    </div>
+
+    <div class="card accent-earth">
+      <p class="card-category">Oyster Bar · Marshall, Marin</p>
+      <h3 class="card-name">Hog Island Oyster Co.</h3>
+      <p class="card-location">20215 Shoreline Hwy, Marshall (+ Ferry Building)</p>
+      <p class="card-desc">Sit outside and shuck your own oysters with Tomales Bay as your backdrop. This is the Pacific Coast in a single experience. The farm is right there. The oysters don't get more local.</p>
+      <div class="card-tags">
+        <span class="tag hot">oyster pilgrimage</span>
+        <span class="tag local">farm-direct</span>
+        <span class="tag">weekend drive</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="card-category">Surf Town Eats · Pacifica</p>
+      <h3 class="card-name">Nick's Restaurant Pacifica</h3>
+      <p class="card-location">100 Rockaway Beach Ave, Pacifica</p>
+      <p class="card-desc">Perched above Rockaway Beach with full Pacific views. Seafood, weekend brunch, and the kind of bleached-wood coastal vibe that makes every dish taste better. One of Pacifica's original waterfront gems.</p>
+      <div class="card-tags">
+        <span class="tag local">Pacifica locals spot</span>
+        <span class="tag">Pacific views</span>
+      </div>
     </div>
   </div>
 </div>
 
+<!-- ===== NEIGHBORHOODS ===== -->
+<div id="neighborhoods" class="band" style="background: linear-gradient(135deg, #2C1810 0%, #1A3D5C 100%);">
+  <div class="band-inner">
+    <div class="section-header" style="border-color:rgba(255,255,255,0.15);">
+      <div>
+        <p class="section-number" style="color:rgba(247,183,49,0.7);">07 — The Streets</p>
+        <h2 class="section-title" style="color:var(--fog);">SF <em style="color:var(--sun);">Neighborhoods</em></h2>
+      </div>
+      <span class="section-emoji">🏘️</span>
+    </div>
+
+    <div class="card-grid">
+      <div class="card" style="background:rgba(255,255,255,0.08);">
+        <p class="card-category" style="color:var(--sun);">Old Money + Great Eats</p>
+        <h3 class="card-name" style="color:var(--fog);">Pacific Heights</h3>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">Stately Victorians, b. Patisserie for morning pastry, Fillmore jazz corridor for nightlife, farmers market on Saturdays. Walk Fillmore St from California to Jackson — this is curated SF at its most livable.</p>
+        <div class="card-tags"><span class="tag">Fillmore St</span><span class="tag local">Saturday Farmers Market</span></div>
+      </div>
+
+      <div class="card accent-coral" style="background:rgba(255,255,255,0.08); border-left-color:var(--coral);">
+        <p class="card-category" style="color:var(--coral);">Japanese Culture Pocket</p>
+        <h3 class="card-name" style="color:var(--fog);">Japantown</h3>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">The Japan Center malls have ramen shops, mochi donut counters, bookstores, sake bars, and row upon row of beautiful stuff. During cherry blossom season it turns into something else entirely. Don't skip the Peace Pagoda.</p>
+        <div class="card-tags"><span class="tag">Japan Center</span><span class="tag hot">cherry blossom fest (spring)</span></div>
+      </div>
+
+      <div class="card accent-mint" style="background:rgba(255,255,255,0.08); border-left-color:var(--mint);">
+        <p class="card-category" style="color:var(--mint);">Presidio Heights</p>
+        <h3 class="card-name" style="color:var(--fog);">Presidio Heights & The Presidio</h3>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">Walk into the Presidio National Park, see the GGB from the batteries, hike Crissy Field, then come back out to Sacramento St for coffee at Réveille or a late lunch at the Arguello Presidio Market.</p>
+        <div class="card-tags"><span class="tag">GGB views</span><span class="tag local">Crissy Field walk</span></div>
+      </div>
+
+      <div class="card" style="background:rgba(255,255,255,0.08);">
+        <p class="card-category" style="color:var(--sun);">SF's Living Room</p>
+        <h3 class="card-name" style="color:var(--fog);">The Mission District</h3>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">Always sunny (literally — the Mission gets more sun than anywhere else in SF). Murals on every block, Mission Dolores Park for lounging, Valencia St for bookshops and cocktail bars, 24th St for carnitas and bakeries.</p>
+        <div class="card-tags"><span class="tag hot">Dolores Park</span><span class="tag local">Valencia St corridor</span></div>
+      </div>
+
+      <div class="card accent-earth" style="background:rgba(255,255,255,0.08); border-left-color:var(--earth);">
+        <p class="card-category" style="color:var(--earth);">Creative, Gritty, Beloved</p>
+        <h3 class="card-name" style="color:var(--fog);">The Haight & Cole Valley</h3>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">Lower Haight for dive bars and vintage shops; Upper Haight for head shops and Buena Vista Park; Cole Valley for the quieter, neighborhood-y version. Cha Cha Cha tapas on Haight is a must-do dinner.</p>
+        <div class="card-tags"><span class="tag local">Cha Cha Cha</span><span class="tag">vintage shops</span></div>
+      </div>
+
+      <div class="card" style="background:rgba(255,255,255,0.08);">
+        <p class="card-category" style="color:var(--sun);">Fog + Surf Culture</p>
+        <h3 class="card-name" style="color:var(--fog);">Outer Sunset & Ocean Beach</h3>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">Fog-shrouded avenues, excellent ramen, surfers with boards tied to bikes, Ocean Beach fire pits at sunset. Thanh Long for Vietnamese crab, San Tung for dry fried chicken wings, then walk to the beach. This is real SF.</p>
+        <div class="card-tags"><span class="tag local">local neighborhood</span><span class="tag">Ocean Beach fires</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== NATURE ===== -->
 <div id="nature" class="nature-band">
-  <div style="max-width:1100px; margin:0 auto;">
-    <h2 class="section-title" style="color:var(--fog);">The <em>Wild Edge</em></h2>
-    <div class="card-grid" style="margin-top:40px;">
-      <div class="card" style="background:rgba(255,255,255,0.1); border-left-color:var(--mint);">
-        <h3 class="card-name" style="color:white;">Point Reyes</h3>
-        <p class="card-desc" style="color:rgba(255,255,255,0.8);">April is whale migration peak. Look for gray whales from the lighthouse and elk at Tomales Point.</p>
+  <div style="max-width:1100px; margin:0 auto; padding:0 24px;">
+    <div class="section-header" style="border-color:rgba(255,255,255,0.2);">
+      <div>
+        <p class="section-number">08 — Go Outside</p>
+        <h2 class="section-title">Marin Trails, <em>Sea Creatures</em> & Wild Coasts</h2>
       </div>
-      <div class="card" style="background:rgba(255,255,255,0.1); border-left-color:var(--mint);">
-        <h3 class="card-name" style="color:white;">Hawk Hill</h3>
-        <p class="card-desc" style="color:rgba(255,255,255,0.8);">The most dramatic Bridge views. April wildflowers are blooming across the Marin Headlands right now.</p>
+      <span class="section-emoji">🦭</span>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <p class="card-category" style="color:var(--mint);">Iconic Hike · Marin</p>
+        <h3 class="card-name" style="color:var(--fog);">Mt. Tamalpais State Park</h3>
+        <p class="card-location" style="color:rgba(242,239,233,0.4);">Mill Valley, Marin County</p>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">The mother mountain of Bay Area hiking. On a clear day you see the Pacific, the Bay, and half of Northern California. Multiple trail levels — Pantoll to East Peak is the classic. Come for sunrise or sunset.</p>
+        <div class="card-tags"><span class="tag">panoramic views</span><span class="tag local">Marin crown jewel</span></div>
+      </div>
+
+      <div class="card accent-mint">
+        <p class="card-category" style="color:var(--mint);">Sea Lions + History · SF</p>
+        <h3 class="card-name" style="color:var(--fog);">Point Bonita Lighthouse</h3>
+        <p class="card-location" style="color:rgba(242,239,233,0.4);">Marin Headlands, GGNRA</p>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">Jaw-dropping suspension bridge walk to a lighthouse perched at the Pacific's edge. Spot harbor seals and sea birds. Best on weekday mornings. The Marin Headlands trail network is entirely underrated.</p>
+        <div class="card-tags"><span class="tag hot">hidden Marin gem</span><span class="tag">seals & seabirds</span></div>
+      </div>
+
+      <div class="card">
+        <p class="card-category" style="color:var(--mint);">Sea Creatures · Marin</p>
+        <h3 class="card-name" style="color:var(--fog);">Point Reyes National Seashore</h3>
+        <p class="card-location" style="color:rgba(242,239,233,0.4);">Point Reyes Station</p>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">Elephant seals at Chimney Rock (December–March is peak season), tule elk on the trails, gray whales offshore in winter. Wildcat Camp backcountry or just a day hike to the Lighthouse. One of America's great coastal parks.</p>
+        <div class="card-tags"><span class="tag hot">elephant seals</span><span class="tag">whale watching</span><span class="tag local">day trip</span></div>
+      </div>
+
+      <div class="card accent-mint">
+        <p class="card-category" style="color:var(--mint);">Sea Lions · SF</p>
+        <h3 class="card-name" style="color:var(--fog);">Marine Mammal Center + Pier 39 Sea Lions</h3>
+        <p class="card-location" style="color:rgba(242,239,233,0.4);">Sausalito + Pier 39, SF</p>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">The Marine Mammal Center in Sausalito rehabilitates seals and sea lions — tours are fascinating. Pier 39's sea lion colony arrived after the 1989 earthquake and never left. Both are joyful, loud, and free.</p>
+        <div class="card-tags"><span class="tag">free to visit</span><span class="tag local">SF icon</span></div>
+      </div>
+
+      <div class="card">
+        <p class="card-category" style="color:var(--mint);">Otters + Tide Pools · Monterey</p>
+        <h3 class="card-name" style="color:var(--fog);">17-Mile Drive + Monterey Bay Aquarium</h3>
+        <p class="card-location" style="color:rgba(242,239,233,0.4);">Carmel / Pacific Grove</p>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">Sea otters float in the kelp forests of Monterey Bay — you'll see them from the Aquarium's deck or kayaking the bay. The 17-Mile Drive through Pebble Beach is a masterpiece. Carmel Beach at sunset is world-class.</p>
+        <div class="card-tags"><span class="tag hot">sea otters</span><span class="tag">Carmel Beach</span><span class="tag">day trip from SF</span></div>
+      </div>
+
+      <div class="card accent-mint">
+        <p class="card-category" style="color:var(--mint);">Underrated Marin Hike</p>
+        <h3 class="card-name" style="color:var(--fog);">Tennessee Valley Trail</h3>
+        <p class="card-location" style="color:rgba(242,239,233,0.4);">Mill Valley, Marin Headlands</p>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">An easy-to-moderate coastal trail that ends at a secluded Pacific cove. Wild horses graze on the hillsides. Hawks ride the thermals above. The valley feels like it belongs in another century. Weekday mornings for solitude.</p>
+        <div class="card-tags"><span class="tag local">Marin hidden gem</span><span class="tag">easy-moderate</span></div>
+      </div>
+
+      <div class="card">
+        <p class="card-category" style="color:var(--mint);">Sonoma Coast Underrated</p>
+        <h3 class="card-name" style="color:var(--fog);">Sonoma Coast State Park</h3>
+        <p class="card-location" style="color:rgba(242,239,233,0.4);">Bodega Bay to Jenner</p>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">Arguably more dramatic than Big Sur and a fraction of the crowds. Goat Rock Beach (river otters and harbor seals at the mouth of the Russian River), Shell Beach tide pools, Bodega Head for whale watching. Pull over constantly.</p>
+        <div class="card-tags"><span class="tag hot">Sonoma coast secret</span><span class="tag">river otters + seals</span><span class="tag local">underrated</span></div>
+      </div>
+
+      <div class="card accent-mint">
+        <p class="card-category" style="color:var(--mint);">Sonoma Gem</p>
+        <h3 class="card-name" style="color:var(--fog);">Duncans Mills + Cazadero</h3>
+        <p class="card-location" style="color:rgba(242,239,233,0.4);">Russian River area, Sonoma County</p>
+        <p class="card-desc" style="color:rgba(242,239,233,0.75);">A tiny gold rush town on the Russian River with antique shops, a diner, and silence. Keep driving up to Cazadero for redwood groves so dense it feels like another planet. Bay Area best-kept secret.</p>
+        <div class="card-tags"><span class="tag local">no tourists</span><span class="tag">redwoods</span></div>
       </div>
     </div>
   </div>
 </div>
 
-<div id="events" class="section" style="background:var(--sun);">
-  <h2 class="section-title">April <em>Events</em> 🗓️</h2>
-  <div class="card-grid" style="margin-top:30px;">
-    <div class="card">
-      <h3 class="card-name">First Friday (Apr 3)</h3>
-      <p class="card-desc">Oakland's massive street party on Telegraph Ave. Art, food, and DJs.</p>
+<!-- ===== COASTAL DRIVE ===== -->
+<div id="coastal" class="road-band">
+  <div style="max-width:1100px; margin:0 auto; padding:0 24px;">
+    <div class="section-header" style="border-color:rgba(255,255,255,0.25);">
+      <div>
+        <p class="section-number" style="color:rgba(255,255,255,0.6);">09 — Hwy 1 South</p>
+        <h2 class="section-title">Coastal <em>Drive</em></h2>
+      </div>
+      <span class="section-emoji">🌊</span>
     </div>
-    <div class="card">
-      <h3 class="card-name">Hunky Jesus (Easter)</h3>
-      <p class="card-desc">The Sisters of Perpetual Indulgence take over Dolores Park. Peak Mission culture.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <p class="card-category">Beach Town · 30 min from SF</p>
+        <h3 class="card-name">Pacifica + Rockaway Beach</h3>
+        <p class="card-desc">The first beach town south of SF and the most underrated. Linda Mar Beach is excellent for surfing or watching surfers. Grab clam chowder at Nick's on the bluff. The fog lifts by noon most days.</p>
+        <div class="card-tags"><span class="tag local">SFers' beach</span><span class="tag budget">free parking</span></div>
+      </div>
+
+      <div class="card accent-coral">
+        <p class="card-category">Coastal Town · 45 min</p>
+        <h3 class="card-name">Half Moon Bay</h3>
+        <p class="card-desc">Pumpkin patches in October, surfing year-round, gorgeous beaches (Francis Beach for fires), Sam's Chowder House for dungeness crab. Mavericks surf break is offshore — in winter, the biggest waves in the world arrive here.</p>
+        <div class="card-tags"><span class="tag hot">Mavericks in winter</span><span class="tag">fire pits at Francis Beach</span></div>
+      </div>
+
+      <div class="card accent-mint">
+        <p class="card-category">Tiny Town · 1.5 hrs</p>
+        <h3 class="card-name">Pescadero + Pigeon Point</h3>
+        <p class="card-desc">Duarte's Tavern in Pescadero for artichoke soup and a burger — one of the oldest restaurants on the CA coast. Drive 10 minutes to Pigeon Point Lighthouse and climb the bluffs. Año Nuevo State Reserve (elephant seals!) is nearby.</p>
+        <div class="card-tags"><span class="tag local">Duarte's Tavern</span><span class="tag hot">Año Nuevo seals</span></div>
+      </div>
+
+      <div class="card">
+        <p class="card-category">Classic · 2 hrs</p>
+        <h3 class="card-name">Santa Cruz</h3>
+        <p class="card-desc">Boardwalk, surf culture, university town energy. Soquel Ave for restaurants, the Westside for surf breaks, Natural Bridges for monarch butterflies (November). Anthony's for pizza, Penny Ice Creamery for dessert.</p>
+        <div class="card-tags"><span class="tag">surf + beach</span><span class="tag local">local SC picks</span></div>
+      </div>
     </div>
   </div>
 </div>
 
+<!-- ===== SOUTH BAY INDIAN ===== -->
+<div id="south-bay" class="section">
+  <div class="section-header">
+    <div>
+      <p class="section-number">10 — Silicon Valley Flavors</p>
+      <h2 class="section-title">South Bay <em>Indian Food</em></h2>
+    </div>
+    <span class="section-emoji">🫓</span>
+  </div>
+
+  <div class="pull-quote">
+    The South Bay has one of the best Indian food corridors outside of India itself. Fremont, Sunnyvale, and Milpitas are the holy trinity.
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <p class="card-category">South Indian · Sunnyvale</p>
+      <h3 class="card-name">Dosa by Dosa</h3>
+      <p class="card-location">Sunnyvale</p>
+      <p class="card-desc">Paper dosa, masala dosa, uttapam, sambar that's been simmering since this morning. South Indian street food perfected in the South Bay. The coconut chutney is mandatory.</p>
+      <div class="card-tags">
+        <span class="tag budget">incredibly affordable</span>
+        <span class="tag local">South Bay staple</span>
+      </div>
+    </div>
+
+    <div class="card accent-coral">
+      <p class="card-category">Biryani Specialist · Fremont</p>
+      <h3 class="card-name">Dum India Kitchen</h3>
+      <p class="card-location">Fremont</p>
+      <p class="card-desc">Slow-cooked dum biryani in sealed pots, layers of saffron rice and spiced meat, opened tableside. Fremont's Little India on Fremont Blvd is an entire food world — walk it before or after eating.</p>
+      <div class="card-tags">
+        <span class="tag hot">biryani obsession</span>
+        <span class="tag local">Fremont India corridor</span>
+      </div>
+    </div>
+
+    <div class="card accent-mint">
+      <p class="card-category">North Indian · Milpitas</p>
+      <h3 class="card-name">Chaat Bhavan</h3>
+      <p class="card-location">Milpitas / Fremont</p>
+      <p class="card-desc">Pani puri, sev puri, bhel puri, dahi puri — Indian street food in the truest form. The kind of place where the tables are plastic and the food is extraordinary. Pure Milpitas gold.</p>
+      <div class="card-tags">
+        <span class="tag budget">$5–10 plates</span>
+        <span class="tag hot">chaat heaven</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="card-category">Thali Specialist · Sunnyvale</p>
+      <h3 class="card-name">Udupi Palace</h3>
+      <p class="card-location">Sunnyvale / Fremont</p>
+      <p class="card-desc">All-vegetarian South Indian thali — tiny steel bowls of dal, sabzi, rice, sambar, and rasam rotating endlessly until you signal stop. Cheap, warm, and a window into the vegetarian heart of Indian cooking.</p>
+      <div class="card-tags">
+        <span class="tag budget">thali value</span>
+        <span class="tag local">South Indian veg</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== LOCAL EVENTS ===== -->
+<div id="events" class="events-band">
+  <div style="max-width:1100px; margin:0 auto; padding:0 24px;">
+    <div class="section-header" style="border-color:rgba(26,61,92,0.2);">
+      <div>
+        <p class="section-number">11 — What's Happening</p>
+        <h2 class="section-title">Local <em>Events & Culture</em></h2>
+      </div>
+      <span class="section-emoji">🎪</span>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <p class="card-category">Monthly · SF / Gallery Row</p>
+        <h3 class="card-name">First Thursday SF</h3>
+        <p class="card-location">Various galleries, SF / Dogpatch / SOMA</p>
+        <p class="card-desc">Gallery openings, art walks, studios open late, street vendors, community energy. Usually on the first Thursday of each month. Check 49 Geary and Dogpatch neighborhood listings for current programming.</p>
+        <div class="card-tags"><span class="tag">monthly art walk</span><span class="tag local">SF creative scene</span></div>
+      </div>
+
+      <div class="card accent-coral">
+        <p class="card-category">Monthly · Oakland</p>
+        <h3 class="card-name">First Friday Oakland</h3>
+        <p class="card-location">Telegraph Ave, Uptown Oakland</p>
+        <p class="card-desc">Oakland's most electric regular event. Street art, food trucks, live music, DJs, vendors. Telegraph Ave shuts down and becomes a neighborhood block party. The best possible introduction to Oakland culture.</p>
+        <div class="card-tags"><span class="tag hot">must-experience</span><span class="tag local">Oakland pride</span></div>
+      </div>
+
+      <div class="card accent-ocean">
+        <p class="card-category">Saturday / Weekly · Embarcadero</p>
+        <h3 class="card-name">Ferry Plaza Farmers Market</h3>
+        <p class="card-location">One Ferry Building</p>
+        <p class="card-desc">The big one. Sixty-plus vendors, artisan cheese, oyster bars, hot tamales, biodynamic produce, Blue Bottle coffee, perfect sourdough. Tuesday and Thursday are the quieter locals' editions. Saturday is the full pageant.</p>
+        <div class="card-tags"><span class="tag">Sat/Tue/Thu</span><span class="tag local">SF ritual</span></div>
+      </div>
+
+      <div class="card">
+        <p class="card-category">Baseball · China Basin</p>
+        <h3 class="card-name">SF Giants @ Oracle Park</h3>
+        <p class="card-location">24 Willie Mays Plaza, SF</p>
+        <p class="card-desc">One of the most beautiful ballparks in America. McCovey Cove in right field, bay views, garlic fries, and splash hits. Get a bleacher seat with a beer and a garlic fry. American summer in its purest form.</p>
+        <div class="card-tags"><span class="tag hot">ballpark magic</span><span class="tag">garlic fries mandatory</span></div>
+      </div>
+
+      <div class="card accent-coral">
+        <p class="card-category">Basketball · SF</p>
+        <h3 class="card-name">Golden State Warriors @ Chase Center</h3>
+        <p class="card-location">Chase Center, Mission Bay</p>
+        <p class="card-desc">The Bay's NBA team in a state-of-the-art arena in Mission Bay. Pre-game energy on Thrive City outside. Even when the team's rebuilding, the atmosphere is a Bay Area event worth attending.</p>
+        <div class="card-tags"><span class="tag">NBA experience</span><span class="tag local">Bay Area pride</span></div>
+      </div>
+
+      <div class="card accent-mint">
+        <p class="card-category">Annual · Spring</p>
+        <h3 class="card-name">Japantown Cherry Blossom Festival</h3>
+        <p class="card-location">Post St, Japantown — typically April</p>
+        <p class="card-desc">One of the largest cherry blossom celebrations outside Japan. Taiko drummers, food stalls, traditional dance, mochi ice cream. Spring in Japantown is a genuinely beautiful cultural moment.</p>
+        <div class="card-tags"><span class="tag hot">annual spring event</span><span class="tag local">community tradition</span></div>
+      </div>
+
+      <div class="card">
+        <p class="card-category">Annual · May</p>
+        <h3 class="card-name">Carnaval SF</h3>
+        <p class="card-location">Harrison & 24th, Mission District</p>
+        <p class="card-desc">The Mission's Latin street festival — samba, salsa, Caribbean food, elaborate costumes, block after block of pure color and rhythm. Memorial Day weekend. Free. Absolutely worth the crowd.</p>
+        <div class="card-tags"><span class="tag hot">SF Latin culture</span><span class="tag">free</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ROAD TRIP: SLO / PISMO ===== -->
+<div id="road-trip" class="section">
+  <div class="section-header">
+    <div>
+      <p class="section-number">12 — Go the Distance</p>
+      <h2 class="section-title">Road Trip:<br><em>SLO + Pismo Beach</em></h2>
+    </div>
+    <span class="section-emoji">🚗</span>
+  </div>
+
+  <div class="pull-quote">
+    About 3.5–4 hours south on Hwy 101 or Hwy 1. The farthest and most worth-it stretch. Take the coast through Big Sur if you can — it adds time but removes stress from your entire body.
+  </div>
+
+  <div class="card-grid">
+    <div class="card accent-coral">
+      <p class="card-category">Must-Stop · Big Sur</p>
+      <h3 class="card-name">Big Sur Coastline</h3>
+      <p class="card-desc">The Bixby Bridge photo is mandatory but stop at McWay Falls (Julia Pfeiffer Burns SP), Nepenthe restaurant for a burger with a cliff-edge view, and the Henry Miller Library for something to read on the beach.</p>
+      <div class="card-tags">
+        <span class="tag hot">McWay Falls</span>
+        <span class="tag">Nepenthe restaurant</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="card-category">Coastal Town · 3.5 hrs</p>
+      <h3 class="card-name">San Luis Obispo</h3>
+      <p class="card-desc">A Cal Poly college town that punches way above its weight. Farmers market on Thursdays shuts down Higuera St — best farmers market on the Central Coast. Downtown SLO has excellent farm-to-table restaurants and a genuinely walkable main street.</p>
+      <div class="card-tags">
+        <span class="tag local">Thursday night market</span>
+        <span class="tag hot">downtown SLO food scene</span>
+      </div>
+    </div>
+
+    <div class="card accent-mint">
+      <p class="card-category">Beach Town · 15 min from SLO</p>
+      <h3 class="card-name">Pismo Beach + Shell Beach</h3>
+      <p class="card-desc">Classic California beach vibes — clam chowder at the pier, sand dunes you can drive on (ATVs at Oceano Dunes), cold Pacific water, and sunsets that make you dramatically reconsider your entire life.</p>
+      <div class="card-tags">
+        <span class="tag">clam chowder at the pier</span>
+        <span class="tag hot">Oceano Dunes ATV</span>
+      </div>
+    </div>
+
+    <div class="card accent-earth">
+      <p class="card-category">Wine Country · 20 min from SLO</p>
+      <h3 class="card-name">Edna Valley + Arroyo Grande</h3>
+      <p class="card-desc">SLO wine country is Napa without the attitude. Edna Valley Winery, Laetitia, and Talley have stunning settings and Chardonnay and Pinot that surprise people every time. Arroyo Grande's village is a bonus.</p>
+      <div class="card-tags">
+        <span class="tag">SLO wine country</span>
+        <span class="tag local">Pinot + Chardonnay</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
 <footer>
-  <strong>The Bay Area</strong>
-  <p>For those who seek the flavor in the fog.</p>
-  <p style="margin-top:20px; opacity:0.5;">© 2026 Local's Guide — SF & Beyond</p>
+  <strong>A Local's Guide — San Francisco & Beyond</strong>
+  Eat everything. Drive with the windows down.<br>
+  Pull over when something looks interesting. Tip well.<br><br>
+  🌉 San Francisco · Marin · East Bay · Peninsula · South Bay · Monterey · Sonoma · SLO
 </footer>
 
 </body>
