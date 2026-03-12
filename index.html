@@ -152,7 +152,7 @@ body::before{
   overflow-x:auto; scrollbar-width:none;
   backdrop-filter:blur(16px) saturate(1.6);
   -webkit-backdrop-filter:blur(16px) saturate(1.6);
-}
+;width:100%}
 .nav::-webkit-scrollbar{display:none}
 .sf-section  .nav{background:rgba(26,14,6,.94);border-bottom:1px solid rgba(232,168,74,.12)}
 .nyc-section .nav{background:rgba(12,14,24,.94);border-bottom:1px solid rgba(232,184,74,.1)}
@@ -4478,6 +4478,27 @@ details[open]>summary{border-radius:12px 12px 0 0;border-bottom:1px solid var(--
       <div class="cname">Jacob Riis Beach + Rockaway</div>
       <div class="cloc">Queens · A Train + Shuttle</div>
       <div class="cdesc">The Rockaway Peninsula has 5 miles of ocean beach, reachable by subway (A train to Rockaway, then the free Rockaway Shuttle). Jacob Riis Beach is the wilder, NPS-managed section with more space. Locals summer here. The Riis Park food vendors (MoMo Citi Thai, etc.) are excellent. The NYC beach experience that actually feels like a beach day.</div>
+    <div class="card sage">
+      <span class="ctag c-sage">Queens · Astoria · Pool + Views</span>
+      <div class="cname">Astoria Park ⭐</div>
+      <div class="cloc">19th St &amp; 23rd Dr, Astoria, Queens</div>
+      <div class="cdesc">One of NYC's most underrated parks — sitting directly under the Hell Gate Bridge and Triborough Bridge with sweeping views of Randalls Island and the East River. The Astoria Pool (the largest public pool in NYC, built for the 1936 Olympic trials) opens in summer. Great running track, tennis courts, and a genuinely neighborhood park feel that Manhattan parks can't match.</div>
+      <div class="ctip">🏊 Astoria Pool opens late June — the largest public pool in NYC, free, first-come-first-served</div>
+    </div>
+    <div class="card sage">
+      <span class="ctag c-sage">Long Island City · Skyline Views</span>
+      <div class="cname">Gantry Plaza State Park ⭐</div>
+      <div class="cloc">4-09 47th Rd, Long Island City, Queens</div>
+      <div class="cdesc">The single best Manhattan skyline view available from any park — the iconic red gantry cranes framing the UN Building and Chrysler Building across the East River. 12 acres of manicured waterfront with fishing piers, playgrounds, and a gorgeous walking path. The sunset from here looking west across Manhattan is extraordinary and completely free. Take the 7 train to Vernon-Jackson.</div>
+      <div class="ctip">🌅 Sunset facing the Manhattan skyline — the best free skyline view in all five boroughs</div>
+    </div>
+    <div class="card sage">
+      <span class="ctag c-sage">East River · Aerial Tramway · Spring</span>
+      <div class="cname">Roosevelt Island + Tramway ⭐</div>
+      <div class="cloc">Tramway from 59th St &amp; 2nd Ave · $2.90</div>
+      <div class="cdesc">Take the aerial tramway (cable car) from Manhattan's Upper East Side (59th St &amp; 2nd Ave) across the East River to Roosevelt Island — one of the most spectacular transit rides in the world for $2.90 on your MetroCard/OMNY. The island itself is a quiet, car-free 2-mile strip with cherry blossoms in spring, the FDR Four Freedoms Park (Louis Kahn's final masterpiece) at the southern tip, and views of both Manhattan and Queens. Spring is the best season — the cherry trees line the entire promenade.</div>
+      <div class="ctip">🌸 Spring cherry blossoms along the promenade + FDR Four Freedoms Park at the southern tip — magical in April</div>
+    </div>
     </div>
   </div>
 </div>
@@ -4540,7 +4561,16 @@ details[open]>summary{border-radius:12px 12px 0 0;border-bottom:1px solid var(--
       <div class="cname">NYC Ferry</div>
       <div class="cdesc">The East River Ferry runs from Pier 11 in Lower Manhattan up to 34th St and then out to Astoria, Williamsburg, Greenpoint, Red Hook, and the Rockaways. $4 each way. Slower than the subway but the waterfront views of the skyline from the water make it worth it for certain routes — the Brooklyn Bridge view from the East River ferry is exceptional.</div>
     </div>
-    <div class="card gold">
+    
+    <div class="tc" style="border-left-color:#4A6888">
+      <div><span class="tc-line" style="background:#4A6888">⛴</span><strong> NYC Ferry — All Five Boroughs by Water</strong></div>
+      <div class="tc-body">NYC Ferry runs routes connecting Brooklyn (DUMBO, Williamsburg, Red Hook, Sunset Park), Manhattan (Wall St/Pier 11, Midtown E 34th St, Stuyvesant Cove), Queens (Astoria, Long Island City, Rockaway Beach), and the Bronx (Soundview). $4 each way — same as the subway but with skyline views from the water. The East River route from Wall St to DUMBO gives you the Brooklyn Bridge view from below. The Rockaway route is the best beach commute in America. Bikes allowed on all ferries.</div>
+    </div>
+    <div class="tc" style="border-left-color:#C8506A">
+      <div><span class="tc-line" style="background:#C8506A">🚡</span><strong> Roosevelt Island Tramway — $2.90 Aerial Cable Car</strong></div>
+      <div class="tc-body">The only commuter aerial tramway in North America — from 59th St &amp; 2nd Ave in Manhattan across the East River to Roosevelt Island. $2.90 with MetroCard or OMNY (same as a subway ride). The 3-minute ride gives you aerial views of the East Side skyline, the Queensboro Bridge, and the river 250 feet below. One of the most spectacular transit experiences in the world for the price of a subway ride. Especially beautiful at night and during spring cherry blossom season on the island.</div>
+    </div>
+<div class="card gold">
       <span class="ctag c-gold">Airports</span>
       <div class="cname">Getting to/from Airports</div>
       <div class="cdesc">JFK: AirTrain to Jamaica Station, then E or J/Z subway ($10.75 total), or flat-rate yellow cab ($70 + tolls). LaGuardia: the Q70 bus to subway ($2.90). Newark: NJ Transit to Penn Station ($17–18). The AirTrain options are the cheapest and most reliable. Allow 90 minutes from any airport to Midtown.</div>
@@ -4621,7 +4651,38 @@ details[open]>summary{border-radius:12px 12px 0 0;border-bottom:1px solid var(--
     <p>Every Smithsonian museum, every monument, the National Gallery, the National Zoo — all free. You can spend a full week in DC spending almost nothing on culture. DC punishes people who budget for admission, because there is almost nothing to pay for. The only exceptions: the Washington Monument observation deck ($3 reservation fee), International Spy Museum ($25), and some special exhibitions.</p>
   </div>
 
-  <div class="dl">Navigate the guide</div>
+  
+  <div class="dl">🏔️ National Parks + Nature Within 2 Hours</div>
+  <div class="g2">
+    <div class="card dcs">
+      <span class="ctag c-dcs">90 min · Blue Ridge Mountains</span>
+      <div class="cname">Shenandoah National Park ⭐</div>
+      <div class="cloc">Front Royal, VA · Skyline Drive · $35/Vehicle</div>
+      <div class="cdesc">105,000 acres along the Blue Ridge crest. Skyline Drive (105 miles, 35 mph, no trucks) is one of America's great scenic roads. Old Rag Mountain hike is the signature (9 miles, rock scramble, book timed entry May–Nov at recreation.gov). Whiteoak Canyon has the best waterfalls. Peak foliage mid-October is extraordinary. Dark Sky observation areas for stargazing. The most accessible major national park from any East Coast city.</div>
+      <div class="ctip">🍂 Peak foliage: mid-October. Old Rag requires timed entry May–Nov — book at recreation.gov</div>
+    </div>
+    <div class="card dcs">
+      <span class="ctag c-dcs">30 min · 76-Foot Falls</span>
+      <div class="cname">Great Falls Park ⭐</div>
+      <div class="cloc">Virginia + Maryland Sides</div>
+      <div class="cdesc">The Potomac River drops 76 feet through volcanic rock in a series of dramatic cascading falls — 30 minutes from downtown DC. Two sides: Virginia (Great Falls Park, NPS, excellent overlooks) and Maryland (C&amp;O Canal, Billy Goat Trail Section A scramble). The Mather Gorge overlook is extraordinary. Billy Goat Trail requires scrambling over boulders above the gorge. Free with NPS pass or $20/vehicle.</div>
+    </div>
+    <div class="card dcs">
+      <span class="ctag c-dcs">2.5 hrs · 3 States Meet</span>
+      <div class="cname">Harpers Ferry, WV</div>
+      <div class="cloc">West Virginia · Where the Rivers Meet</div>
+      <div class="cdesc">Where the Shenandoah and Potomac rivers meet at the junction of three states (WV, VA, MD). John Brown's 1859 raid started here. The Maryland Heights trail gives the iconic view down onto the town and rivers. Appalachian Trail runs through the historic lower town. The river tubing on the Shenandoah in summer is the best day trip activity from DC that most visitors never discover. MARC train accessible on weekends.</div>
+    </div>
+    <div class="card dcs">
+      <span class="ctag c-dcs">Georgetown · 184 Miles · Bike or Hike</span>
+      <div class="cname">C&amp;O Canal Towpath</div>
+      <div class="cloc">Georgetown to Cumberland, MD</div>
+      <div class="cdesc">184.5 miles of flat towpath from Georgetown to Cumberland, Maryland. Biking to Great Falls (14.6 miles each way) is the best day trip directly from DC — no car needed. The Georgetown section through the Palisades is shaded and beautiful. Pack a lunch, rent a bike from the Thompson Boat Center at the Georgetown waterfront, and ride. The most popular non-monument activity in all of DC.</div>
+      <div class="ctip">🚴 Georgetown to Great Falls and back (29 mi round trip) — the single best DC day activity</div>
+    </div>
+  </div>
+
+<div class="dl">Navigate the guide</div>
   <div class="g3">
     <div class="card dc">
       <span class="ctag c-dc">The Heart of DC</span>
@@ -4742,7 +4803,54 @@ details[open]>summary{border-radius:12px 12px 0 0;border-bottom:1px solid var(--
     </div>
   </div>
 
-  <div class="dl">🍽️ Eat Near the Mall</div>
+  
+  <div class="dl">🏛️ Everything Free in DC — The Complete List</div>
+  <div class="banner">
+    <h3>DC's Secret: Almost Everything is Free</h3>
+    <p>Every Smithsonian museum (20 of them), every monument, the National Gallery, the National Zoo, the Library of Congress, the National Archives, the US Botanic Garden, the Kennedy Center's nightly performances, Ford's Theatre, and every national park within DC. The only major paid attractions: International Spy Museum ($25), Newseum, and some special exhibitions. You can spend a full week here spending nothing on culture.</p>
+  </div>
+  <div class="g3">
+    <div class="card dc">
+      <span class="ctag c-dc">Capitol Hill · Most Beautiful Room in DC</span>
+      <div class="cname">Library of Congress ⭐</div>
+      <div class="cloc">10 1st St SE · Free · Mon–Sat</div>
+      <div class="cdesc">The Jefferson Building (1897) has the most stunning interior in all of Washington — the Great Hall with its marble columns, gold-leaf mosaics, and the Main Reading Room visible from the visitors' gallery above. The world's largest library: 170 million items. The Gutenberg Bible is here. Free guided tours on the hour. Usually uncrowded compared to the Smithsonians. This is the building that makes architecture students change their plans.</div>
+      <div class="ctip">📚 The Main Reading Room gallery — look down into the most beautiful room in DC, almost always uncrowded</div>
+    </div>
+    <div class="card dc">
+      <span class="ctag c-dc">Penn Quarter · Free · Original Documents</span>
+      <div class="cname">National Archives ⭐</div>
+      <div class="cloc">700 Pennsylvania Ave NW · Free</div>
+      <div class="cdesc">The original Declaration of Independence, the Constitution, and the Bill of Rights — all three under glass in the Rotunda for the Charters of Freedom. Free timed entry at recreation.gov. The Public Vaults exhibit downstairs lets you examine actual historical documents including presidential records and military maps. This is where you stand in front of the actual handwriting of the founders.</div>
+      <div class="ctip">🎟️ Book free timed entry at recreation.gov — the morning slots are least crowded</div>
+    </div>
+    <div class="card dc">
+      <span class="ctag c-dc">National Mall · Free · Living Greenhouse</span>
+      <div class="cname">US Botanic Garden</div>
+      <div class="cloc">100 Maryland Ave SW · Free</div>
+      <div class="cdesc">A massive conservatory at the foot of the Capitol — tropical rainforest, desert, Hawaiian, medicinal plants, and an orchid collection. Free always. The outdoor Bartholdi Park (named for the Statue of Liberty sculptor) has seasonal gardens. One of the oldest botanic gardens in North America (1820). Perfect rainy-day alternative to the outdoor monuments.</div>
+    </div>
+    <div class="card dc">
+      <span class="ctag c-dc">Downtown · Free · Ford's Theatre</span>
+      <div class="cname">Ford's Theatre + Petersen House</div>
+      <div class="cloc">511 10th St NW · Free Timed Tickets</div>
+      <div class="cdesc">Where Lincoln was assassinated on April 14, 1865. The theatre is fully restored and still hosts live performances. Free timed tickets include the museum, the theatre, and the Petersen House across the street where Lincoln died. The museum basement chronicles the manhunt for John Wilkes Booth. Free same-day tickets at the box office starting at 8:30am, or reserve at fords.org.</div>
+    </div>
+    <div class="card dc">
+      <span class="ctag c-dc">Georgetown · Free · 10-Acre Garden</span>
+      <div class="cname">Dumbarton Oaks Gardens</div>
+      <div class="cloc">1703 32nd St NW · $10 Garden · Museum Free</div>
+      <div class="cdesc">Harvard research center with 10 acres of terraced gardens and world-class Byzantine and Pre-Columbian art collections. The 1944 conference that led to the United Nations was held here. In spring, the wisteria pergola and cherry blossoms make this one of the most beautiful private gardens in America. Museum is free; garden is $10 March–October, free November–February.</div>
+    </div>
+    <div class="card dc">
+      <span class="ctag c-dc">National Mall · Free · September 2026 Reopening</span>
+      <div class="cname">National Air + Space Museum ⭐</div>
+      <div class="cloc">Independence Ave · The Wright Flyer + Moon Rock</div>
+      <div class="cdesc">The Wright Brothers' 1903 Flyer, Lindbergh's Spirit of St. Louis, a touchable Moon rock, John Glenn's Mercury capsule. The most visited museum in the US. Mall location under major renovation (partial reopening 2025–2026). The Udvar-Hazy Center near Dulles Airport has Space Shuttle Discovery and a Concorde in full hangar display — worth the drive. Both free.</div>
+    </div>
+  </div>
+
+<div class="dl">🍽️ Eat Near the Mall</div>
   <div class="g3">
     <div class="card dcg">
       <span class="ctag c-dcg">Penn Quarter · José Andrés</span>
@@ -4838,6 +4946,33 @@ details[open]>summary{border-radius:12px 12px 0 0;border-bottom:1px solid var(--
         <li>Embassy Row — Massachusetts Ave NW, 50+ embassies in one mile walk</li>
         <li>Kramerbooks — the most DC bookstore that exists, 24/7 on weekends</li>
       </ul></div>
+
+    <div class="card dcg food-item" data-cat="cafe">
+      <span class="ctag c-dcg">Georgetown · The Famous One</span>
+      <div class="cname">Georgetown Cupcake ⭐</div>
+      <div class="cloc">3301 M St NW · Georgetown</div>
+      <div class="cdesc">The cupcake shop that launched a TV show (DC Cupcakes on TLC). The line wraps around the block on weekends and it's genuinely worth it — the red velvet and the salted caramel are the signatures. Georgetown Cupcake's success put DC bakeries on the national map. Order online for pickup to skip the line. The Georgetown location is the original and the most atmospheric.</div>
+      <div class="ctip">🧁 Order online for same-day pickup to skip the line — georgetown-cupcake.com</div>
+    </div>
+    <div class="card dcg food-item" data-cat="cafe">
+      <span class="ctag c-dcg">Multiple DC Locations · Israeli</span>
+      <div class="cname">Tatte Bakery + Café ⭐</div>
+      <div class="cloc">Dupont · Logan Circle · Georgetown · More</div>
+      <div class="cdesc">Israeli-style bakery that has become DC's essential all-day café. The bourekas (flaky cheese or spinach pastry) are the signature — perfect with a cortado. Excellent shakshuka at brunch, the best almond croissant in DC, and pastry cases that make you order three things. Multiple locations; the Dupont Circle original has the best neighborhood feel.</div>
+      <div class="ctip">☕ Boureka + cortado — the perfect Tatte order, every time</div>
+    </div>
+    <div class="card dcg food-item" data-cat="cafe">
+      <span class="ctag c-dcg">Capitol Hill · Since 1968</span>
+      <div class="cname">Sherrill's Bakery / Bread Furst</div>
+      <div class="cloc">Capitol Hill · Van Ness</div>
+      <div class="cdesc">Bread Furst (Van Ness) is DC's most beloved artisan bakery — Mark Furstenberg's sourdough, seasonal fruit tarts, and the chocolate babka are extraordinary. On Capitol Hill, the Eastern Market bakers and local patisseries provide the neighborhood's bread. DC's bakery scene is small but very good — focused on quality over Instagram aesthetics.</div>
+    </div>
+    <div class="card dcg food-item" data-cat="cafe">
+      <span class="ctag c-dcg">14th St · All-Day Café</span>
+      <div class="cname">Compass Coffee</div>
+      <div class="cloc">Multiple DC Locations</div>
+      <div class="cdesc">DC's homegrown coffee chain — roasted locally, multiple locations, the most reliable excellent coffee in the city. The 14th Street flagship is the best location. Good pastries, good vibes, the kind of local roaster that a city needs. Founded by two Marine veterans. Better than any chain and more consistent than most indie spots.</div>
+    </div>
     </div>
 
     <div class="hc" style="background:linear-gradient(135deg,#1f1a0f,#3a2e1a)" onclick="toggleHood('dc-hood-14th')">
@@ -5067,6 +5202,31 @@ details[open]>summary{border-radius:12px 12px 0 0;border-bottom:1px solid var(--
       <div class="cname">Dukem</div>
       <div class="cloc">1114 U St NW</div>
       <div class="cdesc">A long-standing U Street Ethiopian institution — tibs, kitfo (Ethiopian beef tartare), gored gored, and excellent vegetarian options. The kitfo here is one of the best in the city. Has survived every wave of U Street transformation without changing what made it great.</div>
+
+    <div class="card warm food-item" data-cat="ethiopian">
+      <span class="ctag c-warm">Adams Morgan · Injera + Cocktails</span>
+      <div class="cname">Tail Up Goat ⭐</div>
+      <div class="cloc">1827 Adams Mill Rd NW</div>
+      <div class="cdesc">Not Ethiopian per se, but James Beard-nominated cocktails and Caribbean-influenced food in the heart of DC's Ethiopian corridor. The bread program alone is worth the visit. Combine with a walk down 18th Street trying Ethiopian restaurants before or after for the full Adams Morgan experience. One of DC's most creative and beloved neighborhood restaurants.</div>
+    </div>
+    <div class="card warm food-item" data-cat="ethiopian">
+      <span class="ctag c-warm">Shaw · Vegetarian Ethiopian</span>
+      <div class="cname">Chercher Ethiopian</div>
+      <div class="cloc">1334 9th St NW · Shaw</div>
+      <div class="cdesc">One of DC's finest Ethiopian restaurants — excellent doro wat (chicken stew in berbere), kitfo (Ethiopian tartare), and the vegetarian combination platter. The 9th Street Shaw corridor has the highest concentration of Ethiopian restaurants in the US. Chercher stands out for refined execution. The vegetarian combo is the best way to try 6–8 dishes on one platter.</div>
+    </div>
+    <div class="card teal food-item" data-cat="asian">
+      <span class="ctag c-teal">Columbia Heights · Salvadoran</span>
+      <div class="cname">El Rinconcito Café</div>
+      <div class="cloc">Columbia Heights · Mt Pleasant</div>
+      <div class="cdesc">DC has one of the largest Salvadoran communities in the US, and the pupuserias along Columbia Heights and Mt Pleasant St are the real deal. Thick corn masa pockets stuffed with cheese, chicharrón, and loroco flower, served with curtido (pickled cabbage). Under $4 each. The Columbia Pike corridor in Arlington has even more options. This is DC's most underrated food tradition.</div>
+    </div>
+    <div class="card teal food-item" data-cat="asian">
+      <span class="ctag c-teal">U Street · West African</span>
+      <div class="cname">Kith/Kin (The Wharf)</div>
+      <div class="cloc">Intercontinental Hotel · The Wharf</div>
+      <div class="cdesc">Chef Kwame Onwuachi's West African and Afro-Caribbean fine dining — one of the most important restaurants in DC. Jollof rice, suya-spiced meats, plantain with coconut chutney. James Beard Rising Star nominee. The Wharf waterfront location is beautiful. This is the restaurant that proved DC could be a world-class dining city for cuisines beyond the French-Italian default.</div>
+    </div>
     </div>
 
     <!-- CHESAPEAKE SEAFOOD -->
@@ -5492,6 +5652,30 @@ details[open]>summary{border-radius:12px 12px 0 0;border-bottom:1px solid var(--
       <div class="cname">When to Drive</div>
       <div class="cdesc">Don't drive in DC proper — parking is paid, scarce, and the Metro is better. Drive for: Eden Center in Falls Church (Vietnamese), Honey Pig in Annandale (KBBQ), Shenandoah (90 min), Annapolis (45 min). I-66 and I-395 from DC into Northern Virginia clog 7–9am and 4–7pm on weekdays. Avoid those windows or add 45 min.</div>
     </div>
+
+  <div class="dl">🚆 Northeast Corridor — Philly, Delaware + Beaches</div>
+  <div class="g2">
+    <div class="cc dcg">
+      <div class="cc-name">Philadelphia ⭐</div>
+      <div class="cc-sub" style="color:var(--dc-gold)">1.5 hrs Amtrak · 2 hrs Drive · $30–55 Train</div>
+      <div class="cc-body">Amtrak from Union Station to 30th Street Station — 1.5 hours on Acela ($55), 2 hours on Regional ($30). Reading Terminal Market (the best food market on the East Coast), the Philadelphia Museum of Art (Rocky Steps, world-class Impressionists), Pat's vs Geno's cheesesteak debate, Old City historic district (Independence Hall, Liberty Bell — both free). Eastern State Penitentiary, Chinatown's Nan Zhou Hand-Drawn Noodle House. The Italian Market on 9th Street. A full day trip by train with no car needed.</div>
+    </div>
+    <div class="cc dcb">
+      <div class="cc-name">Rehoboth Beach, Delaware ⭐</div>
+      <div class="cc-sub" style="color:var(--dc-blue)">2.5 hrs Drive · The DMV's Beach</div>
+      <div class="cc-body">The unofficial beach of Washington DC — every summer weekend, the Route 1 corridor fills with DC license plates. Rehoboth Beach has a mile-long boardwalk, Thrasher's French Fries (vinegar, no ketchup), Grotto Pizza, Dolle's saltwater taffy. Dewey Beach (10 min south) is the party beach. Bethany Beach (20 min south) is the family beach. Cape Henlopen State Park has the best nature — dunes, Fort Miles WWII bunkers, and excellent swimming. No sales tax in Delaware — outlet shopping on Route 1.</div>
+    </div>
+    <div class="cc dcs">
+      <div class="cc-name">Virginia Beach + Chincoteague</div>
+      <div class="cc-sub" style="color:var(--dc-sage)">3.5 hrs Drive · Wild Ponies</div>
+      <div class="cc-body">Virginia Beach: the most accessible ocean beach from DC if Rehoboth is full (3.5 hrs). The boardwalk, the Neptune statue, excellent seafood at Waterman's. Chincoteague Island (3 hrs): wild ponies on Assateague Island, the annual pony swim in July, and one of the most beautiful barrier island beaches on the East Coast. Assateague Island National Seashore (MD side, 3 hrs): wild horses, empty beaches, backcountry camping. The Eastern Shore of Maryland and Virginia is America's most underrated coastline.</div>
+    </div>
+    <div class="cc dc">
+      <div class="cc-name">Sandy Point + Calvert Cliffs — Maryland Beaches</div>
+      <div class="cc-sub" style="color:var(--dc-cherry)">45 min–1.5 hrs · Chesapeake Bay</div>
+      <div class="cc-body">Sandy Point State Beach (45 min): the closest beach to DC — on the Chesapeake Bay near Annapolis, under the Bay Bridge. Calm water, good for families, crabbing possible. Calvert Cliffs State Park (1.5 hrs south): Chesapeake Bay beach where you can find Miocene-era shark teeth fossils (10–20 million years old) on the sand. A 1.8-mile trail through forest to the beach. Flag Ponds Nature Park nearby is less crowded. Solomon's Island at the southern tip for excellent waterfront seafood.</div>
+    </div>
+  </div>
     <div class="card dcb">
       <span class="ctag c-dcb">Virginia + Maryland Bus</span>
       <div class="cname">Bus to Eden Center + Falls Church</div>
