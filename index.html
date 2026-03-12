@@ -58,13 +58,13 @@ body::before{
 @media(max-width:600px){.city-btn{padding:0 14px;font-size:8.5px;letter-spacing:.1em}}
 
 /* ── SECTIONS ── */
-.city-section{display:none;position:relative;z-index:1}
-.city-section.active{display:block;animation:cityIn .45s cubic-bezier(.22,1,.36,1)}
+.city-section{display:none;position:relative;z-index:1;min-height:calc(100vh - 52px)}
+.city-section.active{display:flex;flex-direction:column;animation:cityIn .45s cubic-bezier(.22,1,.36,1)}
 @keyframes cityIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
 /* ── HEROES ── */
 .sf-hero,.nyc-hero,.dc-hero{
-  min-height:100vh; display:flex; flex-direction:column;
+  min-height:88vh; display:flex; flex-direction:column;
   justify-content:flex-end; padding:0 0 80px; position:relative; overflow:hidden;
 }
 .sf-hero{background:var(--sf-bg)}
@@ -171,7 +171,7 @@ body::before{
 .ndiv{width:1px;background:rgba(255,255,255,.07);margin:8px 4px;align-self:stretch}
 
 /* ── MAIN ── */
-.main{max-width:1080px;margin:0 auto;padding:68px 32px 130px}
+.main{max-width:1080px;margin:0 auto;padding:48px 32px 100px;flex:1}
 .tab{display:none;animation:tabIn .38s cubic-bezier(.22,1,.36,1)}
 .tab.on{display:block}
 @keyframes tabIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
@@ -217,7 +217,7 @@ body::before{
 .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .g2a{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
 .g3a{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
-.stat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:40px}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-bottom:36px}
 @media(max-width:1000px){
   .g3{grid-template-columns:repeat(2,1fr)}
   .g4{grid-template-columns:repeat(2,1fr)}
@@ -241,7 +241,7 @@ body::before{
   background:linear-gradient(140deg,rgba(255,255,255,.65) 0%,rgba(255,255,255,0) 55%);
   pointer-events:none; opacity:0; transition:opacity .3s;
 }
-.card:hover{transform:translateY(-6px) scale(1.005)}
+.card:hover{transform:translateY(-4px) scale(1.003)}
 .card:hover::before{opacity:1}
 
 .card.gold {border-top:3px solid var(--sf-gold)}
@@ -3477,20 +3477,10 @@ details[open]>summary{border-radius:12px 12px 0 0;border-bottom:1px solid var(--
 </div>
 
 <!-- ══════════════ NYC SECTION ══════════════ -->
-<div >
-  <div class="footer">
-    <strong>San Francisco</strong>
-    <a onclick="switchCity('nyc')">New York City →</a>&nbsp; · &nbsp;<a onclick="switchCity('dc')">Washington D.C. →</a>
-  </div>
-</div>
+
 
 <!-- ══════════════ NYC ══════════════ -->
-<div >
-  <div class="footer">
-    <strong>San Francisco</strong>
-    <a onclick="switchCity('nyc')">New York City →</a>&nbsp;·&nbsp;<a onclick="switchCity('dc')">Washington D.C. →</a>
-  </div>
-</div>
+
 
 <!-- ══════ NYC ══════ -->
 <div id="nyc-section" class="city-section nyc-section">
@@ -4566,20 +4556,9 @@ details[open]>summary{border-radius:12px 12px 0 0;border-bottom:1px solid var(--
   </div>
 </div>
 
-<button >
-  <div class="footer">
-    <strong>New York City</strong>
-    <a onclick="switchCity('sf')">← San Francisco</a>&nbsp; · &nbsp;<a onclick="switchCity('dc')">Washington D.C. →</a>
-  </div>
-</div>
 
 <!-- ══════════════ DC ══════════════ -->
-<div >
-  <div class="footer">
-    <strong>New York City</strong>
-    <a onclick="switchCity('sf')">← San Francisco</a>&nbsp;·&nbsp;<a onclick="switchCity('dc')">Washington D.C. →</a>
-  </div>
-</div>
+
 
 <!-- ══════ DC ══════ -->
 <div id="dc-section" class="city-section dc-section">
@@ -5527,7 +5506,7 @@ details[open]>summary{border-radius:12px 12px 0 0;border-bottom:1px solid var(--
     <strong>Washington D.C.</strong>
     <a onclick="switchCity('sf')">← San Francisco</a> &nbsp;·&nbsp; <a onclick="switchCity('nyc')">New York City →</a>
   </div>
->
+</div>
 
 <button id="btt" aria-label="Back to top">↑</button>
 <script>
