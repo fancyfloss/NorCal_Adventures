@@ -369,6 +369,130 @@ details[open]>summary{border-radius:10px 10px 0 0;border-bottom:1px solid var(--
   background-size:200% auto;animation:shimmer 3s linear infinite;
   color:white;margin-left:8px;vertical-align:middle;
 }
+
+/* ── ENHANCED CARD GLOW ── */
+.card{
+  background:white;border-radius:14px;padding:22px;
+  box-shadow:0 2px 16px rgba(28,16,8,.07);
+  transition:transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease, opacity .3s ease;
+  position:relative;overflow:hidden;
+}
+.card::before{
+  content:'';position:absolute;inset:0;border-radius:14px;
+  background:linear-gradient(135deg,rgba(255,255,255,.6) 0%,rgba(255,255,255,0) 60%);
+  pointer-events:none;opacity:0;transition:opacity .25s;
+}
+.card:hover::before{opacity:1}
+.card:hover{transform:translateY(-6px) scale(1.01);}
+.card.gold:hover{box-shadow:0 16px 48px rgba(212,168,71,.28),0 0 0 1px rgba(212,168,71,.15)}
+.card.red:hover{box-shadow:0 16px 48px rgba(192,57,43,.22),0 0 0 1px rgba(192,57,43,.12)}
+.card.sage:hover{box-shadow:0 16px 48px rgba(61,107,79,.22),0 0 0 1px rgba(61,107,79,.12)}
+.card.sky:hover{box-shadow:0 16px 48px rgba(44,95,138,.22),0 0 0 1px rgba(44,95,138,.12)}
+.card.teal:hover{box-shadow:0 16px 48px rgba(42,122,111,.22),0 0 0 1px rgba(42,122,111,.12)}
+.card.plum:hover{box-shadow:0 16px 48px rgba(92,61,107,.22),0 0 0 1px rgba(92,61,107,.12)}
+.card.warm:hover{box-shadow:0 16px 48px rgba(181,80,58,.22),0 0 0 1px rgba(181,80,58,.12)}
+
+/* ── FOOD FILTER ANIMATION ── */
+.food-item{transition:transform .25s cubic-bezier(.34,1.56,.64,1),box-shadow .25s ease,opacity .3s ease,max-height .3s ease}
+.food-item.hidden{display:none}
+
+/* ── FILTER PILLS GLOW ── */
+.filt{
+  font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.12em;
+  text-transform:uppercase;padding:8px 18px;border-radius:24px;
+  border:1px solid rgba(28,16,8,.12);color:var(--mist);background:white;
+  cursor:pointer;transition:all .2s cubic-bezier(.34,1.56,.64,1);
+  box-shadow:0 1px 4px rgba(0,0,0,.04);
+}
+.filt:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-1px);box-shadow:0 4px 12px rgba(212,168,71,.15)}
+.filt.on{background:var(--bark);color:var(--gold);border-color:var(--bark);box-shadow:0 4px 16px rgba(28,16,8,.25)}
+
+/* ── STICKY NAV GLOW ── */
+.nav{
+  background:rgba(28,16,8,.96);border-bottom:1px solid rgba(212,168,71,.2);
+  position:sticky;top:0;z-index:200;
+  overflow-x:auto;scrollbar-width:none;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+
+/* ── HERO PILL HOVER ── */
+.hero-pill{
+  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;padding:8px 18px;border:1px solid rgba(212,168,71,.3);
+  color:rgba(212,168,71,.8);border-radius:2px;
+  transition:all .25s cubic-bezier(.34,1.56,.64,1);cursor:default;
+}
+.hero-pill:hover{background:rgba(212,168,71,.15);border-color:var(--gold);color:var(--gold);transform:translateY(-2px);box-shadow:0 6px 20px rgba(212,168,71,.2)}
+
+/* ── NEIGHBORHOOD CARD POLISH ── */
+.hc{transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s ease}
+.hc:hover{transform:scale(1.03);box-shadow:0 20px 48px rgba(0,0,0,.25)}
+
+/* ── PULSE DOT ── */
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.6}}
+.pulse-dot{
+  display:inline-block;width:7px;height:7px;border-radius:50%;
+  background:var(--sage);margin-right:6px;vertical-align:middle;
+  animation:pulse 2s ease-in-out infinite;
+}
+
+/* ── SCROLL REVEAL ── */
+@keyframes slideUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.reveal{animation:slideUp .45s cubic-bezier(.22,1,.36,1) both}
+
+/* ── GOLD DIVIDER ── */
+.dl{
+  font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.25em;
+  text-transform:uppercase;color:var(--mist);
+  margin:52px 0 20px;display:flex;align-items:center;gap:14px;
+}
+.dl::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--sand),transparent)}
+.dl::before{content:'';width:3px;height:3px;border-radius:50%;background:var(--gold);flex-shrink:0}
+
+/* ── STAT CARD HOVER ── */
+.stat{
+  background:white;border-radius:12px;padding:20px 22px;
+  box-shadow:0 2px 12px rgba(28,16,8,.06);
+  transition:transform .2s ease,box-shadow .2s ease;cursor:default;
+}
+.stat:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(28,16,8,.1)}
+.stat-n{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:700;color:var(--ember);line-height:1;margin-bottom:4px}
+
+/* ── PARK CARD POLISH ── */
+.pk:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 20px 48px rgba(61,107,79,.18)}
+
+/* ── EVENT CARD HOVER ── */
+.ev{transition:transform .2s ease,box-shadow .2s ease}
+.ev:hover{transform:translateX(4px);box-shadow:0 8px 28px rgba(28,16,8,.12)}
+
+/* ── MUSEUM CARD HOVER ── */
+.mc:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(92,61,107,.18)}
+
+/* ── BACK TO TOP ── */
+#btt{
+  position:fixed;bottom:32px;right:32px;
+  width:44px;height:44px;border-radius:50%;
+  background:var(--bark);color:var(--gold);border:1px solid rgba(212,168,71,.3);
+  font-size:18px;cursor:pointer;z-index:300;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(0,0,0,.2);
+  transition:all .25s ease;opacity:0;pointer-events:none;
+}
+#btt.vis{opacity:1;pointer-events:all}
+#btt:hover{background:var(--gold);color:var(--bark);transform:translateY(-3px);box-shadow:0 8px 28px rgba(212,168,71,.35)}
+
+/* ── TOOLTIP ── */
+[data-tip]{position:relative;cursor:help}
+[data-tip]::after{
+  content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;
+  transform:translateX(-50%) scale(.9);transform-origin:bottom center;
+  background:var(--bark);color:var(--fog);font-family:'Space Mono',monospace;
+  font-size:10px;padding:6px 12px;border-radius:6px;white-space:nowrap;
+  pointer-events:none;opacity:0;transition:all .15s ease;
+  box-shadow:0 4px 16px rgba(0,0,0,.2);
+}
+[data-tip]:hover::after{opacity:1;transform:translateX(-50%) scale(1)}
 </style>
 </head>
 <body>
@@ -386,7 +510,7 @@ details[open]>summary{border-radius:10px 10px 0 0;border-bottom:1px solid var(--
     </h1>
     <p class="hero-sub">SF · Marin · Sonoma · Peninsula · East Bay<br>Monterey · Santa Cruz · SLO · Drive the Coast</p>
     <div class="hero-pills">
-      <span class="hero-pill">✨ First Timer Guide</span>
+      <span class="hero-pill">🗺️ Famous Landmarks</span>
       <span class="hero-pill">🍜 Food by Cuisine</span>
       <span class="hero-pill">🏘️ All Neighborhoods</span>
       <span class="hero-pill">🌿 Parks + Hikes</span>
@@ -403,17 +527,13 @@ details[open]>summary{border-radius:10px 10px 0 0;border-bottom:1px solid var(--
 <nav class="nav">
   <div class="nav-inner">
     <button class="nb on" onclick="go('home')">Home</button>
-    <button class="nb" onclick="go('firsttime')">✨ First Timer</button>
+    <button class="nb" onclick="go('firsttime')">Landmarks</button>
     <div class="ndiv"></div>
     <button class="nb" onclick="go('days')">Day Ideas</button>
     <button class="nb" onclick="go('hoods')">Neighborhoods</button>
     <button class="nb" onclick="go('events')">Events</button>
     <div class="ndiv"></div>
-    <button class="nb" onclick="go('food-cal')">California &amp; Seafood</button>
-    <button class="nb" onclick="go('food-asian')">Asian</button>
-    <button class="nb" onclick="go('food-latin')">Latin</button>
-    <button class="nb" onclick="go('food-fil')">Filipino 🇵🇭</button>
-    <button class="nb" onclick="go('food-world')">World + Drinks</button>
+    <button class="nb" onclick="go('food')">Eat + Drink</button>
     <div class="ndiv"></div>
     <button class="nb" onclick="go('parks')">SF Parks</button>
     <button class="nb" onclick="go('museums')">Museums</button>
@@ -429,8 +549,8 @@ details[open]>summary{border-radius:10px 10px 0 0;border-bottom:1px solid var(--
 <div id="firsttime" class="tab">
   <div class="sh">
     <div class="sh-tag">Start Here</div>
-    <h2>First Time in <em>SF?</em></h2>
-    <p>Welcome. This is your cheat sheet — every landmark, iconic neighborhood, essential bite, and surrounding county worth exploring. No fluff, just the real list. Click into any neighborhood tab for deeper restaurant and activity breakdowns.</p>
+    <h2>Famous Landmarks of <em>San Francisco</em></h2>
+    <p>Every iconic landmark, neighborhood, essential bite, and surrounding area worth exploring — all in one place. Whether it's your first time or you're showing someone around, this is the definitive list.</p>
   </div>
 
   <div class="dl">🌉 Iconic Landmarks — The Non-Negotiables</div>
@@ -805,30 +925,30 @@ details[open]>summary{border-radius:10px 10px 0 0;border-bottom:1px solid var(--
     <div class="stat"><div class="stat-n">15</div><div class="stat-l">Tabs of Content</div><div class="stat-d">First Timer landmarks, neighborhoods, food by cuisine, parks, hikes, museums, events, coast</div></div>
     <div class="stat"><div class="stat-n">∞</div><div class="stat-l">Ways to Do It</div><div class="stat-d">All flexible. Sleep in. Pivot. Eat the same dish twice if it deserves it.</div></div>
     <div class="stat"><div class="stat-n">60+</div><div class="stat-l">SF Neighborhoods</div><div class="stat-d">We cover the ones worth your time with real restaurant recs and things to do</div></div>
-    <div class="stat"><div class="stat-n">🇵🇭</div><div class="stat-l">Filipino Home Base</div><div class="stat-d">2nd largest Filipino population in the US. Daly City is the capital. You belong here.</div></div>
+    <div class="stat"><div class="stat-n">🇵🇭</div><div class="stat-l">Filipino Food Scene</div><div class="stat-d">2nd largest Filipino population in the US. SoMa Pilipinas, Daly City, East Bay — some of the best Filipino food outside Manila.</div></div>
   </div>
 
   <div class="dl">Navigate by vibe</div>
   <div class="g2">
     <div class="card gold"><span class="ctag c-gold">New to SF?</span>
-      <div class="cname">✨ Start with First Timer</div>
-      <div class="cdesc">Every landmark, iconic neighborhood, essential bite, and surrounding county worth visiting. Golden Gate Bridge to Napa Valley, Muir Woods to Carmel — your complete first-timer cheat sheet, all in one place.</div>
+      <div class="cname">🗺️ Famous Landmarks</div>
+      <div class="cdesc">Every iconic landmark, must-see neighborhood, and essential experience — Golden Gate Bridge to Napa Valley. Your complete introduction to the Bay Area in one place.</div>
     </div>
     <div class="card red"><span class="ctag c-red">Foodie</span>
-      <div class="cname">Follow the Food Tabs</div>
-      <div class="cdesc">Six cuisine tabs — California, Seafood, Asian, Latin, Filipino, Brazilian, World flavors, and Drinks. The Bay's food scene runs on immigrant cooking. Follow that thread everywhere.</div>
+      <div class="cname">Eat + Drink — One Tab</div>
+      <div class="cdesc">All cuisines in one place with filter buttons — California, Seafood, Vietnamese, Chinese, Japanese, Mexican, Brazilian, Filipino, World, and Bars. The Bay's food scene in one scroll.</div>
     </div>
     <div class="card sage"><span class="ctag c-sage">Nature</span>
       <div class="cname">Hike, Wildlife &amp; Coast</div>
-      <div class="cdesc">Sea otters at Elkhorn Slough, elephant seals at Point Reyes, gray whale migration on the Sonoma Coast. The Hike tab has 20+ trails. Coastal Drive maps Hwy 1 from Pacifica to Pismo Beach.</div>
+      <div class="cdesc">Sea otters at Elkhorn Slough, elephant seals at Point Reyes, gray whale migration on the Sonoma Coast. 20+ trails. Hwy 1 from Pacifica to Big Sur.</div>
     </div>
     <div class="card sky"><span class="ctag c-sky">Culture</span>
-      <div class="cname">Museums + Neighborhoods</div>
-      <div class="cdesc">Every SF neighborhood with history, restaurants, activities, and farmers markets. SF Parks goes deep on Golden Gate Park and the city's green spaces. Museums covers art to science to LGBTQ+ history.</div>
+      <div class="cname">Neighborhoods + Museums</div>
+      <div class="cdesc">Every SF neighborhood with restaurants, farmers markets, and activities. Museums tab covers art, science, history, and LGBTQ+ culture.</div>
     </div>
     <div class="card teal"><span class="ctag c-teal">Road Trip</span>
-      <div class="cname">Drive the Coast</div>
-      <div class="cdesc">Farthest point: San Luis Obispo and Pismo Beach — 3.5 hrs down Hwy 1 through Big Sur. The most unforgettable drive in California. Coastal Drive has the full route with stops.</div>
+      <div class="cname">Coastal Drive + Day Trips</div>
+      <div class="cdesc">The most beautiful drive in California: Hwy 1 from Pacifica to Pismo Beach through Big Sur. Day Trips covers Napa, Muir Woods, Santa Cruz, Monterey and beyond.</div>
     </div>
   </div>
 
@@ -1547,524 +1667,451 @@ details[open]>summary{border-radius:10px 10px 0 0;border-bottom:1px solid var(--
   </div></div>
 </div>
 
-<!-- ══════════════════════════ FOOD: CALIFORNIA + SEAFOOD ══════════════════════════ -->
-<div id="food-cal" class="tab">
+<!-- ══════════════════════════ FOOD (UNIFIED) ══════════════════════════ -->
+<div id="food" class="tab">
   <div class="sh">
-    <div class="sh-tag">California Modern + Seafood</div>
-    <h2>California <em>Cuisine</em> &amp; Seafood</h2>
-    <p>SF built the California cuisine movement. Farm-to-table isn't a trend here — it's been the default since Alice Waters opened Chez Panisse in 1971. And the seafood: Dungeness crab, Pacific oysters, bay fish pulled same morning.</p>
+    <div class="sh-tag">Where to Eat in the Bay</div>
+    <h2>Eat <em>&amp; Drink</em></h2>
+    <p>SF is one of the world's great food cities. Filter by cuisine or scroll the whole thing. Every category rewards you.</p>
   </div>
 
-  <div class="dl">🍽️ Classic California Restaurants</div>
-  <div class="g3">
-    <div class="card gold"><span class="ctag c-gold">Hayes Valley · Book 2 Wks</span>
+  <div class="filter-row" id="food-filters">
+    <button class="filt on" onclick="filterFood('all')">All</button>
+    <button class="filt" onclick="filterFood('california')">🍽️ California</button>
+    <button class="filt" onclick="filterFood('seafood')">🦀 Seafood</button>
+    <button class="filt" onclick="filterFood('bakery')">☕ Bakery + Coffee</button>
+    <button class="filt" onclick="filterFood('vietnamese')">🇻🇳 Vietnamese</button>
+    <button class="filt" onclick="filterFood('chinese')">🥟 Chinese + Dim Sum</button>
+    <button class="filt" onclick="filterFood('japanese')">🍜 Japanese + Korean</button>
+    <button class="filt" onclick="filterFood('indian')">🍛 Indian</button>
+    <button class="filt" onclick="filterFood('mexican')">🌮 Mexican + Latin</button>
+    <button class="filt" onclick="filterFood('brazilian')">🇧🇷 Brazilian</button>
+    <button class="filt" onclick="filterFood('filipino')">🇵🇭 Filipino</button>
+    <button class="filt" onclick="filterFood('world')">🌍 World</button>
+    <button class="filt" onclick="filterFood('drinks')">🍸 Bars + Drinks</button>
+  </div>
+
+  <div id="food-grid" class="g3">
+
+    <!-- CALIFORNIA -->
+    <div class="card gold food-item" data-cat="california"><span class="ctag c-gold">Hayes Valley · Book 2 Wks</span>
       <div class="cname">Zuni Café ⭐</div><div class="cloc">California Modern · Since 1979</div>
-      <div class="cdesc">The roast chicken for two (order 1hr ahead): whole bird, brick oven, bread salad. A SF ritual since 1979. The Caesar salad is also a revelation. One of America's most influential restaurants.</div>
+      <div class="cdesc">The roast chicken for two (order 1hr ahead): whole bird, brick oven, bread salad. A SF ritual since 1979. One of America's most influential restaurants.</div>
     </div>
-    <div class="card gold"><span class="ctag c-gold">Jackson Square · Book 30 Days</span>
+    <div class="card gold food-item" data-cat="california"><span class="ctag c-gold">Jackson Square · Book 30 Days</span>
       <div class="cname">Cotogna ⭐</div><div class="cloc">Italian Wood-Fired · SevenRooms</div>
-      <div class="cdesc">The finest Italian in the city. Wood-fired rotisserie meats, handmade pasta, extraordinary produce sourcing. Book at midnight exactly 30 days out on SevenRooms. Worth the planning.</div>
+      <div class="cdesc">Best Italian in the city. Wood-fired rotisserie meats, handmade pasta. Book at midnight exactly 30 days out on SevenRooms.</div>
     </div>
-    <div class="card gold"><span class="ctag c-gold">SoMa / Hayes Valley</span>
+    <div class="card gold food-item" data-cat="california"><span class="ctag c-gold">Hayes Valley</span>
       <div class="cname">The Progress ⭐</div><div class="cloc">Stuart Brioza · Communal Plates</div>
-      <div class="cdesc">Chef Stuart Brioza and Nicole Krasinski's most ambitious restaurant. Communal large-format plates that change constantly. One of SF's most creative and personal kitchens. The oysters are always the move.</div>
+      <div class="cdesc">Communal large-format plates that change constantly. One of SF's most creative and personal kitchens.</div>
     </div>
-    <div class="card gold"><span class="ctag c-gold">Divisadero · Open Until Midnight</span>
+    <div class="card gold food-item" data-cat="california"><span class="ctag c-gold">Divisadero · Until Midnight</span>
       <div class="cname">Nopa</div><div class="cloc">Wood-Fired California · Late Night</div>
-      <div class="cdesc">The place to go at 10pm on Saturday. Community table, whole roasted vegetables, wood-fired everything. One of the great neighborhood restaurants in America.</div>
+      <div class="cdesc">The place to go at 10pm on Saturday. Community table, wood-fired everything. One of the great neighborhood restaurants in America.</div>
     </div>
-    <div class="card gold"><span class="ctag c-gold">Mission · Book OpenTable</span>
+    <div class="card gold food-item" data-cat="california"><span class="ctag c-gold">Mission · Book OpenTable</span>
       <div class="cname">Flour + Water</div><div class="cloc">Best Fresh Pasta in SF</div>
-      <div class="cdesc">Seasonal handmade pasta shapes that change with the harvest. Tasting menu or individual dishes. The tortelli and tagliatelle are extraordinary. A SF institution.</div>
+      <div class="cdesc">Seasonal handmade pasta shapes that change with the harvest. Tasting menu or individual dishes. The tortelli and tagliatelle are extraordinary.</div>
     </div>
-    <div class="card gold"><span class="ctag c-gold">Jackson Square · 1930s Speakeasy</span>
-      <div class="cname">Bix</div><div class="cloc">Jazz Supper Club · Gold Alley</div>
-      <div class="cdesc">Hidden down a Barbary Coast alley. Cocktails to a live jazz band, exceptional food. 1930s elegance that isn't trying to be anything other than itself.</div>
+    <div class="card gold food-item" data-cat="california"><span class="ctag c-gold">Jackson Square · Jazz Supper Club</span>
+      <div class="cname">Bix</div><div class="cloc">1930s Speakeasy · Gold Alley</div>
+      <div class="cdesc">Hidden down a Barbary Coast alley. Cocktails to a live jazz band, exceptional food. 1930s elegance, unironic.</div>
     </div>
-    <div class="card gold"><span class="ctag c-gold">Mission · Book Ahead</span>
-      <div class="cname">Foreign Cinema ⭐</div><div class="cloc">Film + Food · 2534 Mission St</div>
-      <div class="cdesc">Films projected on the courtyard wall while you eat Cal-Mediterranean food. Oysters, wood-fired meats, excellent cocktails. One of the most unique restaurant experiences in the US. The brunch is also outstanding.</div>
+    <div class="card gold food-item" data-cat="california"><span class="ctag c-gold">Mission · Book Ahead</span>
+      <div class="cname">Foreign Cinema ⭐</div><div class="cloc">Film + Food · 2534 Mission</div>
+      <div class="cdesc">Films projected on the courtyard wall while you eat Cal-Mediterranean food. Oysters, wood-fired meats, great cocktails. The brunch is also outstanding.</div>
     </div>
-    <div class="card gold"><span class="ctag c-gold">Nob Hill · Old SF Glamour</span>
+    <div class="card gold food-item" data-cat="california"><span class="ctag c-gold">Nob Hill · Old SF Glamour</span>
       <div class="cname">House of Prime Rib ⭐</div><div class="cloc">Silver Cart Service · Van Ness</div>
-      <div class="cdesc">Whole roasts carved tableside from silver domed carts. Yorkshire pudding. Spun tableside salad. 1940s SF glamour, fully intact. Book weeks ahead for weekends. Bourdain had a martini and a half-pound slab here.</div>
+      <div class="cdesc">Whole roasts carved tableside from silver domed carts. Yorkshire pudding. 1940s SF glamour, fully intact. Book weeks ahead for weekends.</div>
     </div>
-    <div class="card gold"><span class="ctag c-gold">FiDi · Since 1849</span>
+    <div class="card gold food-item" data-cat="california"><span class="ctag c-gold">FiDi · Since 1849</span>
       <div class="cname">Tadich Grill ⭐</div><div class="cloc">California's Oldest Restaurant</div>
-      <div class="cdesc">Operating since the Gold Rush. Hangtown Fry (oysters, bacon, eggs — invented here). Dark wood paneling, counter seating, waiters who've been there 30 years. Nothing has changed. Everything is the point.</div>
+      <div class="cdesc">Operating since the Gold Rush. Hangtown Fry, counter seating, waiters of 30 years. Dark wood paneling unchanged. The history alone is worth it.</div>
     </div>
-    <div class="card gold"><span class="ctag c-gold">Nob Hill · Cal-Italian</span>
-      <div class="cname">Sociale</div><div class="cloc">Spruce St · Intimate Garden Patio</div>
-      <div class="cdesc">Elegant Cal-Italian in a hidden courtyard off Spruce. Small, intimate, neighborhood regulars. Excellent pasta, thoughtful wine list, service that doesn't rush you.</div>
+    <div class="card gold food-item" data-cat="california"><span class="ctag c-gold">Pac Heights · Garden Patio</span>
+      <div class="cname">Sociale</div><div class="cloc">Spruce St · Cal-Italian</div>
+      <div class="cdesc">Elegant Cal-Italian in a hidden courtyard off Spruce. Intimate, neighborhood regulars, excellent pasta and thoughtful wine list.</div>
     </div>
-    <div class="card gold"><span class="ctag c-gold">Pacific Heights</span>
-      <div class="cname">Arquet</div><div class="cloc">Cal-Med · Fillmore area</div>
-      <div class="cdesc">Seasonal California-Mediterranean cooking in Pacific Heights. Wood-fired dishes, excellent antipasti, a genuinely warm neighborhood room. The burrata when in season is extraordinary.</div>
+    <div class="card gold food-item" data-cat="california"><span class="ctag c-gold">Pacific Heights</span>
+      <div class="cname">Arquet</div><div class="cloc">Cal-Med · Fillmore Area</div>
+      <div class="cdesc">Seasonal California-Mediterranean in Pacific Heights. Wood-fired dishes, excellent antipasti, genuinely warm neighborhood room.</div>
     </div>
-  </div>
+    <div class="card gold food-item" data-cat="california"><span class="ctag c-gold">North Beach · Polk St</span>
+      <div class="cname">Brenda's French Soul Food ⭐</div><div class="cloc">Polk St · Line Every Morning</div>
+      <div class="cdesc">Beignets, shrimp and grits, crawfish étouffée, chicory coffee. The SF intersection of New Orleans and California. Always a morning line. Brenda Buenvello's cooking is extraordinary.</div>
+    </div>
 
-  <div class="dl">🦀 Seafood</div>
-  <div class="g3">
-    <div class="card sky"><span class="cstar">⭐</span><span class="ctag c-sky">Polk St · Cash Only · 8am–2:30pm</span>
-      <div class="cname">Swan Oyster Depot</div><div class="cloc">Since 1912 · 18 Seats · No Reservations</div>
-      <div class="cdesc">18-seat marble counter, same family since 1912. Oysters pulled that morning, crab back, chowder. Bourdain called it "one of my favorite places in America." Arrive before 9am. Cash only. Mondays–Saturdays.</div>
+    <!-- SEAFOOD -->
+    <div class="card sky food-item" data-cat="seafood"><span class="ctag c-sky">Polk St · Cash Only · Mon–Sat 8am</span>
+      <div class="cname">Swan Oyster Depot ⭐</div><div class="cloc">Since 1912 · 18 Marble Seats</div>
+      <div class="cdesc">18-seat counter, same family since 1912. Oysters pulled that morning, crab back, chowder. Arrive before 9am. Cash only. One of the most important counters in American food.</div>
     </div>
-    <div class="card sky"><span class="ctag c-sky">North Beach</span>
+    <div class="card sky food-item" data-cat="seafood"><span class="ctag c-sky">North Beach</span>
       <div class="cname">Sotto Mare ⭐</div><div class="cloc">Fresh Crab Cioppino · Always Packed</div>
-      <div class="cdesc">The best cioppino in SF — fresh crabmeat in rich tomato-wine broth with the whole Italian-American shellfish cast. North Beach. Always a line. Always worth it. Order the whole crab pasta too.</div>
+      <div class="cdesc">Best cioppino in SF — fresh crabmeat in rich tomato-wine broth. Always a line. Always worth it. Order the whole crab pasta too.</div>
     </div>
-    <div class="card sky"><span class="ctag c-sky">Ferry Building</span>
-      <div class="cname">Hog Island Oyster Co.</div><div class="cloc">Farm-Direct · Tomales Bay</div>
-      <div class="cdesc">Farm 90 miles north in Marshall. This Ferry Building outpost is the freshest in the city. Raw bar, grilled oysters. Best at the outdoor counter on a clear morning. Also visit the farm in Marshall on weekends (book ahead).</div>
+    <div class="card sky food-item" data-cat="seafood"><span class="ctag c-sky">Ferry Building · Farm-Direct</span>
+      <div class="cname">Hog Island Oyster Co.</div><div class="cloc">Tomales Bay Farm · Ferry Building</div>
+      <div class="cdesc">Farm 90 miles north in Marshall. Freshest oysters in the city at the outdoor counter. Also visit the farm on weekends (book ahead).</div>
     </div>
-    <div class="card sky"><span class="ctag c-sky">Richmond · Call Ahead</span>
+    <div class="card sky food-item" data-cat="seafood"><span class="ctag c-sky">Richmond · Call Ahead</span>
       <div class="cname">PPQ Dungeness Island</div><div class="cloc">Vietnamese Crab · Garlic Noodles</div>
-      <div class="cdesc">Best salt-and-pepper crab in the city: lightly battered, fried, secret seasoning. With garlic noodles. Hugely affordable for a full crab dinner. The Dungeness crab + garlic noodles combination is a SF Vietnamese tradition.</div>
+      <div class="cdesc">Best salt-and-pepper crab in the city — lightly battered, fried, secret seasoning. With garlic noodles. Hugely affordable for a full crab dinner.</div>
     </div>
-    <div class="card sky"><span class="ctag c-sky">Embarcadero · Splurge Dinner</span>
+    <div class="card sky food-item" data-cat="seafood"><span class="ctag c-sky">Embarcadero · Splurge</span>
       <div class="cname">Waterbar</div><div class="cloc">Bay Bridge Views · Raw Bar</div>
-      <div class="cdesc">Floor-to-ceiling aquarium tanks, bay views, enormous Pacific oyster selection. Perfect for a celebratory dinner. The view of the Bay Bridge at night from the windows is one of the finest dining views in SF.</div>
+      <div class="cdesc">Floor-to-ceiling aquarium tanks, bay views, enormous oyster selection. Perfect celebratory dinner. Bay Bridge view at night is one of SF's finest.</div>
     </div>
-    <div class="card sky"><span class="ctag c-sky">North Beach · FiDi · Since 1925</span>
-      <div class="cname">Alioto's</div><div class="cloc">SF's Oldest Family Restaurant · Cioppino</div>
-      <div class="cdesc">Sicilian family restaurant since 1925. The original SF cioppino — the city's signature shellfish stew. A century of survival tells you everything. Waterfront, warm, genuine.</div>
+    <div class="card sky food-item" data-cat="seafood"><span class="ctag c-sky">North Beach · Since 1925</span>
+      <div class="cname">Alioto's</div><div class="cloc">SF's Oldest Family Restaurant</div>
+      <div class="cdesc">Sicilian family since 1925. Original SF cioppino. A century of survival tells you everything. Waterfront, warm, genuine.</div>
     </div>
-    <div class="card sky"><span class="ctag c-sky">Outer Sunset</span>
-      <div class="cname">Hook Fish Co.</div><div class="cloc">Sustainable · Hook-and-Line · Fish Tacos</div>
-      <div class="cdesc">Sustainable sourcing: only hook-and-line caught fish. The fish tacos are some of the finest in SF. Simple, honest, locally focused. The Outer Sunset's answer to fast food — except it's brilliant.</div>
+    <div class="card sky food-item" data-cat="seafood"><span class="ctag c-sky">Outer Sunset</span>
+      <div class="cname">Hook Fish Co.</div><div class="cloc">Sustainable · Hook-and-Line</div>
+      <div class="cdesc">Only hook-and-line caught fish. The fish tacos are some of the finest in SF. Simple, honest, locally focused. The Outer Sunset's answer to fast food, except brilliant.</div>
     </div>
-  </div>
 
-  <div class="dl">☕ Bakeries + Coffee</div>
-  <div class="g3">
-    <div class="card warm"><span class="ctag c-warm">Richmond · Open 7am · Sells Out</span>
+    <!-- BAKERY -->
+    <div class="card warm food-item" data-cat="bakery"><span class="ctag c-warm">Richmond · Open 7am · Sells Out</span>
       <div class="cname">Arsicault Bakery ⭐</div><div class="cloc">Best Croissant in America · Bon Appétit</div>
-      <div class="cdesc">Morning bun with orange and cinnamon sugar is the sleeper hit. The croissant is the declared star. Go early. Inner Richmond — walk Clement Street after.</div>
+      <div class="cdesc">Morning bun with orange and cinnamon sugar is the sleeper hit. The croissant is the declared star. Go early. Walk Clement Street after.</div>
     </div>
-    <div class="card warm"><span class="ctag c-warm">Mission · Bread at 5pm Only</span>
+    <div class="card warm food-item" data-cat="bakery"><span class="ctag c-warm">Mission · Bread at 5pm Only</span>
       <div class="cname">Tartine Bakery ⭐</div><div class="cloc">18th &amp; Guerrero · Most Influential US Bakery</div>
-      <div class="cdesc">Arrive 4:30 for 5pm bread. Crackling crust, chewy open crumb, $14. Morning bun before noon is the cult item. Croque monsieur at lunch. The Tartine Manufactory on Alabama St for all-day versions.</div>
+      <div class="cdesc">Arrive 4:30 for 5pm bread. Crackling crust, chewy open crumb. Morning bun before noon is the cult item.</div>
     </div>
-    <div class="card warm"><span class="ctag c-warm">Pac Heights · Fillmore Area</span>
+    <div class="card warm food-item" data-cat="bakery"><span class="ctag c-warm">Pac Heights</span>
       <div class="cname">b. Patisserie</div><div class="cloc">Kouign-Amann · California St</div>
-      <div class="cdesc">Kouign-amann that crackles, seasonal fruit tarts, croissants with perfect lamination. French technique, California ingredients. Small counter, big reputation. Ritual stop before a Presidio walk.</div>
+      <div class="cdesc">Kouign-amann that crackles, seasonal fruit tarts, perfect croissant lamination. French technique, California ingredients.</div>
     </div>
-    <div class="card warm"><span class="ctag c-warm">North Beach · Since 1956</span>
+    <div class="card warm food-item" data-cat="bakery"><span class="ctag c-warm">Near Cable Car Museum</span>
+      <div class="cname">Butter &amp; Crumble</div><div class="cloc">Best Pastry Shop · Russian Hill</div>
+      <div class="cdesc">One of SF's most celebrated pastry shops — laminated pastries, seasonal tarts, butteriest croissant. Combine with a walk to the Cable Car Museum one block away.</div>
+    </div>
+    <div class="card warm food-item" data-cat="bakery"><span class="ctag c-warm">North Beach · Since 1956</span>
       <div class="cname">Café Trieste</div><div class="cloc">SF's First Espresso Bar · Beat Era</div>
-      <div class="cdesc">Coppola wrote The Godfather here. Staff may break into Italian opera on Saturday. Unchanged since 1956. The most historically important café in SF, still operating exactly as it always has.</div>
+      <div class="cdesc">Coppola wrote The Godfather here. Staff may break into Italian opera on Saturdays. Unchanged since 1956. The most historically important café in SF.</div>
     </div>
-    <div class="card warm"><span class="ctag c-warm">Pine Street · French Bakery</span>
+    <div class="card warm food-item" data-cat="bakery"><span class="ctag c-warm">Pine Street</span>
       <div class="cname">La Boulangerie de Paris</div><div class="cloc">Pine St · Proper French Boulangerie</div>
-      <div class="cdesc">Real French boulangerie: proper baguettes, pain au chocolat, almond croissants, fresh tarts. The closest SF gets to a Paris corner bakery. Opens early, pastries go fast.</div>
+      <div class="cdesc">Real French boulangerie: baguettes, pain au chocolat, almond croissants, fresh tarts. The closest SF gets to a Paris corner bakery.</div>
     </div>
-    <div class="card warm"><span class="ctag c-warm">Inner Richmond · Vinyl + Matcha</span>
-      <div class="cname">Kissaten Hi-Fi Matcha</div><div class="cloc">Japanese Matcha Café · Clement St Adjacent</div>
-      <div class="cdesc">Japanese kissaten (coffee shop) aesthetic with a vinyl DJ sound system and a serious matcha program. Ceremonial grade matcha lattes, Japanese sweets, records playing. A genuinely special neighborhood find in the Inner Richmond.</div>
+    <div class="card warm food-item" data-cat="bakery"><span class="ctag c-warm">Inner Richmond · Vinyl + Matcha</span>
+      <div class="cname">Kissaten Hi-Fi Matcha</div><div class="cloc">Japanese Matcha Café · Clement St</div>
+      <div class="cdesc">Japanese kissaten aesthetic with a vinyl DJ sound system and a serious matcha program. Ceremonial grade lattes, Japanese sweets, records playing.</div>
     </div>
-    <div class="card warm"><span class="ctag c-warm">Fillmore Area · Gluten-Free Focused</span>
-      <div class="cname">Parachute Pastry</div><div class="cloc">Gluten-Free Pastry · Pacific Heights Area</div>
-      <div class="cdesc">One of SF's best gluten-free focused pastry shops. Flaky, buttery, properly made without the gummy texture that plagues most GF baking. A revelation for those who've given up on gluten-free pastry.</div>
+    <div class="card warm food-item" data-cat="bakery"><span class="ctag c-warm">Fillmore Area · Gluten-Free</span>
+      <div class="cname">Parachute Pastry</div><div class="cloc">Gluten-Free Focused · Pac Heights Area</div>
+      <div class="cdesc">SF's best gluten-free pastry shop. Flaky, buttery, properly made — a revelation for those who've given up on gluten-free baking.</div>
     </div>
-    <div class="card warm"><span class="ctag c-warm">Outer Sunset · Near Ocean Beach</span>
+    <div class="card warm food-item" data-cat="bakery"><span class="ctag c-warm">Outer Sunset</span>
       <div class="cname">Devil's Teeth Baking Co.</div><div class="cloc">Breakfast Sandwiches · Near Ocean Beach</div>
-      <div class="cdesc">Breakfast biscuit sandwiches, cinnamon rolls, excellent coffee 3 blocks from Ocean Beach. The name comes from the Devil's Teeth surf break offshore. Perfect start to a Land's End morning.</div>
+      <div class="cdesc">Breakfast biscuit sandwiches, cinnamon rolls, excellent coffee 3 blocks from Ocean Beach. Perfect start to a Land's End morning.</div>
     </div>
-    <div class="card warm"><span class="ctag c-warm">Pineapple King Bakery · Richmond</span>
-      <div class="cname">Pineapple King Bakery</div><div class="cloc">Coconut Cream Bun · Richmond District</div>
-      <div class="cdesc">Famous for the coconut cream bun — a pillowy, filled Hong Kong-style bun that regulars come back for weekly. Small, friendly, genuine. The pineapple bun is the other essential order.</div>
+    <div class="card warm food-item" data-cat="bakery"><span class="ctag c-warm">Richmond · HK-Style</span>
+      <div class="cname">Pineapple King Bakery</div><div class="cloc">Coconut Cream Bun · Richmond</div>
+      <div class="cdesc">Famous for the coconut cream bun — a pillowy, filled Hong Kong-style bun that regulars come back for weekly. The pineapple bun is the other essential order.</div>
     </div>
-  </div>
-</div>
+    <div class="card warm food-item" data-cat="bakery"><span class="ctag c-warm">Chinatown · $1–2</span>
+      <div class="cname">Good Mong Kok Bakery</div><div class="cloc">Egg Tarts · Chinatown</div>
+      <div class="cdesc">$1–2 egg tarts, pineapple buns, taro puffs made fresh. The 8am line is entirely Chinese grandmothers — the highest bakery review possible.</div>
+    </div>
+    <div class="card warm food-item" data-cat="bakery"><span class="ctag c-warm">Chinatown · Since 1920</span>
+      <div class="cname">Hang Ah Tea Room</div><div class="cloc">Oldest Dim Sum in the US · Pagoda Pl</div>
+      <div class="cdesc">Oldest dim sum restaurant in the US — open since 1920, tucked in a Chinatown alley. Steamed dumplings, har gow, siu mai. Pork hash and sesame balls are the order.</div>
+    </div>
 
-<!-- ══════════════════════════ FOOD: ASIAN ══════════════════════════ -->
-<div id="food-asian" class="tab">
-  <div class="sh">
-    <div class="sh-tag">Vietnamese · Chinese · Japanese · Korean · Indian</div>
-    <h2>Asian <em>Food</em></h2>
-    <p>The Bay Area is the greatest concentration of Asian-American food culture in the Western world. Vietnamese refugees who arrived after 1975, multiple Chinese communities, Japanese Americans in Japantown, Koreans in Oakland, South Indian engineers in Sunnyvale. This is the food Bourdain came here specifically to eat.</p>
-  </div>
-
-  <div class="dl">🇻🇳 Vietnamese</div>
-  <div class="g3">
-    <div class="card teal"><span class="ctag c-teal">FiDi · Returned 2025</span>
-      <div class="cname">Turtle Tower ⭐</div><div class="cloc">Northern Vietnamese Pho · A SF Story</div>
-      <div class="cdesc">The pho that changed SF — Northern-style: crystal clear, intensely fragrant broth. Not the sweet southern bowls most Westerners know. A SF institution since 1999. Returned in 2025 after a gap. Also bún thang and pandan waffle to finish.</div>
+    <!-- VIETNAMESE -->
+    <div class="card teal food-item" data-cat="vietnamese"><span class="ctag c-teal">FiDi · Returned 2025</span>
+      <div class="cname">Turtle Tower ⭐</div><div class="cloc">Northern Vietnamese Pho</div>
+      <div class="cdesc">Northern-style pho — crystal clear, intensely fragrant broth. The pho that changed SF. Returned in 2025 after a gap. Also bún thang and pandan waffle.</div>
     </div>
-    <div class="card teal"><span class="ctag c-teal">FiDi · Secret Kitchen</span>
-      <div class="cname">Crustacean ⭐</div><div class="cloc">An Family · Garlic Noodles Invented Here</div>
-      <div class="cdesc">Chef Helene An's garlic noodles invented circa 1978 in a kitchen-within-a-kitchen only the An family enters. The roasted Dungeness crab with those noodles is the order. Stunning new FiDi location since late 2025.</div>
+    <div class="card teal food-item" data-cat="vietnamese"><span class="ctag c-teal">FiDi · Secret Kitchen</span>
+      <div class="cname">Crustacean ⭐</div><div class="cloc">Garlic Noodles Invented Here</div>
+      <div class="cdesc">Helene An's garlic noodles (invented ~1978) made in a kitchen-within-a-kitchen only the An family enters. Roasted Dungeness crab is the order. Stunning FiDi location since 2025.</div>
     </div>
-    <div class="card teal"><span class="ctag c-teal">Outer Sunset · Since 1971</span>
+    <div class="card teal food-item" data-cat="vietnamese"><span class="ctag c-teal">Outer Sunset · Since 1971</span>
       <div class="cname">Thanh Long</div><div class="cloc">Roasted Dungeness + Garlic Noodles</div>
-      <div class="cdesc">Family Vietnamese since 1971. The roasted Dungeness crab and garlic noodles are a SF Vietnamese signature. A family institution that invented a dish the whole city copied.</div>
+      <div class="cdesc">Family Vietnamese since 1971. Roasted Dungeness crab and garlic noodles — a SF Vietnamese signature dish this restaurant helped invent.</div>
     </div>
-    <div class="card teal"><span class="ctag c-teal">Tenderloin · Under $6</span>
+    <div class="card teal food-item" data-cat="vietnamese"><span class="ctag c-teal">Tenderloin · Under $6</span>
       <div class="cname">Saigon Sandwich</div><div class="cloc">Best Bánh Mì in SF</div>
-      <div class="cdesc">Pâté, pork, pickled daikon, jalapeño, cilantro on a perfect baguette. Under $6. One of the great sandwiches in the world at any price. Always a lunch line. Always worth every minute.</div>
+      <div class="cdesc">Pâté, pork, pickled daikon, jalapeño, cilantro on a perfect baguette. Under $6. One of the great sandwiches in the world at any price. Always a lunch line.</div>
     </div>
-    <div class="card teal"><span class="ctag c-teal">Richmond · Clement St</span>
+    <div class="card teal food-item" data-cat="vietnamese"><span class="ctag c-teal">Richmond · Clement St</span>
       <div class="cname">Lily on Clement</div><div class="cloc">Modern Vietnamese · Inner Richmond</div>
-      <div class="cdesc">Garlic noodles, Hanoi BBQ platter, whole fried fish. Clement St between 1st–9th is the best street in SF for grazing — Vietnamese, Chinese, Korean, Russian all on one corridor.</div>
+      <div class="cdesc">Garlic noodles, Hanoi BBQ platter, whole fried fish. Clement St between 1st–9th is the best grazing street in SF — Vietnamese, Chinese, Korean, Russian all on one corridor.</div>
     </div>
-  </div>
 
-  <div class="dl">🥟 Chinese + Dim Sum</div>
-  <div class="g3">
-    <div class="card red"><span class="ctag c-red">Richmond · Arrive Before 10am</span>
+    <!-- CHINESE / DIM SUM -->
+    <div class="card red food-item" data-cat="chinese"><span class="ctag c-red">Richmond · Arrive Before 10am</span>
       <div class="cname">Ton Kiang ⭐</div><div class="cloc">Hakka Dim Sum · Gold Standard</div>
-      <div class="cdesc">The gold standard for weekend dim sum in SF. Hakka-style, meticulously made. Turnip cake, cheung fun, char siu bao. Arrive early — the wait by 11am is serious.</div>
+      <div class="cdesc">Gold standard for weekend dim sum in SF. Hakka-style, meticulously made. Turnip cake, cheung fun, char siu bao. Arrive early.</div>
     </div>
-    <div class="card red"><span class="ctag c-red">Clement St · Affordable</span>
+    <div class="card red food-item" data-cat="chinese"><span class="ctag c-red">Clement St · Affordable</span>
       <div class="cname">Goodluck Dim Sum</div><div class="cloc">Old-School Cantonese · Clement St</div>
-      <div class="cdesc">Casual, affordable, old-school Cantonese dim sum on Clement St. Exactly the kind of place regulars come every Sunday. No frills, consistent, properly made.</div>
+      <div class="cdesc">Casual, affordable, old-school Cantonese dim sum. Exactly the kind of place regulars come every Sunday. Consistent, properly made.</div>
     </div>
-    <div class="card red"><span class="ctag c-red">Multiple Locations</span>
-      <div class="cname">Yank Sing</div><div class="cloc">Grand Cart Dim Sum · Special Occasion</div>
-      <div class="cdesc">Cart dim sum in a grand room. The classic special-occasion dim sum experience in SF. Pork ribs, sesame balls, sticky rice in lotus leaf. Excellent soup dumplings.</div>
+    <div class="card red food-item" data-cat="chinese"><span class="ctag c-red">Multiple Locations</span>
+      <div class="cname">Yank Sing</div><div class="cloc">Grand Cart Dim Sum</div>
+      <div class="cdesc">Cart dim sum in a grand room. The classic special-occasion dim sum in SF. Pork ribs, sesame balls, sticky rice in lotus leaf.</div>
     </div>
-    <div class="card red"><span class="ctag c-red">FiDi · Since 1849</span>
-      <div class="cname">Tadich Grill</div><div class="cloc">California's Oldest Restaurant</div>
-      <div class="cdesc">Operating since the Gold Rush. Counter seating, waiters of 30 years, Hangtown Fry. Dark wood paneling unchanged. The history alone is worth a visit.</div>
-    </div>
-    <div class="card red"><span class="ctag c-red">Chinatown · Since 1907</span>
+    <div class="card red food-item" data-cat="chinese"><span class="ctag c-red">Chinatown · Since 1907</span>
       <div class="cname">Sam Wo Restaurant</div><div class="cloc">Oldest Chinese Restaurant in SF</div>
-      <div class="cdesc">Operating since 1907. Three floors, cash only, extremely cheap. The jook (rice congee) and wonton noodle soup are why you go. SF Chinese food history on a bowl.</div>
+      <div class="cdesc">Operating since 1907. Three floors, cash only, extremely cheap. Jook (rice congee) and wonton noodle soup. SF Chinese food history in a bowl.</div>
     </div>
-    <div class="card red"><span class="ctag c-red">SoMa / Tenderloin</span>
+    <div class="card red food-item" data-cat="chinese"><span class="ctag c-red">SoMa</span>
       <div class="cname">Mission Chinese ⭐</div><div class="cloc">Sichuan-Inflected · Danny Bowien</div>
       <div class="cdesc">Sichuan-inflected American-Chinese with a funky, creative soul. Mapo tofu, thrice-cooked bacon, salt cod fried rice. One of the most influential Chinese-American restaurants in modern SF food history.</div>
     </div>
-    <div class="card red"><span class="ctag c-red">Richmond · Inner Sunset</span>
+    <div class="card red food-item" data-cat="chinese"><span class="ctag c-red">Richmond / Geary Blvd</span>
       <div class="cname">Hong Kong Lounge</div><div class="cloc">Geary Blvd · Solid Dim Sum</div>
-      <div class="cdesc">Reliable, good-quality dim sum on Geary. Soup dumplings, har gow, siu mai all well-executed. The kind of place Richmond residents treat as their regular.</div>
+      <div class="cdesc">Reliable, good dim sum on Geary. Soup dumplings, har gow, siu mai well-executed. Richmond residents' regular. Also a Chinatown branch.</div>
     </div>
-  </div>
+    <div class="card red food-item" data-cat="chinese"><span class="ctag c-red">Chinatown · Wong Lee</span>
+      <div class="cname">Wong Lee</div><div class="cloc">Chinatown · Old-School Cantonese</div>
+      <div class="cdesc">Old-school Cantonese — cha siu, wonton noodles, roast meats. The kind of Chinatown spot locals actually go to. Honest, affordable, unpretentious.</div>
+    </div>
 
-  <div class="dl">🍣 Japanese + Korean</div>
-  <div class="g3">
-    <div class="card plum"><span class="ctag c-plum">Mission · Book Ahead</span>
+    <!-- JAPANESE / KOREAN -->
+    <div class="card plum food-item" data-cat="japanese"><span class="ctag c-plum">Mission · Book Ahead</span>
       <div class="cname">Izakaya Rintaro ⭐</div><div class="cloc">Hand-Built Interior · Robata Grill</div>
-      <div class="cdesc">Hand-built interior, Japanese whisky, small plates from the robata grill. Housemade tofu, in-house pickles, exceptional yakitori. One of the finest Japanese restaurants in the Bay.</div>
+      <div class="cdesc">Hand-built interior, Japanese whisky, small robata plates. Housemade tofu, in-house pickles, exceptional yakitori. One of the finest Japanese restaurants in the Bay.</div>
     </div>
-    <div class="card plum"><span class="ctag c-plum">Stanford Area · Palo Alto</span>
+    <div class="card plum food-item" data-cat="japanese"><span class="ctag c-plum">Stanford · Palo Alto</span>
       <div class="cname">Ramen Nagi</div><div class="cloc">Tokyo Chain · Near Stanford</div>
-      <div class="cdesc">Bay Area outpost of the legendary Tokyo chain. Black King (squid ink tonkotsu) and Red King (spicy). 10 min from Stanford campus — pair with the Rodin sculpture garden visit.</div>
+      <div class="cdesc">Bay Area outpost of the legendary Tokyo chain. Black King (squid ink tonkotsu) and Red King (spicy). Near the Rodin sculpture garden at Stanford.</div>
     </div>
-    <div class="card plum"><span class="ctag c-plum">Japantown</span>
+    <div class="card plum food-item" data-cat="japanese"><span class="ctag c-plum">Japantown</span>
       <div class="cname">Waraku Ramen</div><div class="cloc">Honest Tonkotsu · Japantown</div>
-      <div class="cdesc">Honest, well-made tonkotsu in Japantown. Chashu pork, jammy egg. Best low-key ramen for the Pac Heights / Japantown area. Pair with Benkyodo mochi after.</div>
+      <div class="cdesc">Well-made tonkotsu in Japantown. Chashu pork, jammy egg. Best low-key ramen for the Pac Heights / Japantown area. Pair with Benkyodo mochi after.</div>
     </div>
-    <div class="card plum"><span class="ctag c-plum">Nob Hill · Homestyle Korean</span>
+    <div class="card plum food-item" data-cat="japanese"><span class="ctag c-plum">Nob Hill · Homestyle Korean</span>
       <div class="cname">To Hyang</div><div class="cloc">Polk St · Bourdain Ate Here</div>
-      <div class="cdesc">Bourdain and Chris Cosentino came here for home-style Korean: banchan from the back shed, fish head curry, pork belly with date soju. One of the great hidden Korean spots in SF.</div>
+      <div class="cdesc">Home-style Korean: banchan from the back shed, fish head curry, pork belly with date soju. Bourdain and Chris Cosentino came here. One of SF's great hidden Korean spots.</div>
     </div>
-    <div class="card plum"><span class="ctag c-plum">Outer Sunset · Cantonese</span>
+    <div class="card plum food-item" data-cat="japanese"><span class="ctag c-plum">Outer Sunset</span>
       <div class="cname">San Tung</div><div class="cloc">Dry-Fried Chicken Wings · Irving St</div>
-      <div class="cdesc">The dry-fried chicken wings are genuinely legendary — crispy, sweet-spicy, utterly addictive. Handmade dumplings and noodles also exceptional. Lines form before opening.</div>
+      <div class="cdesc">Dry-fried chicken wings are genuinely legendary — crispy, sweet-spicy, utterly addictive. Lines form before opening. Handmade dumplings and noodles also excellent.</div>
     </div>
-    <div class="card plum"><span class="ctag c-plum">Richmond · Burmese</span>
-      <div class="cname">Burmese Mandalay</div><div class="cloc">Clement St · Best Burmese in SF</div>
-      <div class="cdesc">Tea leaf salad, mohinga, coconut noodle soup — the Clement Street Burmese institution. One of the most interesting, under-known Southeast Asian cuisines done well in a neighborhood setting.</div>
-    </div>
-    <div class="card plum"><span class="ctag c-plum">Richmond / SoMa · Burmese</span>
-      <div class="cname">B Star / Burma Love</div><div class="cloc">Modern Burmese · Multiple Locations</div>
-      <div class="cdesc">Burma Superstar's more casual spinoff. Rainbow salad, coconut chicken noodles, pumpkin pork stew. Consistently good, very popular, the accessible entry point to Burmese food in SF.</div>
-    </div>
-    <div class="card plum"><span class="ctag c-plum">Tenderloin · Thai</span>
-      <div class="cname">Hed Very Thai</div><div class="cloc">Authentic Thai · Tenderloin</div>
-      <div class="cdesc">Proper Thai cooking in the Tenderloin — not Americanized pad thai. The som tam (green papaya salad) is made to order with fish sauce and lime. The curry pastes are house-made. One of SF's most authentic Thai spots.</div>
-    </div>
-  </div>
-
-  <div class="dl">🍛 South Bay Indian</div>
-  <div class="banner"><h3>Why Drive to the South Bay?</h3>
-    <p>Sunnyvale, Fremont, Milpitas, and Santa Clara have the highest concentration of South Asian immigrants outside New Jersey — and consequently some of the finest Indian regional cooking outside India. 45 min by Caltrain or 35 min on 101. Completely worth it.</p>
-  </div>
-  <div class="g3">
-    <div class="card sage"><span class="ctag c-sage">Sunnyvale · Vegetarian South Indian</span>
-      <div class="cname">Dosa by Dosa ⭐</div><div class="cloc">Masala Dosa · Mumbai Street Chaat</div>
-      <div class="cdesc">The masala dosa — fermented rice-lentil crepe with potato filling, three chutneys, sambhar — one of the great breakfasts of the world. Under $12. Always packed with Indian families, the highest possible review.</div>
-    </div>
-    <div class="card sage"><span class="ctag c-sage">Milpitas / Fremont</span>
-      <div class="cname">Chaat Bhavan</div><div class="cloc">Indian Street Food · Pani Puri · Bhel Puri</div>
-      <div class="cdesc">Pani puri, sev puri, bhel puri, dahi papdi — Indian street food in its truest form. Plastic tables, extraordinary food, $5–10 plates. Pure Milpitas gold.</div>
-    </div>
-    <div class="card sage"><span class="ctag c-sage">Mountain View · Upscale</span>
-      <div class="cname">Sakoon</div><div class="cloc">Modern Indian · Weekend Buffet</div>
-      <div class="cdesc">The most acclaimed upscale Indian in the South Bay. Butter chicken, saag paneer, egg curry with genuine refinement. The weekend buffet is constantly rotating and fresh.</div>
-    </div>
-    <div class="card sage"><span class="ctag c-sage">Burlingame</span>
-      <div class="cname">Mingalaba</div><div class="cloc">Burmese · Burlingame · Peninsula Gem</div>
-      <div class="cdesc">Burlingame's beloved Burmese restaurant. Tea leaf salad, samosa soup, coconut noodles. Frequently cited as one of the best Burmese spots on the entire Peninsula. Worth the drive south.</div>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════ FOOD: LATIN ══════════════════════════ -->
-<div id="food-latin" class="tab">
-  <div class="sh">
-    <div class="sh-tag">Mexican · Salvadoran · Peruvian · Brazilian</div>
-    <h2>Latin <em>&amp; Brazilian</em></h2>
-    <p>The Mission District is the Latin cultural heart of SF — and has been since long before tech arrived. Oakland's Fruitvale is the most authentic Mexican food corridor on the West Coast. And the Bay has a growing Brazilian community worth exploring.</p>
-  </div>
-
-  <div class="dl">🇲🇽 Mexican Mission Classics</div>
-  <div class="g3">
-    <div class="card red"><span class="ctag c-red">Mission · James Beard Award</span>
-      <div class="cname">La Taqueria ⭐</div><div class="cloc">2889 Mission · The OG Burrito</div>
-      <div class="cdesc">The James Beard America's Classic. The carne asada or carnitas burrito: meat, beans, cheese, salsa — no rice, no filler. A philosophical position on burritos. Endless lines. The ur-burrito.</div>
-    </div>
-    <div class="card red"><span class="ctag c-red">Mission · Late Night Classic</span>
-      <div class="cname">El Farolito</div><div class="cloc">2779 Mission · Open 2:30am</div>
-      <div class="cdesc">Late-night warrior. Super burrito with al pastor — the calling card. Open until 2:30am. This is the Mission at its most essential: burritos the size of a small child, at midnight, perfect.</div>
-    </div>
-    <div class="card red"><span class="ctag c-red">Valencia St · Since 1976</span>
-      <div class="cname">La Cumbre</div><div class="cloc">Valencia St · Original Mission Burrito</div>
-      <div class="cdesc">Claims to be the inventor of the Mission burrito in 1969. Valencia St staple since 1976. The carne asada plate is also excellent. Neighborhood institution, no frills, all substance.</div>
-    </div>
-    <div class="card red"><span class="ctag c-red">24th St · Neighborhood Standard</span>
-      <div class="cname">Taqueria Vallarta</div><div class="cloc">24th St · Al Pastor · Community Staple</div>
-      <div class="cdesc">The neighborhood standard on 24th St. Al pastor carved from the spit, excellent carne asada, $3 tacos, $12 burritos. The kind of place you end up at after Dolores Park.</div>
-    </div>
-    <div class="card red"><span class="ctag c-red">Mission · Since 1953</span>
-      <div class="cname">La Palma Mexicatessen</div><div class="cloc">Tortilla Factory · Hot Off the Press</div>
-      <div class="cdesc">Masa and tortillas made fresh all day — buy them hot off the press for $1 each. Pupusas, tamales, carnitas. The salsas are some of the finest in the city. Living Mission heritage since 1953.</div>
-    </div>
-    <div class="card red"><span class="ctag c-red">Mission · Weekend Brunch</span>
-      <div class="cname">El Combre</div><div class="cloc">Mexican Brunch · Local Secret</div>
-      <div class="cdesc">Local favorite for weekend Mexican brunch. Huevos rancheros, chilaquiles, tamales from recipes that go back generations. No tourist markup, no pretension. Busy on weekends — arrive early.</div>
-    </div>
-    <div class="card red"><span class="ctag c-red">Mission · Inner Sunset · Peruvian</span>
-      <div class="cname">Limon Rotisserie</div><div class="cloc">Peruvian Chicken · Ceviche</div>
-      <div class="cdesc">Peruvian rotisserie chicken with aji amarillo sauce, fresh ceviche, causa. One of the great affordable meals in SF. The chicken and green sauce alone is worth the trip.</div>
-    </div>
-    <div class="card red"><span class="ctag c-red">South Bay · SJ · Melissa's</span>
-      <div class="cname">Melissa's Taqueria</div><div class="cloc">South Bay · San José Area</div>
-      <div class="cdesc">South Bay's beloved neighborhood taqueria. The kind of place with a line of regulars who've been coming for decades. Everything made from scratch, proper tortillas, excellent al pastor.</div>
-    </div>
-    <div class="card red"><span class="ctag c-red">South Bay · San Bruno</span>
-      <div class="cname">Taqueria San Bruno</div><div class="cloc">San Bruno · Peninsula Gem</div>
-      <div class="cdesc">San Bruno's local taqueria institution. Great carne asada, excellent chips and salsa, generous portions. The Peninsula equivalent of a Mission classic — without the SF prices.</div>
-    </div>
-  </div>
-
-  <div class="dl">🌎 Oakland + More Latin</div>
-  <div class="g3">
-    <div class="card warm"><span class="ctag c-warm">Oakland · Afro-Caribbean</span>
-      <div class="cname">Miss Ollie's ⭐</div><div class="cloc">901 Washington, Oakland · Caribbean Soul</div>
-      <div class="cdesc">Bourdain and Bobby Seale (Black Panther co-founder) had lunch here — skillet fried chicken, rice and peas, collard greens. Chef Sarah Kirnon's food is deeply personal and political. Required stop to understand Oakland's soul.</div>
-    </div>
-    <div class="card warm"><span class="ctag c-warm">Fruitvale · Oakland</span>
-      <div class="cname">Fruitvale Village Taquerias</div><div class="cloc">International Blvd · Most Authentic</div>
-      <div class="cdesc">Oakland's most authentic Mexican food corridor. Jalisco birria, Oaxacan mole, Sinaloa mariscos, $3 tacos. Saturday street market. Bourdain ate from an unnamed cart on International Blvd in Parts Unknown. That energy is everywhere here.</div>
-    </div>
-    <div class="card warm"><span class="ctag c-warm">Mission · Salvadoran</span>
-      <div class="cname">El Zocalo</div><div class="cloc">Pupusas · Most Underrated Mission Cuisine</div>
-      <div class="cdesc">SF's best Salvadoran food. Pupusas (cheese, loroco, or pork) with curtido and salsa. Under $4 each. The most underrated cuisine in the Mission. Simple plastic chairs, extraordinary food.</div>
-    </div>
-  </div>
-
-  <div class="dl">🇧🇷 Brazilian Flavor</div>
-  <div class="banner"><h3>🇧🇷 Brazilian Influence in the Bay</h3>
-    <p>The Bay Area has a significant Brazilian community — concentrated in Marin County (particularly San Rafael and Corte Madera), the South Bay, and parts of Oakland. Brazilian steakhouses, pão de queijo, brigadeiros, and the influence of Brazilian culture on Bay Area music and art. Look for it in certain farmers markets (Brazilian vendors at Ferry Plaza on Saturdays), Brazilian churrascos in Marin, and the growing capoeira and samba scene.</p>
-  </div>
-  <div class="g3">
-    <div class="card warm"><span class="ctag c-warm">Marin · San Rafael</span>
-      <div class="cname">Brazilian Community in Marin</div><div class="cloc">San Rafael · Corte Madera</div>
-      <div class="cdesc">San Rafael has one of the Bay Area's most established Brazilian communities. Look for Brazilian bakeries (pão de queijo, brigadeiros), coxinha vendors at weekend markets, and Brazilian cultural events centered around the county. Sol Food in San Rafael has Caribbean-Latin overlap energy that resonates.</div>
-    </div>
-    <div class="card warm"><span class="ctag c-warm">South Bay · Rodizio</span>
-      <div class="cname">Chima Steakhouse (San Jose)</div><div class="cloc">Brazilian Churrasco · Rodizio</div>
-      <div class="cdesc">Proper Brazilian rodizio — continuous tableside meat service from swords, full churrasco cuts. Picanha, fraldinha, linguiça — all properly carved tableside. The South Bay's best Brazilian churrascaria.</div>
-    </div>
-    <div class="card warm"><span class="ctag c-warm">SoMa · Brazilian Vibes</span>
-      <div class="cname">Farmer Brown / Little Skillet</div><div class="cloc">Soul Food with Brazilian Crossover</div>
-      <div class="cdesc">SF's soul food meets Afro-Caribbean cooking. The pão de queijo-adjacent cornbread and grilled meats show the Brazilian influence in the broader Afro-diasporic food tradition in SF. Look for Brazilian pop-ups at Off the Grid food truck events.</div>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════ FOOD: FILIPINO ══════════════════════════ -->
-<div id="food-fil" class="tab">
-  <div class="sh">
-    <div class="sh-tag">🇵🇭 The Full Picture</div>
-    <h2>Filipino <em>Restaurants</em></h2>
-    <p>The Bay Area has the second-largest Filipino population in the United States. SoMa Pilipinas is an official cultural district. Daly City — 15 minutes from downtown — is called the most Filipino city outside the Philippines. From turo-turo counters to elevated tasting menus, the community is fully present.</p>
-  </div>
-
-  <div class="dl">🌟 San Francisco</div>
-  <div class="g3">
-    <div class="card red"><span class="cstar">⭐</span><span class="ctag c-red">Fisherman's Wharf · Fine Dining</span>
-      <div class="cname">ABACÁ</div><div class="cloc">Kimpton Alton Hotel · Book Ahead</div>
-      <div class="cdesc">The finest Filipino restaurant in California. Chef Francis &amp; Dian Ang: elevated sisig fried rice, ube cheesecake, buko pie, lumpia with California produce. Panaderia Abacá next door for ensaymada, bibingka, and Filipino pastry all day. restaurantabaca.com</div>
-    </div>
-    <div class="card red"><span class="ctag c-red">Mission · Valencia St · Fusion</span>
-      <div class="cname">Señor Sisig</div><div class="cloc">Filipino-Mexican · Bay Area Original</div>
-      <div class="cdesc">Sisig on a burrito, in a bowl, on everything. The Filipino-Mexican mashup that became a Bay Area institution. Multiple locations including the Ferry Building. Sisig fries are the move.</div>
-    </div>
-    <div class="card red"><span class="ctag c-red">Mission · Filipino-American Brunch</span>
-      <div class="cname">Alnico</div><div class="cloc">1050 Valencia · Ube Hotcakes</div>
-      <div class="cdesc">Filipino-American brunch with ube hotcakes, sweet-savory combos that honor where the food comes from. The place that makes Filipino-American food cool and deeply good simultaneously.</div>
-    </div>
-    <div class="card red"><span class="ctag c-red">Tenderloin · Home-Style</span>
-      <div class="cname">Kusina Ni Tess</div><div class="cloc">237 Ellis St · Breakfast All Day</div>
-      <div class="cdesc">Tapsilog, adobo, laing, dinuguan, sinigang — all cooked like nanay made it. Breakfast served all day. Under $15. Counter service, unpretentious, completely genuine.</div>
-    </div>
-    <div class="card red"><span class="ctag c-red">Excelsior · Community Standard</span>
-      <div class="cname">Pampanguena Cuisine</div><div class="cloc">Excelsior District · Provincial Style</div>
-      <div class="cdesc">Grilled squid, tilapia, pork — eaten with hands like provincial Philippines. Salted egg, lumpia, the whole homecoming. One of the most nostalgic Filipino dining experiences in SF.</div>
-    </div>
-    <div class="card red"><span class="ctag c-red">SoMa · Plant-Based Filipino</span>
-      <div class="cname">Mestiza</div><div class="cloc">SoMa · Vegan Filipino</div>
-      <div class="cdesc">Plant-based Filipino classics done seriously well. Vegan lechon kawali, mushroom kare-kare, jackfruit sinigang. One of the rare places proving Filipino cuisine and plant-based cooking are a natural fit.</div>
-    </div>
-    <div class="card red"><span class="ctag c-red">Union Square · Tasting Menu</span>
-      <div class="cname">Ox + Tiger</div><div class="cloc">Filipino-Japanese Fusion · Tasting Menu</div>
-      <div class="cdesc">Tasting-menu magic where Japanese and Filipino flavors collide in the best possible way. Inventive, seasonal, deeply personal to its chefs. The celebration dinner for Filipino food in SF.</div>
-    </div>
-    <div class="card red"><span class="ctag c-red">SoMa / Ferry Building · Quick</span>
-      <div class="cname">Turo Cafe &amp; Grill</div><div class="cloc">SoMa · Turo-Turo Counter</div>
-      <div class="cdesc">Classic turo-turo (point-point) counter — glass case of Filipino dishes, you point at what you want. Kaldereta, lechon kawali, palabok. Fast, affordable, proper.</div>
-    </div>
-  </div>
-
-  <div class="dl">🌆 Daly City + South Bay Filipino</div>
-  <div class="banner"><h3>Daly City — The Capital</h3>
-    <p>A 15-minute BART ride from downtown SF. Daly City has a higher concentration of Filipinos than anywhere outside the Philippines. Walk Mission Street in Daly City: Filipino bakeries, turo-turo counters, Filipino supermarkets (Seafood City), Filipino-owned everything. This is home.</p>
-  </div>
-  <div class="g3">
-    <div class="card gold"><span class="ctag c-gold">Daly City · Turo-Turo</span>
-      <div class="cname">Chibog ⭐</div><div class="cloc">Daly City · Cash Only · Point + Eat</div>
-      <div class="cdesc">The turo-turo experience at its best. Point at what you want behind the glass. Sizzling sisig with fried egg, char-grilled skewers, kare-kare. Cash only, no seating. Make the BART trip.</div>
-    </div>
-    <div class="card gold"><span class="ctag c-gold">Daly City · Silog Central</span>
-      <div class="cname">Tselogs</div><div class="cloc">Daly City · The Full Silog Menu</div>
-      <div class="cdesc">Tapsilog, spamsilog, lechon kare kare — the full silog lineup. Garlic rice mandatory. Daly City is practically a Manila suburb and this spot embodies that completely.</div>
-    </div>
-    <div class="card gold"><span class="ctag c-gold">Daly City · Bakery</span>
-      <div class="cname">Red Ribbon + Goldilocks</div><div class="cloc">Multiple Daly City Locations</div>
-      <div class="cdesc">Ube cake, ensaymada, bibingka, pan de sal — the Filipino bakery chains that make people pine for home. Pick up a whole ube cake and share it. Absolute non-negotiable.</div>
-    </div>
-    <div class="card gold"><span class="ctag c-gold">Daly City · Gas Station Icon</span>
-      <div class="cname">Filipino Takeout (Colma / Daly City)</span></div><div class="cloc">Colma · Gas Station · Lechon</div>
-      <div class="cdesc">There's a Filipino takeout counter inside a Daly City gas station that serves incredible lechon and Dubai chocolate strawberries. This is the Bay Area Filipino experience in its truest form.</div>
-    </div>
-    <div class="card gold"><span class="ctag c-gold">San Bruno · Peninsula</span>
-      <div class="cname">Filipino Restaurants on San Mateo Ave</div><div class="cloc">San Bruno · San Mateo Ave Corridor</div>
-      <div class="cdesc">San Bruno has a walkable Filipino restaurant corridor on San Mateo Ave — multiple turo-turo counters, Filipino bakeries, and family restaurants within a few blocks. The Peninsula's Filipino food street.</div>
-    </div>
-    <div class="card gold"><span class="ctag c-gold">San Mateo · Peninsula</span>
-      <div class="cname">Kababayan San Mateo</div><div class="cloc">San Mateo · Community Staple</div>
-      <div class="cdesc">San Mateo's Filipino community restaurant. Generous portions of classic Filipino comfort food — dinuguan, kare-kare, adobo in all forms. Families come here for Sunday lunches.</div>
-    </div>
-  </div>
-
-  <div class="dl">🌉 East Bay Filipino</div>
-  <div class="g3">
-    <div class="card sky"><span class="ctag c-sky">Temescal Oakland · Brunch</span>
-      <div class="cname">FOB Kitchen</div><div class="cloc">Temescal, Oakland · Filipino Brunch</div>
-      <div class="cdesc">Excellent Filipino brunch in Oakland's most walkable neighborhood. Silog plates, crispy pork, shrimp chips. Temescal has great restaurants on both sides — eat here, explore the strip.</div>
-    </div>
-    <div class="card sky"><span class="ctag c-sky">Alameda · Filipino-American</span>
-      <div class="cname">Neptune's</div><div class="cloc">Alameda · Silog + Brunch</div>
-      <div class="cdesc">Mixing classic breakfast with tater tot-stuffed burritos, benedict variations, and fantastic silog plates. Filipino-American breakfast culture in Alameda. Genuinely creative and comforting.</div>
-    </div>
-    <div class="card sky"><span class="ctag c-sky">Oakland Uptown · Fusion Tacos</span>
-      <div class="cname">Señor Sisig Oakland</div><div class="cloc">Uptown Oakland · Filipino Burritos + Tacos</div>
-      <div class="cdesc">The Oakland outpost of the Bay's most beloved Filipino-Mexican fusion. Great Filipino-style burritos and tacos. Pair with Oakland First Friday for the full East Bay Filipino experience.</div>
-    </div>
-    <div class="card sky"><span class="ctag c-sky">Fremont · South Bay</span>
-      <div class="cname">Barya Kitchen</div><div class="cloc">Food Truck · San José · Filipino-American</div>
-      <div class="cdesc">Filipino-American food truck pushing boundaries of what Filipino cuisine can taste like. Perfect blend of home cooking and California innovation. Follow on Instagram for locations.</div>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════ FOOD: WORLD + DRINKS ══════════════════════════ -->
-<div id="food-world" class="tab">
-  <div class="sh">
-    <div class="sh-tag">Greek · Garlic · Burmese · Thai · French Soul · Drinks</div>
-    <h2>World Flavors <em>&amp; Drinks</em></h2>
-    <p>SF's food scene extends far beyond the dominant cuisines. Greek, Ethiopian, French Soul Food, Garlic temples, speakeasies, and the best tiki bars in the US.</p>
-  </div>
-
-  <div class="dl">🌍 World Kitchens</div>
-  <div class="g3">
-    <div class="card teal"><span class="ctag c-teal">Polk St · French Soul · Brunch</span>
-      <div class="cname">Brenda's French Soul Food ⭐</div><div class="cloc">Polk St · Line Every Morning</div>
-      <div class="cdesc">Beignets, shrimp and grits, crawfish étouffée, chicory coffee. The SF intersection of New Orleans and California. Always a morning line. Always worth it. Brenda Buenvello's cooking is deeply personal and extraordinary.</div>
-    </div>
-    <div class="card teal"><span class="ctag c-teal">North Beach · Garlic Temple</span>
-      <div class="cname">The Stinking Rose</div><div class="cloc">Columbus Ave · All Garlic Everything</div>
-      <div class="cdesc">A restaurant dedicated entirely to garlic. Garlic pasta, garlic roasts, garlic-stuffed everything, garlic ice cream. A San Francisco institution since 1991. Genuinely fun, genuinely garlicky.</div>
-    </div>
-    <div class="card teal"><span class="ctag c-teal">Union Square · Greek</span>
-      <div class="cname">Kakari</div><div class="cloc">Greek Restaurant · Downtown SF</div>
-      <div class="cdesc">Modern Greek in SF — mezze, grilled octopus, proper tzatziki, lamb chops with chimichurri. California ingredients with Hellenic soul. A refreshing, sunny counterpoint to SF's Pacific Rim default.</div>
-    </div>
-    <div class="card teal"><span class="ctag c-teal">Oakland · Afro-Caribbean</span>
-      <div class="cname">Miss Ollie's</div><div class="cloc">901 Washington, Oakland</div>
-      <div class="cdesc">Bourdain and Bobby Seale had lunch here over fried chicken, rice and peas, collard greens. Chef Sarah Kirnon's food is deeply personal and political. Required stop to understand Oakland's soul and history.</div>
-    </div>
-    <div class="card teal"><span class="ctag c-teal">Richmond · Burmese</span>
+    <div class="card plum food-item" data-cat="japanese"><span class="ctag c-plum">Richmond · Burmese</span>
       <div class="cname">Burmese Mandalay</div><div class="cloc">Clement St · Tea Leaf Salad</div>
-      <div class="cdesc">Tea leaf salad, mohinga, coconut noodle soup — the Clement Street Burmese institution. The tea leaf salad is one of the most interesting dishes in the city: fermented tea leaves, fried garlic, sesame seeds, crunchy beans.</div>
+      <div class="cdesc">Tea leaf salad, mohinga, coconut noodle soup — the Clement Street Burmese institution. Tea leaf salad: fermented tea leaves, fried garlic, sesame, crunchy beans. Extraordinary.</div>
     </div>
-    <div class="card teal"><span class="ctag c-teal">Embarcadero + Sausalito</span>
-      <div class="cname">Teak (Sausalito / Embarcadero)</span></div><div class="cloc">Southeast Asian · Contemporary</div>
-      <div class="cdesc">Contemporary Southeast Asian cooking with Marin's farm connections. Beautifully plated, ingredient-forward, with the aromatic complexity of Thai and Vietnamese traditions elevated to California fine dining standards.</div>
+    <div class="card plum food-item" data-cat="japanese"><span class="ctag c-plum">Richmond / SoMa</span>
+      <div class="cname">B Star / Burma Love</div><div class="cloc">Modern Burmese · Multiple Locations</div>
+      <div class="cdesc">Rainbow salad, coconut chicken noodles, pumpkin pork stew. The accessible entry to Burmese food in SF — consistently good and very popular.</div>
     </div>
-    <div class="card teal"><span class="ctag c-teal">Berkeley Social Club · Oakland</span>
+    <div class="card plum food-item" data-cat="japanese"><span class="ctag c-plum">Tenderloin · Thai</span>
+      <div class="cname">Hed Very Thai</div><div class="cloc">Authentic Thai · Tenderloin</div>
+      <div class="cdesc">Proper Thai — not Americanized. Som tam made to order, house-made curry pastes. One of SF's most authentic Thai kitchens.</div>
+    </div>
+
+    <!-- INDIAN -->
+    <div class="card sage food-item" data-cat="indian"><span class="ctag c-sage">Sunnyvale · South Indian</span>
+      <div class="cname">Dosa by Dosa ⭐</div><div class="cloc">Masala Dosa · Mumbai Chaat</div>
+      <div class="cdesc">Masala dosa — fermented rice-lentil crepe, three chutneys, sambhar — one of the great breakfasts of the world. Under $12. Always packed with Indian families.</div>
+    </div>
+    <div class="card sage food-item" data-cat="indian"><span class="ctag c-sage">Milpitas / Fremont</span>
+      <div class="cname">Chaat Bhavan</div><div class="cloc">Indian Street Food · Pani Puri</div>
+      <div class="cdesc">Pani puri, bhel puri, dahi papdi — Indian street food in its truest form. Plastic tables, extraordinary food, $5–10. Pure Milpitas gold.</div>
+    </div>
+    <div class="card sage food-item" data-cat="indian"><span class="ctag c-sage">Mountain View</span>
+      <div class="cname">Sakoon</div><div class="cloc">Modern Indian · Weekend Buffet</div>
+      <div class="cdesc">Most acclaimed upscale Indian in the South Bay. Butter chicken, saag paneer with genuine refinement. Weekend buffet constantly fresh and rotating.</div>
+    </div>
+    <div class="card sage food-item" data-cat="indian"><span class="ctag c-sage">Burlingame · Peninsula</span>
+      <div class="cname">Mingalaba</div><div class="cloc">Burmese · Burlingame</div>
+      <div class="cdesc">Burlingame's beloved Burmese restaurant. Tea leaf salad, samosa soup, coconut noodles. Frequently cited as one of the best Burmese spots on the Peninsula.</div>
+    </div>
+
+    <!-- MEXICAN / LATIN -->
+    <div class="card red food-item" data-cat="mexican"><span class="ctag c-red">Mission · James Beard Award</span>
+      <div class="cname">La Taqueria ⭐</div><div class="cloc">2889 Mission · The OG Burrito</div>
+      <div class="cdesc">James Beard America's Classic. Carne asada or carnitas: meat, beans, cheese, salsa — no rice, no filler. A philosophical position. Always a line. The ur-burrito.</div>
+    </div>
+    <div class="card red food-item" data-cat="mexican"><span class="ctag c-red">Mission · Open 2:30am</span>
+      <div class="cname">El Farolito</div><div class="cloc">2779 Mission · Late-Night Legend</div>
+      <div class="cdesc">Super burrito with al pastor, open until 2:30am. The Mission at its most essential: burritos the size of a small child, at midnight, perfect.</div>
+    </div>
+    <div class="card red food-item" data-cat="mexican"><span class="ctag c-red">Valencia St · Since 1976</span>
+      <div class="cname">La Cumbre</div><div class="cloc">Original Mission Burrito</div>
+      <div class="cdesc">Claims to be the inventor of the Mission burrito in 1969. Valencia St staple since 1976. No frills, all substance.</div>
+    </div>
+    <div class="card red food-item" data-cat="mexican"><span class="ctag c-red">24th St · Community Staple</span>
+      <div class="cname">Taqueria Vallarta</div><div class="cloc">24th St · Al Pastor</div>
+      <div class="cdesc">The neighborhood standard on 24th St. Al pastor carved from the spit, $3 tacos. The kind of place you end up at after Dolores Park.</div>
+    </div>
+    <div class="card red food-item" data-cat="mexican"><span class="ctag c-red">Mission · Since 1953</span>
+      <div class="cname">La Palma Mexicatessen</div><div class="cloc">Tortilla Factory · Live Press</div>
+      <div class="cdesc">Masa and tortillas made fresh all day — hot off the press for $1 each. Pupusas, tamales, carnitas. Living Mission heritage since 1953.</div>
+    </div>
+    <div class="card red food-item" data-cat="mexican"><span class="ctag c-red">Mission · Weekend Brunch</span>
+      <div class="cname">El Combre</div><div class="cloc">Mexican Brunch · Local Secret</div>
+      <div class="cdesc">Local favorite for weekend Mexican brunch. Chilaquiles, huevos rancheros, tamales from generational recipes. Arrive early on weekends.</div>
+    </div>
+    <div class="card red food-item" data-cat="mexican"><span class="ctag c-red">Mission · Peruvian</span>
+      <div class="cname">Limon Rotisserie</div><div class="cloc">Peruvian Chicken · Ceviche</div>
+      <div class="cdesc">Peruvian rotisserie chicken with aji amarillo sauce, fresh ceviche, causa. One of the great affordable meals in SF.</div>
+    </div>
+    <div class="card warm food-item" data-cat="mexican"><span class="ctag c-warm">Oakland · Afro-Caribbean</span>
+      <div class="cname">Miss Ollie's ⭐</div><div class="cloc">901 Washington, Oakland</div>
+      <div class="cdesc">Bourdain and Bobby Seale had lunch here — fried chicken, rice and peas, collard greens. Chef Sarah Kirnon's food is deeply personal. Required to understand Oakland's soul.</div>
+    </div>
+    <div class="card warm food-item" data-cat="mexican"><span class="ctag c-warm">Fruitvale · Oakland</span>
+      <div class="cname">Fruitvale Taquerias</div><div class="cloc">International Blvd · Most Authentic</div>
+      <div class="cdesc">Oakland's most authentic Mexican corridor. Jalisco birria, Oaxacan mole, Sinaloa mariscos, $3 tacos. Saturday street market. The real thing.</div>
+    </div>
+    <div class="card warm food-item" data-cat="mexican"><span class="ctag c-warm">Mission · Salvadoran</span>
+      <div class="cname">El Zocalo</div><div class="cloc">Pupusas · Mission</div>
+      <div class="cdesc">SF's best Salvadoran food. Pupusas (cheese, loroco, pork) with curtido and salsa. Under $4 each. Most underrated cuisine in the Mission.</div>
+    </div>
+    <div class="card warm food-item" data-cat="mexican"><span class="ctag c-warm">South Bay</span>
+      <div class="cname">Melissa's Taqueria</div><div class="cloc">South Bay · San José Area</div>
+      <div class="cdesc">South Bay's beloved neighborhood taqueria. Regulars for decades. Everything made from scratch, proper tortillas, excellent al pastor.</div>
+    </div>
+    <div class="card warm food-item" data-cat="mexican"><span class="ctag c-warm">San Bruno</span>
+      <div class="cname">Taqueria San Bruno</div><div class="cloc">Peninsula Gem</div>
+      <div class="cdesc">San Bruno's local taqueria institution. Great carne asada, excellent chips and salsa, generous portions. Peninsula equivalent of a Mission classic.</div>
+    </div>
+
+    <!-- BRAZILIAN -->
+    <div class="card warm food-item" data-cat="brazilian"><span class="ctag c-warm">North Point + South SF</span>
+      <div class="cname">Café de Casa ⭐</div><div class="cloc">Brazilian · Two Locations</div>
+      <div class="cdesc">The Bay Area's most beloved Brazilian restaurant — two locations: North Point in SF and South San Francisco. Pão de queijo (cheese bread), brigadeiros, acai bowls, Brazilian sandwiches, pastéis. A warm, homey neighborhood spot that serves the Brazilian community and has developed a devoted following of regulars from everywhere.</div>
+      <div class="ctip">☕ The pão de queijo and brigadeiro combo is non-negotiable</div>
+    </div>
+    <div class="card warm food-item" data-cat="brazilian"><span class="ctag c-warm">South Bay · Rodizio</span>
+      <div class="cname">Chima Steakhouse</div><div class="cloc">Brazilian Churrasco · San José</div>
+      <div class="cdesc">Proper Brazilian rodizio — continuous tableside meat service from swords. Picanha, fraldinha, linguiça all properly carved. The South Bay's best churrascaria.</div>
+    </div>
+    <div class="card warm food-item" data-cat="brazilian"><span class="ctag c-warm">Marin · San Rafael</span>
+      <div class="cname">Brazilian Community in Marin</div><div class="cloc">San Rafael · Corte Madera</div>
+      <div class="cdesc">San Rafael has one of the Bay Area's most established Brazilian communities. Look for Brazilian bakeries, coxinha vendors at weekend markets, and Brazilian cultural events. Sol Food nearby has Caribbean-Latin overlap energy.</div>
+    </div>
+
+    <!-- FILIPINO -->
+    <div class="card red food-item" data-cat="filipino"><span class="cstar">⭐</span><span class="ctag c-red">Fisherman's Wharf · Fine Dining</span>
+      <div class="cname">ABACÁ</div><div class="cloc">Kimpton Alton Hotel · Book Ahead</div>
+      <div class="cdesc">One of the finest Filipino restaurants in California. Chef Francis &amp; Dian Ang: elevated sisig fried rice, ube cheesecake, buko pie, lumpia with California produce. Panaderia Abacá next door for ensaymada and Filipino pastry all day.</div>
+    </div>
+    <div class="card red food-item" data-cat="filipino"><span class="ctag c-red">Mission · Fusion</span>
+      <div class="cname">Señor Sisig</div><div class="cloc">Filipino-Mexican · Bay Area Original</div>
+      <div class="cdesc">Sisig on a burrito, in a bowl, on everything. The Filipino-Mexican mashup that became a Bay Area institution. Multiple locations including the Ferry Building.</div>
+    </div>
+    <div class="card red food-item" data-cat="filipino"><span class="ctag c-red">Mission · Brunch</span>
+      <div class="cname">Alnico</div><div class="cloc">1050 Valencia · Ube Hotcakes</div>
+      <div class="cdesc">Filipino-American brunch with ube hotcakes, sweet-savory combos that honor where the food comes from. Cool and deeply good simultaneously.</div>
+    </div>
+    <div class="card red food-item" data-cat="filipino"><span class="ctag c-red">Tenderloin · Home-Style</span>
+      <div class="cname">Kusina Ni Tess</div><div class="cloc">237 Ellis St · Breakfast All Day</div>
+      <div class="cdesc">Tapsilog, adobo, laing, dinuguan, sinigang cooked properly and affordably. Breakfast served all day. Under $15. Counter service, unpretentious, completely genuine.</div>
+    </div>
+    <div class="card red food-item" data-cat="filipino"><span class="ctag c-red">SoMa · Plant-Based</span>
+      <div class="cname">Mestiza</div><div class="cloc">SoMa · Plant-Based Filipino</div>
+      <div class="cdesc">Plant-based Filipino classics done seriously well. Vegan lechon kawali, mushroom kare-kare, jackfruit sinigang. One of the rare places where plant-based and Filipino cooking meet brilliantly.</div>
+    </div>
+    <div class="card red food-item" data-cat="filipino"><span class="ctag c-red">Union Square · Tasting Menu</span>
+      <div class="cname">Ox + Tiger</div><div class="cloc">Filipino-Japanese Fusion</div>
+      <div class="cdesc">Tasting-menu magic where Japanese and Filipino flavors collide. Inventive, seasonal, deeply personal. The celebration dinner for Filipino food in SF.</div>
+    </div>
+    <div class="card gold food-item" data-cat="filipino"><span class="ctag c-gold">Daly City · Classic</span>
+      <div class="cname">Chibog ⭐</div><div class="cloc">Daly City · Turo-Turo</div>
+      <div class="cdesc">Point at what you want behind the glass. Sizzling sisig with fried egg, char-grilled skewers, kare-kare. Cash only. A 15-minute BART trip — completely worth it.</div>
+    </div>
+    <div class="card gold food-item" data-cat="filipino"><span class="ctag c-gold">Daly City · Silog</span>
+      <div class="cname">Tselogs</div><div class="cloc">Daly City · Full Silog Menu</div>
+      <div class="cdesc">Tapsilog, spamsilog, lechon kare kare — the full silog lineup. Garlic rice mandatory. Daly City Filipino food at its most essential.</div>
+    </div>
+    <div class="card gold food-item" data-cat="filipino"><span class="ctag c-gold">Daly City · Bakery</span>
+      <div class="cname">Red Ribbon + Goldilocks</div><div class="cloc">Multiple Daly City Locations</div>
+      <div class="cdesc">Ube cake, ensaymada, bibingka, pan de sal — the Filipino bakery chains. Pick up a whole ube cake and share it. Non-negotiable.</div>
+    </div>
+    <div class="card gold food-item" data-cat="filipino"><span class="ctag c-gold">San Bruno · Peninsula</span>
+      <div class="cname">Filipino Restaurants on San Mateo Ave</div><div class="cloc">San Bruno · Peninsula</div>
+      <div class="cdesc">San Bruno's walkable Filipino restaurant corridor — multiple counters, bakeries, and family restaurants within a few blocks. The Peninsula's Filipino food street.</div>
+    </div>
+    <div class="card sky food-item" data-cat="filipino"><span class="ctag c-sky">Temescal Oakland</span>
+      <div class="cname">FOB Kitchen</div><div class="cloc">Temescal, Oakland · Brunch</div>
+      <div class="cdesc">Excellent Filipino brunch in Oakland's most walkable neighborhood. Silog plates, crispy pork, shrimp chips. Great stop on a Temescal eating walk.</div>
+    </div>
+    <div class="card sky food-item" data-cat="filipino"><span class="ctag c-sky">Alameda</span>
+      <div class="cname">Neptune's</div><div class="cloc">Alameda · Silog + Brunch</div>
+      <div class="cdesc">Filipino-American breakfast culture in Alameda. Benedict variations, tater tot-stuffed burritos, fantastic silog plates. Creative and comforting.</div>
+    </div>
+
+    <!-- WORLD -->
+    <div class="card teal food-item" data-cat="world"><span class="ctag c-teal">North Beach · Garlic Everything</span>
+      <div class="cname">The Stinking Rose</div><div class="cloc">Columbus Ave · All Garlic</div>
+      <div class="cdesc">A restaurant dedicated entirely to garlic since 1991. Garlic pasta, garlic roasts, garlic ice cream. Genuinely fun, genuinely garlicky. A SF institution.</div>
+    </div>
+    <div class="card teal food-item" data-cat="world"><span class="ctag c-teal">Union Square · Greek</span>
+      <div class="cname">Kakari</div><div class="cloc">Greek · Downtown SF</div>
+      <div class="cdesc">Modern Greek — mezze, grilled octopus, lamb chops with chimichurri. California ingredients with Hellenic soul. A sunny counterpoint to SF's Pacific Rim default.</div>
+    </div>
+    <div class="card teal food-item" data-cat="world"><span class="ctag c-teal">Berkeley Social Club</span>
       <div class="cname">Berkeley Social Club</div><div class="cloc">Berkeley · Cocktails + Food</div>
-      <div class="cdesc">Berkeley's most talked-about cocktail bar with a serious food program. Rotating seasonal cocktails, small plates, a genuine neighborhood gathering spot. The East Bay's answer to SF's cocktail culture.</div>
+      <div class="cdesc">Berkeley's most talked-about cocktail bar with a serious food program. Rotating seasonal cocktails, small plates, a genuine neighborhood gathering spot.</div>
     </div>
-    <div class="card teal"><span class="ctag c-teal">Shelby's Rooftop · Oakland</span>
-      <div class="cname">Shelby's Rooftop</div><div class="cloc">Oakland Rooftop Bar + Restaurant</div>
-      <div class="cdesc">Oakland's rooftop bar with panoramic East Bay views. Good food, better cocktails, and the kind of city perspective that makes you understand why people are so devoted to the East Bay. Best at sunset.</div>
+    <div class="card teal food-item" data-cat="world"><span class="ctag c-teal">Oakland · Rooftop</span>
+      <div class="cname">Shelby's Rooftop</div><div class="cloc">Oakland Rooftop · Panoramic Views</div>
+      <div class="cdesc">Oakland rooftop bar with panoramic East Bay views. Good food, better cocktails. Best at sunset — the kind of perspective that makes you understand why people love the East Bay.</div>
     </div>
-  </div>
+    <div class="card teal food-item" data-cat="world"><span class="ctag c-teal">Sausalito · SE Asian</span>
+      <div class="cname">Teak</div><div class="cloc">Southeast Asian · Contemporary</div>
+      <div class="cdesc">Contemporary Southeast Asian with Marin's farm connections. Beautifully plated, ingredient-forward, with the aromatic complexity of Thai and Vietnamese traditions elevated to California fine dining.</div>
+    </div>
+    <div class="card teal food-item" data-cat="world"><span class="ctag c-teal">Mission · Spark Social</span>
+      <div class="cname">Spark Social</div><div class="cloc">Mission Rock · Food Truck Park</div>
+      <div class="cdesc">SF's best food truck gathering — 20+ rotating trucks at Mission Rock. Waterfront views of the Bay, outdoor seating, live music events. The most casual, communal food experience in the city.</div>
+    </div>
+    <div class="card teal food-item" data-cat="world"><span class="ctag c-teal">SoMa / Divisadero</span>
+      <div class="cname">4505 Burgers &amp; BBQ</div><div class="cloc">Texas-Style BBQ · SF's Best</div>
+      <div class="cdesc">The Presidential Platter: brisket, ribs, chicharrones, jalapeño hot links. SF's best BBQ. Communal tables, smoke drifting across Divisadero. Bourdain called it extraordinary.</div>
+    </div>
 
-  <div class="dl">🍸 Bars + Drinks</div>
-  <div class="g3">
-    <div class="card gold"><span class="ctag c-gold">Mission · Creative Cocktails</span>
+    <!-- DRINKS -->
+    <div class="card gold food-item" data-cat="drinks"><span class="ctag c-gold">Mission · Creative Cocktails</span>
       <div class="cname">Trick Dog ⭐</div><div class="cloc">Best Cocktail Bar in SF</div>
-      <div class="cdesc">The most creative cocktail program in SF — entirely reimagined twice a year around a new theme. Always packed, always inventive. The menu is a work of art before you even drink anything.</div>
+      <div class="cdesc">Most creative cocktail program in SF — entirely reimagined twice a year. Menu is a work of art before you drink. Always packed, always inventive.</div>
     </div>
-    <div class="card gold"><span class="ctag c-gold">Tenderloin · Password Required</span>
-      <div class="cname">Bourbon &amp; Branch</div><div class="cloc">Real Speakeasy · bourbonandbranch.com</div>
-      <div class="cdesc">An actual speakeasy: no sign, password at door, no cell phones. Pre-Prohibition cocktails in a perfectly preserved 1920s bar. One of the most distinctive bar experiences in the United States.</div>
+    <div class="card gold food-item" data-cat="drinks"><span class="ctag c-gold">Tenderloin · Password</span>
+      <div class="cname">Bourbon &amp; Branch</div><div class="cloc">Actual Speakeasy · bourbonandbranch.com</div>
+      <div class="cdesc">No sign, password at door, no cell phones. Pre-Prohibition cocktails in a perfectly preserved 1920s bar. One of the most distinctive bar experiences in the US.</div>
     </div>
-    <div class="card gold"><span class="ctag c-gold">SoMa · 550 Rums · Tiki</span>
-      <div class="cname">Smuggler's Cove</div><div class="cloc">Three Floors · Fire Cocktails</div>
-      <div class="cdesc">Three floors of tiki excess, 550+ rums, fire bowl cocktails, a life-sized ship jutting from the ceiling. Gloriously over-the-top and genuinely excellent. Perfect post-Alcatraz stop.</div>
+    <div class="card gold food-item" data-cat="drinks"><span class="ctag c-gold">SoMa · 550 Rums</span>
+      <div class="cname">Smuggler's Cove</div><div class="cloc">Three Floors · Fire Bowl Cocktails</div>
+      <div class="cdesc">Three floors of tiki excess, 550+ rums, fire bowl cocktails, a life-sized ship in the ceiling. Gloriously over-the-top. Perfect post-Alcatraz stop.</div>
     </div>
-    <div class="card gold"><span class="ctag c-gold">SoMa · Tropical Tiki</span>
-      <div class="cname">Pagan Idol</div><div class="cloc">SoMa · Lavish Tiki Bar</div>
-      <div class="cdesc">Lavishly themed tiki bar in SoMa with tropical cocktails, volcanic effects, and a commitment to the craft that makes Pagan Idol one of the Bay's best tiki experiences. Different aesthetic from Smuggler's, equally excellent.</div>
+    <div class="card gold food-item" data-cat="drinks"><span class="ctag c-gold">SoMa · Tiki</span>
+      <div class="cname">Pagan Idol</div><div class="cloc">Lavish Tiki Bar · SoMa</div>
+      <div class="cdesc">Lavishly themed tiki bar with tropical cocktails, volcanic effects. Different aesthetic from Smuggler's, equally excellent. One of SF's great committed tiki experiences.</div>
     </div>
-    <div class="card gold"><span class="ctag c-gold">Pac Heights · Cozy Wine Bar</span>
+    <div class="card gold food-item" data-cat="drinks"><span class="ctag c-gold">Pac Heights · Wine Bar</span>
       <div class="cname">The Snug</div><div class="cloc">Fillmore St · Pacific Heights</div>
-      <div class="cdesc">A genuinely cozy Fillmore St wine bar with excellent natural wine by the glass and small plates that pair beautifully. Pacific Heights locals' secret for a low-key evening that doesn't involve competing for a table.</div>
+      <div class="cdesc">Genuinely cozy Fillmore St wine bar. Excellent natural wine by the glass, small plates that pair beautifully. Pacific Heights locals' secret for a low-key evening.</div>
     </div>
-    <div class="card gold"><span class="ctag c-gold">Various · Record Store Bar</span>
-      <div class="cname">For the Record</div><div class="cloc">Vinyl + Cocktails · Cozy Atmosphere</div>
-      <div class="cdesc">Record-store meets cocktail bar — vinyl playing at all times, thoughtful drinks, snacks, and a laid-back environment where you can actually have a conversation. The anti-nightclub SF drinking experience.</div>
+    <div class="card gold food-item" data-cat="drinks"><span class="ctag c-gold">Various · Vinyl Bar</span>
+      <div class="cname">For the Record</div><div class="cloc">Vinyl + Cocktails</div>
+      <div class="cdesc">Record-store meets cocktail bar — vinyl playing at all times, thoughtful drinks. The anti-nightclub SF drinking experience. You can actually have a conversation.</div>
     </div>
-    <div class="card gold"><span class="ctag c-gold">Nob Hill · Tiki Classic</span>
-      <div class="cname">The Tonga Room</div><div class="cloc">Fairmont Hotel · Indoor Lagoon</div>
-      <div class="cdesc">A full indoor lagoon. Indoor thunderstorms every 30 minutes. Mai tais the size of your head. One of the oldest tiki bars in America. Absolutely delirious. A required SF WTF experience.</div>
+    <div class="card gold food-item" data-cat="drinks"><span class="ctag c-gold">Nob Hill · Indoor Lagoon</span>
+      <div class="cname">The Tonga Room</div><div class="cloc">Fairmont Hotel · Thunderstorms</div>
+      <div class="cdesc">Full indoor lagoon. Indoor thunderstorms every 30 minutes. Mai tais the size of your head. One of the oldest tiki bars in America. Absolutely delirious. Required.</div>
     </div>
-    <div class="card gold"><span class="ctag c-gold">North Beach · Beat Generation</span>
+    <div class="card gold food-item" data-cat="drinks"><span class="ctag c-gold">North Beach · Beat Era</span>
       <div class="cname">Vesuvio</div><div class="cloc">Kerouac Drank Here · City Lights Alley</div>
-      <div class="cdesc">Kerouac and Ginsberg drank here. Directly across the alley from City Lights. Two floors of history, cheap drinks, the most literary bar in the US.</div>
+      <div class="cdesc">Kerouac and Ginsberg drank here. Across the alley from City Lights. Two floors of history, cheap drinks, the most literary bar in the US.</div>
     </div>
-    <div class="card gold"><span class="ctag c-gold">Chinatown · Dark + Atmospheric</span>
-      <div class="cname">Li Po Lounge</div><div class="cloc">916 Grant Ave · Since 1937</div>
-      <div class="cdesc">Dark, lantern-lit, red vinyl booths, Chinese mai tais. Named after a Tang dynasty poet. One of the most atmospheric old-school bars in SF — feels like 1952 and makes no apologies for it.</div>
+    <div class="card gold food-item" data-cat="drinks"><span class="ctag c-gold">Chinatown · Since 1937</span>
+      <div class="cname">Li Po Lounge</div><div class="cloc">916 Grant Ave · Dark &amp; Atmospheric</div>
+      <div class="cdesc">Dark, lantern-lit, red vinyl booths, Chinese mai tais. Named after a Tang dynasty poet. Feels like 1952 and makes no apologies for it.</div>
     </div>
-  </div>
-</div>
 
+  </div><!-- /food-grid -->
+</div>
 <!-- ══════════════════════════ SF PARKS ══════════════════════════ -->
 <div id="parks" class="tab">
   <div class="sh">
@@ -2506,6 +2553,8 @@ details[open]>summary{border-radius:10px 10px 0 0;border-bottom:1px solid var(--
 
 </div><!-- /main -->
 
+<button id="btt" aria-label="Back to top">↑</button>
+
 <div class="footer">
   <strong>San Francisco — Know It. Eat It. Live It.</strong>
   SF · Marin · Sonoma · Peninsula · East Bay · South Bay · Monterey · SLO<br>
@@ -2513,6 +2562,7 @@ details[open]>summary{border-radius:10px 10px 0 0;border-bottom:1px solid var(--
 </div>
 
 <script>
+// ── TAB NAVIGATION ──
 function go(t){
   document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
@@ -2521,15 +2571,16 @@ function go(t){
   document.querySelectorAll('.nb').forEach(b=>{
     if(b.getAttribute('onclick')===`go('${t}')`){b.classList.add('on')}
   });
-  document.querySelector('.nav').scrollIntoView({behavior:'smooth',block:'start'});
   window.scrollTo({top:document.querySelector('.nav').offsetTop-2,behavior:'smooth'});
+  // trigger reveal on cards in new tab
+  if(tab) revealCards(tab);
 }
 
+// ── NEIGHBORHOOD EXPAND ──
 function toggleHood(id){
   const panel=document.getElementById(id);
   if(!panel)return;
   const isOpen=panel.classList.contains('open');
-  // close all
   document.querySelectorAll('.hood-panel').forEach(p=>{
     p.classList.remove('open');
     p.style.display='none';
@@ -2537,11 +2588,53 @@ function toggleHood(id){
   if(!isOpen){
     panel.classList.add('open');
     panel.style.display='grid';
+    panel.scrollIntoView({behavior:'smooth',block:'nearest'});
   }
 }
 
-// init all panels hidden
+// ── FOOD FILTERS ──
+function filterFood(cat){
+  document.querySelectorAll('#food-filters .filt').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('#food-filters .filt').forEach(b=>{
+    if(b.getAttribute('onclick')===`filterFood('${cat}')`){b.classList.add('on')}
+  });
+  const items=document.querySelectorAll('.food-item');
+  items.forEach((el,i)=>{
+    const match = cat==='all' || el.dataset.cat===cat;
+    if(match){
+      el.classList.remove('hidden');
+      el.style.animationDelay = (i%12 * 0.035)+'s';
+      el.classList.remove('reveal');
+      void el.offsetWidth; // reflow
+      el.classList.add('reveal');
+    } else {
+      el.classList.add('hidden');
+    }
+  });
+}
+
+// ── SCROLL REVEAL ──
+function revealCards(container){
+  const cards = container.querySelectorAll('.card:not(.food-item), .pk, .mc, .ev, .cc');
+  cards.forEach((el,i)=>{
+    el.style.animationDelay=(i*0.04)+'s';
+    el.classList.remove('reveal');
+    void el.offsetWidth;
+    el.classList.add('reveal');
+  });
+}
+
+// ── BACK TO TOP ──
+const btt=document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  btt.classList.toggle('vis', window.scrollY>400);
+},{ passive:true });
+btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+// ── INIT ──
 document.querySelectorAll('.hood-panel').forEach(p=>p.style.display='none');
+// reveal initial tab cards
+document.querySelectorAll('.tab.on').forEach(revealCards);
 </script>
 </body>
 </html>
